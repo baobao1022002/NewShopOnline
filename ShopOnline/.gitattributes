@@ -1,0 +1,6 @@
+ShopOnline filter=lfs diff=lfs merge=lfs -text
+. filter=lfs diff=lfs merge=lfs -text
+Demo_Project filter=lfs diff=lfs merge=lfs -text
+/Demo_Project filter=lfs diff=lfs merge=lfs -text
+*.js filter=lfs diff=lfs merge=lfs -text
+*.war filter=lfs diff=lfs merge=lfs -text
