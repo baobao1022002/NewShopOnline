@@ -32,7 +32,7 @@
 //		userRoleService.delete(roleId);// gọi hàm  delete để xóa 1 đối tượng theo tham số truyền vào roleId
 //
 //		//View sẽ nhận dữ liệu là View nào
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/UserRole");
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/userRole");
 //		dispatcher.forward(request, response);
 //
 //	}

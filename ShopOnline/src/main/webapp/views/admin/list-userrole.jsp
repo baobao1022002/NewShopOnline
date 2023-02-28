@@ -37,22 +37,22 @@
 										</div>
 										<div class="form-group">
 												<label for="UserName">Role Name:</label> <input type="text"
-												name="rolename" id="rolename" class="form-control"
-												value="${userrole.rolename }"/>
+												name="roleName" id="roleName" class="form-control"
+												value="${userRole.roleName }"/>
 										</div>
 										<hr>
 										<div class="form-group">
 											<button class="btn green"
-												formaction="<c:url value="/admin-userrole/create"/>">
+												formaction="<c:url value="/admin/userRole/create"/>">
 												Create <i class="fa fa-plus"></i>
 											</button>
 											<button class="btn btn-warning"
-												formaction="<c:url value="/admin-userrole/update"/>">
+												formaction="<c:url value="/admin/userRole/update"/>">
 												Update <i class="fa fa-edit"></i>
 											</button>
 
 											<button class="btn btn-danger"
-												formaction="<c:url value="/admin-userrole/delete"/>">
+												formaction="<c:url value="/admin/userRole/delete"/>">
 												Delete <i class="fa fa-trash"></i>
 											</button>
 											<button class="btn btn-success"
@@ -107,9 +107,9 @@
 														<td><fmt:formatDate pattern = "dd-MM-yyyy hh:mm:ss" type = "both" 
          value = "${list.modifiedDate }" /></td>
 														<td><a
-															href="<c:url value='/admin-userrole/edit?roleid=${list.roleid }'/>"
+															href="<c:url value='/admin/userRole/edit?roleid=${list.roleid }'/>"
 															class="center">Sửa</a> | <a
-															href="<c:url value='/admin-userrole/delete?roleid=${list.roleid }'/>"
+															href="<c:url value='/admin/userRole/delete?roleid=${list.roleid }'/>"
 															class="center">Xóa</a></td>
 
 													</tr>
