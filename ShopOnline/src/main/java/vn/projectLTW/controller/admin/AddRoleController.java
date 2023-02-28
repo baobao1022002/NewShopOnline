@@ -15,7 +15,7 @@
 //import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 //
 //
-//@WebServlet("/addRole")
+//@WebServlet("/admin/userRole/create")
 //public class AddRoleController extends HttpServlet {
 //	private static final long serialVersionUID = 1L;
 //	//truy xuất vào Interface  userRoleService để lấy  các hàm implement  Service userRole
@@ -45,7 +45,7 @@
 //
 //		userRoleService.insert(userRole);// thêm dữ liệu vào database bằng hàm insert
 //
-//		response.sendRedirect(request.getContextPath()+"/UserRole");//trả về servlet controller
+//		response.sendRedirect(request.getContextPath()+"/userRole");//trả về servlet controller
 //	}
 //
 //}

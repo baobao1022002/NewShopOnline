@@ -38,11 +38,11 @@
 
 					
 				</div>
-				
-			
+
+			</div>
 				
 		
-			</form>
+
 			<br />
 					<br />
 					
@@ -71,7 +71,7 @@
 							</button>
 						</div>
 					</div>
-		
+			</form>
 					<br />
 		
 		
@@ -93,10 +93,10 @@
 								<th scope="row">${i.roleId}</th>
 								<td>${i.roleName}</td>
 								<td>  
-									<%-- <a href="<c:url value="/editRole?id=${i.roleId}"/>">Edit</a> |
-									<a href="<c:url value="/deleteRole?id=${i.roleId}"/>">Delete</a> --%>
-									<a href="<c:url value="/admin/userRole/edit?id=${i.roleId}"/>">Edit</a> |
-									<a href="<c:url value="/admin/userRole/delete?id=${i.roleId}"/>">Delete</a>
+<%--									< <a href="<c:url value="/editRole?id=${i.roleId}"/>">Edit</a> |--%>
+<%--									<a href="<c:url value="/deleteRole?id=${i.roleId}"/>">Delete</a>--%>
+									<a href="<c:url value="/admin/userRole/edit?roleId=${i.roleId}"/>">Edit</a>
+									<a href="<c:url value="/admin/userRole/delete?roleId=${i.roleId}"/>">Delete</a>
 								</td>
 								
 							</tr>

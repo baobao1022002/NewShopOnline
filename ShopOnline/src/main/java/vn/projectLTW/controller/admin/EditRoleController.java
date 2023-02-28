@@ -59,7 +59,7 @@
 //		userRoleService.update(userRole);// cập nhật dữ liệu vào database  bằng hàm update
 //
 //
-//		response.sendRedirect(request.getContextPath()+"/UserRole");//trả về servlet controller
+//		response.sendRedirect(request.getContextPath()+"/userRole");//trả về servlet controller
 //	}
 //
 //}
