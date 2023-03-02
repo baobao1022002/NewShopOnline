@@ -2,82 +2,72 @@ package vn.projectLTW.util;
 
 import java.util.Properties;
 import java.util.Random;
-
-import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import vn.projectLTW.model.Users;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 
 public class Email {
+	private static Email sendEmail;
+	private JavaMailSenderImpl mailSender;
+	private static final String  fromEmail ="20130474@st.hcmuaf.edu.vn";
+	private static final String password="Xuyen28082002";
 
-	
+	private Email(){
+		mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setDefaultEncoding("utf-8");
+		mailSender.setUsername(fromEmail);
+		mailSender.setPassword(password);
+		Properties props = mailSender.getJavaMailProperties();
+		props.setProperty("mail.mime.charset", "utf-8");
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.debug", "true");
+		props.put("session.setDebug", "true");
+	}
+
+	public static Email getInstance(){
+		if(sendEmail == null)
+			return new Email();
+		return sendEmail;
+	}
 	//Hàm mã code ngẫu nhiên
-	public String getRandom() {
+	public static String getRandom() {
+
 		Random rnd=new Random();
 		int number=rnd.nextInt(999999);
 		return String.format("%06d", number);
 	}
-	
-	//send email to the user email
-	public boolean sendEmail(Users user) {
-		boolean test=false;
-		
-		String toEmail=user.getEmail();
-		String	fromEmail="vox56846@gmail.com";
-		String password="Xuyen123456";
-		
-		try {
-			
-			//your host email smtp server details
-			Properties pr=configEmail(new Properties());
-			
-			//get session to authenticate the host email address and password
-			Session session=Session.getInstance(pr,new Authenticator() {
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(fromEmail,password);	
-				}
-			});
-			//set email message details
-			Message mess=new MimeMessage(session);
-			mess.setHeader("Content-Type","text/plain; charset=UTF-8");
-			//set from email address
-			mess.setFrom(new InternetAddress(fromEmail));
-			//set to email address or  destination email adress
-			mess.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-			
-			//set email subject 
-			mess.setSubject("Confirm Code");
-			
-			//set message text
-			mess.setText("Your code is: "+user.getCode());
-			//send the message
-			Transport.send(mess);
-			test=true;
-			
-		} catch (Exception e) {
-			e.printStackTrace()		;
-			}
-		
-		return test;
-	}
-	
-	public Properties configEmail(Properties pr) {
-		
-		
-		pr.setProperty("mail.smtp.host","smtp.gmail.com");
-		pr.setProperty("mail.smtp.port", "587");
-		pr.setProperty("mail.smtp.auth", "true");
-		pr.setProperty("mail.smtp.starttls.enable", "true");
-		pr.put("mail.smtp.socketFactory.port", "587");
-		pr.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		pr.put("mail.smtp.ssl.trust", "*");
-		return pr;
 
+	//send email to the user email
+	public boolean sendEmail(String toEmail, String text) {
+		try {
+			MimeMessage mimeMessage = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
+			mimeMessage.setSubject("Shop Online");
+			mimeMessage.setContent(text, "text/html; charset=utf-8");
+
+			helper.setFrom(fromEmail);
+			helper.setTo(toEmail);
+
+			mailSender.send(mimeMessage);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+
+	public static void main(String[] args) {
+
+		Email.getInstance().sendEmail("ngohuyk80169@gmail.com",Email.getRandom());
 	}
 }
