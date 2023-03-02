@@ -1,19 +1,5 @@
 package vn.projectLTW.controller.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import vn.projectLTW.Dao.IUserRoleDao;
 import vn.projectLTW.model.Category;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.model.Seller;
@@ -28,6 +14,13 @@ import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.Email;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 
 @WebServlet(urlPatterns = { "/home", "/login", "/register", "/forgotPass", "/waiting", "/verifyCode","/logout" })
@@ -64,7 +57,7 @@ public class HomeController extends HttpServlet {
 		String url = req.getRequestURL().toString();
 
 		if (url.contains("register")) {
-			postRegister(req, resp);
+//			postRegister(req, resp);
 		} else if (url.contains("login")) {
 			postLogin(req, resp);
 		} else if (url.contains("forgotPass")) {
@@ -76,19 +69,19 @@ public class HomeController extends HttpServlet {
 
 	protected void homePage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Lấy dữ liệu và đẩy lên view
-		
+
 		List<Product> productListNew=productService.findAllNews();
 		req.setAttribute("productListNew", productListNew);
-		
+
 		List<Category> categoryList=categoryService.findAll();
 		req.setAttribute("categoryList", categoryList);
-		
+
 		List<Seller> sellerList=sellerService.findAll();
 		req.setAttribute("sellerList", sellerList);
-		
+
 		req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
 	}
-	
+
 	protected void getRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/views/web/register.jsp").forward(req, resp);
 	}
@@ -114,12 +107,11 @@ public class HomeController extends HttpServlet {
 			req.setAttribute("error", alertMsg);
 			req.getRequestDispatcher("/views/web/register.jsp").forward(req, resp);
 		} else {
-			Email sm = new Email();
-			String code = sm.getRandom();
+			String code = Email.getRandom();
 
 			Users user = new Users(userName, email, fullName, code);
 
-			boolean test = sm.sendEmail(user);
+			boolean test = Email.getInstance().sendEmail(user.getEmail(), code);
 			if (test) {
 
 				// tạo session
@@ -139,7 +131,7 @@ public class HomeController extends HttpServlet {
 			}
 		}
 	}
- 
+
 	protected void getLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// check session
 		HttpSession session = req.getSession(false);
@@ -180,7 +172,7 @@ public class HomeController extends HttpServlet {
 		}
 		resp.sendRedirect("./login");
 	}
-	
+
 	protected void getWaiting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//kiểm tra session
 		HttpSession session = req.getSession();
@@ -201,7 +193,7 @@ public class HomeController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}
-	
+
 	protected void postForgotPassword(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -212,14 +204,16 @@ public class HomeController extends HttpServlet {
 		String userName = req.getParameter("userName");
 		String email = req.getParameter("email");
 		Users user= userService.findOne(userName);
-	
-		if (user.getEmail().equals(email)&& user.getUserName().equals(userName) ) {
-			Email sm = new Email();
-			boolean test = sm.sendEmail(user);
+		if (user.getEmail().equals(email)&& user.getUserName().equals(userName)) {
+			String pass = 	Email.getRandom();
+			user.setPassWord(pass);
+			userService.update(user);
+			boolean test = Email.getInstance().sendEmail(user.getEmail(), pass);
 			if (test) {
+
 				req.setAttribute("message", "Vui lòng kiểm tra email để nhận mật khẩu mới nhé!");
-				}else {
-					req.setAttribute("error", "Lỗi gửi email!");
+			}else {
+				req.setAttribute("error", "Lỗi gửi email!");
 			}
 		}else {
 			req.setAttribute("error", "User  Name hoặc Email không tồn tại trong hệ thống!");
@@ -230,7 +224,7 @@ public class HomeController extends HttpServlet {
 
 	}
 
-	
+
 	private void saveRememberMe(HttpServletResponse response, String userName) {
 		Cookie cookie=new Cookie(Constant.COOKIE_REMEMBER, userName);
 		cookie.setMaxAge(30*60);
@@ -259,15 +253,15 @@ public class HomeController extends HttpServlet {
 			req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 			return;
 		}
-		
+
 		Users user=userService.login(userName, passWord);
-		
+
 		if(user!=null) {
 			if(user.getStatus()==1) {
 				//tạo session
 				HttpSession session=req.getSession(true);
 				session.setAttribute("account", user);
-				
+
 				if(isRemeberMe) {
 					saveRememberMe(resp, userName);
 				}
