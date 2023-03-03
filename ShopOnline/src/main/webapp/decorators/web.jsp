@@ -160,6 +160,7 @@ Nostrud duis molestie at dolore.</p>
     <!-- END LayerSlider -->
 
     <script src="${url}/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="${url}/frontend/quantity.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             Layout.init();    
