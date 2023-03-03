@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import vn.projectLTW.model.Cart;
 import vn.projectLTW.model.CartItem;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.service.ICategoryService;
@@ -25,7 +26,7 @@ import vn.projectLTW.service.Impl.ProductServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
 
-@WebServlet(urlPatterns = { "/member/cart", "/member/cart/add", "/member/cart/remove" })
+@WebServlet(urlPatterns = { "/member/cart", "/member/cart/add", "/member/cart/remove","/member/cart/updateQuantity" })
 public class CartController extends HttpServlet {
 
 	IUserService userService = new UserServiceImpl();
@@ -44,10 +45,45 @@ public class CartController extends HttpServlet {
 			addCart(req,resp);
 		}else if(url.contains("cart/remove")) {
 			removeItem(req,resp);
-		}else {
+		}else if(url.contains("cart/updateQuantity"))
+			updateQuantity(req,resp);
+		else {
 			listCart(req,resp);
 
 		}
+	}
+
+	protected void updateQuantity(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
+		//Nhận tham số từ View
+		String pId = req.getParameter("pId");
+		String quantity=req.getParameter("quantity");
+		//truy vấn product bằng pId
+		Product product=productService.findOne(Integer.parseInt(pId));
+
+		CartItem cartItem=new CartItem();
+		cartItem.setQuantity(Integer.parseInt(quantity));
+		cartItem.setUnitPrice(product.getPrice());
+		cartItem.setProduct(product);
+
+		//tạo session
+		HttpSession session=req.getSession();
+		Object obj=session.getAttribute("cart");
+		if(obj==null){
+			Map<Integer,CartItem> map=new HashMap<Integer,CartItem>();
+			map.put(cartItem.getProduct().getProductId(),cartItem);
+			session.setAttribute("cart",map);
+		}else{
+			Map<Integer,CartItem> map=extracted(obj);
+			CartItem existCartItems=map.get(Integer.valueOf(pId));
+			if(existCartItems==null){
+				map.put(product.getProductId(),cartItem);
+			}else{
+				existCartItems.setQuantity(Integer.parseInt(quantity));
+			}
+			session.setAttribute("cart",map);
+		}
+		resp.sendRedirect(req.getContextPath()+"/member/cart");
+
 	}
 	protected void listCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatcher=req.getRequestDispatcher("/views/web/cart-list.jsp");	

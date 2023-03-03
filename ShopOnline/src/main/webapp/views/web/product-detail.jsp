@@ -3,6 +3,8 @@
 <%@include file="/common/taglib.jsp" %>
 <c:url value="/template/assets" var="url"></c:url>
 
+
+
 <div class="main">
     <div class="container-fluid">
         <!-- BEGIN SIDEBAR & CONTENT -->
