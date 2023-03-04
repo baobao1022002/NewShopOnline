@@ -289,7 +289,7 @@
                                                   action="<c:url value="/member/cart/add"></c:url>">
                                                 <input type="text" name="pId" id="pid1"
                                                        value="${proList.productId}" hidden="">
-                                                <input type="text" id="stock1" value="${proList.stoke}"
+                                                <input type="text" id="stock1${proList.productId}" value="${proList.stoke}"
                                                        hidden="">
 
                                                 <button type="button" class="quantity-button"
@@ -403,7 +403,7 @@
                                                   action="<c:url value="/member/cart/add"></c:url>">
                                                 <input type="text" name="pId" id="pid2"
                                                        value="${proList.productId}" hidden="">
-                                                <input type="text" id="stock2" value="${proList.stoke}"
+                                                <input type="text" id="stock2${proList.productId}" value="${proList.stoke}"
                                                        hidden="">
 
                                                 <button type="button" class="quantity-button"
@@ -550,7 +550,7 @@
                                                   action="<c:url value="/member/cart/add"></c:url>">
                                                 <input type="text" name="pId" id="pid3"
                                                        value="${proList.productId}" hidden="">
-                                                <input type="text" id="stock3" value="${proList.stoke}"
+                                                <input type="text" id="stock3${proList.productId}" value="${proList.stoke}"
                                                        hidden="">
 
                                                 <button type="button" class="quantity-button"
@@ -688,7 +688,7 @@
                                                   action="<c:url value="/member/cart/add"></c:url>">
                                                 <input type="text" name="pId" id="pid4"
                                                        value="${proList.productId}" hidden="">
-                                                <input type="text" id="stock4" value="${proList.stoke}"
+                                                <input type="text" id="stock4${proList.productId}" value="${proList.stoke}"
                                                        hidden="">
 
                                                 <button type="button" class="quantity-button"
