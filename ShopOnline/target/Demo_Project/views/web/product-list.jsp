@@ -192,10 +192,38 @@
 											</div>
 										</div>
 										<div class="product-page-cart">
-											<div class="product-quantity">
-												<input id="product-quantity" type="text" value="1" readonly
-													name="product-quantity" class="form-control input-sm">
-											</div>
+											<form name="f1" method="get"
+												  action="<c:url value="/member/cart/updateQuantity"></c:url>">
+
+
+												<input type="text" name="pId" id="pid"
+													   value="${proList.productId}" hidden="">
+
+												<input type="text" id="stock${proList.productId}" value="${proList.stoke}" hidden="">
+
+												<button type="button" class="quantity-button"
+														name='subtract${proListproductId}'
+														onclick='javascript: subtractQty0(${proList.productId});'
+														value="-">-
+												</button>
+
+												<input readonly type="text" name="quantity"
+													   value="${proList.quantity}"
+													   id="product-quantity${proList.productId}"
+													   style="width: 40px"/>
+
+
+												<button type="button" class="quantity-button"
+														name='add${proList.productId}'
+														onclick='javascript: subtractQty9(${proList.productId});'
+														value="+">+
+												</button>
+												&nbsp;&nbsp
+												<button type="submit" class="btn btn-danger">Cập nhật</button>
+
+											</form>
+											</td>
+
 											<button class="btn btn-primary" type="submit">Cho vào giỏ hàng</button>
 											<a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>" class="btn btn-default">Xem chi tiết</a>
 										</div>

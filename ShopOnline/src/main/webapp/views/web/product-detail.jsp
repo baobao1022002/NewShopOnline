@@ -109,11 +109,42 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="product-page-cart">
-                            <div class="product-quantity">
-                                <input id="product-quantity" type="text" value="1" readonly
-                                       class="form-control input-sm">
-                            </div>
+                        <div class="product-page-cart" >
+                            <form name="f1" method="get"
+                                  action="<c:url value="/member/cart/updateQuantity"></c:url>">
+
+
+                                <input type="text" name="pId" id="pid"
+                                       value="${product.productId}" hidden="">
+
+                                <input type="text" id="stock${product.productId}" value="${product.stoke}" hidden="">
+
+                                <button type="button" class="quantity-button"
+                                        name='subtract${product.productId}'
+                                        onclick='javascript: subtractQty0(${product.productId});'
+                                        value="-">-
+                                </button>
+
+                                <input readonly type="text" name="quantity"
+                                       value="${1}"
+                                       id="product-quantity${product.productId}"
+                                       style="width: 40px"/>
+
+
+
+
+                                <button type="button" class="quantity-button"
+                                        name='add${product.productId}'
+                                        onclick='javascript: subtractQty9(${product.productId});'
+                                        value="+">+
+                                </button>
+                                &nbsp;&nbsp
+                                <button type="submit" class="btn btn-danger">Cập nhật</button>
+
+                            </form>
+                            </td>
+                            </br>
+                            </br>
                             <a href="<c:url value="/member/cart/add?pId=${product.productId}&quantity=1"/>"
                                class="btn btn-primary add2cart">Thêm vào giỏ hàng</a>
                         </div>
