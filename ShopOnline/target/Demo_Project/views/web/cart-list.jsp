@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url value="/template/assets" var="url"></c:url>
 <div class="main">
@@ -62,7 +62,7 @@
                                                         value="+">+
                                                 </button>
                                                 &nbsp;&nbsp
-                                                <button type="submit" class="btn btn-danger">C?p nh?t</button>
+                                                <button type="submit" class="btn btn-danger">Cập nhật</button>
 
                                             </form>
                                         </td>

@@ -75,6 +75,12 @@
                             <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
                                class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
                                                                              src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
+                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                               class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
+                                                                             src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
+                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                               class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
+                                                                             src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
