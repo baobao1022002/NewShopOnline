@@ -1,19 +1,5 @@
 package vn.projectLTW.controller.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import vn.projectLTW.Dao.IUserRoleDao;
 import vn.projectLTW.model.Category;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.model.Seller;
@@ -28,6 +14,14 @@ import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.Email;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 
 
 @WebServlet(urlPatterns = { "/home", "/login", "/register", "/forgotPass", "/waiting", "/verifyCode","/logout" })
@@ -54,7 +48,11 @@ public class HomeController extends HttpServlet {
 			req.getRequestDispatcher("/views/web/verify.jsp").forward(req, resp);
 		} else if (url.contains("logout")) {
 			getLogout(req, resp);
+		}else if (url.contains("loginFace")) {
+			getLoginFb(req, resp);
 		}else {
+
+
 			homePage(req, resp);
 		}
 	}
@@ -73,6 +71,8 @@ public class HomeController extends HttpServlet {
 			postVerifyCode(req, resp);
 		}
 	}
+
+
 
 	protected void homePage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Lấy dữ liệu và đẩy lên view
@@ -163,6 +163,29 @@ public class HomeController extends HttpServlet {
 		req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 	}
 
+	protected void getLoginFb(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// check session
+		HttpSession session = req.getSession(false);
+		if (session != null && session.getAttribute("account") != null) {
+			resp.sendRedirect(req.getContextPath() + "/waiting");
+			return;
+		}
+
+		// check cookies
+		Cookie[] cookies = req.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("userName")) {
+					session = req.getSession(true);
+					session.setAttribute("userName", cookie.getValue());
+					resp.sendRedirect(req.getContextPath() + "/waiting");
+					return;
+				}
+			}
+		}
+		req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+	}
+
 	protected void getLogout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// check session
 		HttpSession session = req.getSession();
@@ -180,7 +203,7 @@ public class HomeController extends HttpServlet {
 		}
 		resp.sendRedirect("./login");
 	}
-	
+
 	protected void getWaiting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//kiểm tra session
 		HttpSession session = req.getSession();
@@ -283,6 +306,7 @@ public class HomeController extends HttpServlet {
 			req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 		}
 	}
+
 
 	protected void postVerifyCode(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

@@ -113,7 +113,7 @@
                                        class="form-control input-sm">
                             </div>
                             <a href="<c:url value="/member/cart/add?pId=${product.productId}&quantity=1"/>"
-                               class="btn btn-default add2cart">Thêm vào giỏ hàng</a>
+                               class="btn btn-primary add2cart">Thêm vào giỏ hàng</a>
                         </div>
                         <div class="review">
                             <input type="range" value="4" step="0.25" id="backing4">

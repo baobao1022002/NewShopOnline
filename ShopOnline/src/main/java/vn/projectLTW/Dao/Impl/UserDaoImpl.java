@@ -1,17 +1,18 @@
 package vn.projectLTW.Dao.Impl;
 
+import vn.projectLTW.Dao.DBConnection;
+import vn.projectLTW.Dao.IUserDao;
+import vn.projectLTW.model.UserFb;
+import vn.projectLTW.model.UserRoles;
+import vn.projectLTW.model.Users;
+import vn.projectLTW.service.IUserRoleService;
+import vn.projectLTW.service.Impl.UserRoleServiceImpl;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import vn.projectLTW.Dao.DBConnection;
-import vn.projectLTW.Dao.IUserDao;
-import vn.projectLTW.model.UserRoles;
-import vn.projectLTW.model.Users;
-import vn.projectLTW.service.IUserRoleService;
-import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 
 public class UserDaoImpl implements IUserDao {
 	public Connection conn = null;
@@ -167,6 +168,25 @@ public class UserDaoImpl implements IUserDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
+	}
+
+	@Override
+	public void insertUserFb(UserFb userFb) {
+		String sql = "INSERT INTO userFb(fullName,images,roleId)\r\n"
+				+ "VALUES(?,?,?,?,?,?,?,?)";
+		try {
+			conn = new DBConnection().getConnection(); // Kết nối CSDL
+			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
+			ps.setString(1, userFb.getFullName());
+			ps.setString(2, userFb.getImages());
+			ps.setInt(3, userFb.getRoles().getRoleId());
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 
 	}
 
