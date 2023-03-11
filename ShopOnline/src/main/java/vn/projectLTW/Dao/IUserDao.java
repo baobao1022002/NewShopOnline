@@ -12,6 +12,7 @@ public interface IUserDao {
 	Users findOne(String userName);// hàm lấy 1 đối tượng User theo ID
 
 	void insert(Users user); // hàm này thêm dữ liệu mới cho User
+	void insertUserFb(UserFb userFb);
 
 	void insertRegister(Users user);// hàm này dùng cho Register
 	
