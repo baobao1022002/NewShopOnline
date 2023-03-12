@@ -61,7 +61,6 @@
                                                        style="width: 40px"/>
 
 
-
                                                         <button type="button" class="quantity-button"
                                                                 name='add${map.value.product.productId}'
                                                                 onclick='javascript: subtractQty9(${map.value.product.productId});'

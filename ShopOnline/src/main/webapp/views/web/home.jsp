@@ -1,7 +1,20 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="vn.projectLTW.util.Language" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url value="/template/assets" var="url"></c:url>
+<%
+    Map<String,String> showLanguage = new Language().vietnameseLanguage();
+    String lang = (String) session.getAttribute("lang");
+    if(lang!=null){
+        if(lang.equals("Vietnamese")){
+            showLanguage = new Language().vietnameseLanguage();
+        } else if (lang.equals("English")) {
+            showLanguage = new Language().englishLanguage();
+
+        }
+    }%>
 
 <!-- BEGIN SLIDER -->
 <div class="page-slider margin-bottom-35">
@@ -204,7 +217,7 @@
             <!-- BEGIN SALE PRODUCT -->
 
             <div class="col-md-12 sale-product">
-                <h2>New Arrivals</h2>
+                <h2><%=showLanguage.get("newproducts")%></h2>
                 <div class="owl-carousel owl-carousel5">
                     <c:forEach items="${productListNew}" var="proList">
                         <div>
@@ -214,9 +227,9 @@
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                           class="btn btn-default fancybox-button">Zoom</a>
+                                           class="btn btn-default fancybox-button"><%=showLanguage.get("zoom")%></a>
                                         <a href="#product-pop-up${proList.productId}"
-                                           class="btn btn-default fancybox-fast-view">View</a>
+                                           class="btn btn-default fancybox-fast-view"><%=showLanguage.get("view")%></a>
                                     </div>
                                 </div>
                                 <h3>
@@ -224,7 +237,7 @@
                                 </h3>
                                 <div class="pi-price">${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                   class="btn btn-default add2cart">Thêm vào giỏ hàng</a>
+                                   class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
 
                                 <div class="sticker sticker-sale"></div>
                             </div>
@@ -273,15 +286,15 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
                                         <h2>${proList.productName}</h2>
-                                        <h4>Category: ${proList.category.categoryName} -
-                                            Shop: ${proList.seller.sellerName }</h4>
+                                        <h4><%=showLanguage.get("category")%>: ${proList.category.categoryName} -
+                                            <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
                                                 <strong><span>$</span>${proList.price }</strong>
                                                 <em>$<span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
-                                                Số lượng tồn: <strong>${proList.stoke}</strong>
+                                                <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
                                             </div>
                                         </div>
                                         <div class="description">
@@ -289,7 +302,7 @@
                                         </div>
                                         <div class="product-page-options">
                                             <div class="pull-left">
-                                                <label class="control-label">Size:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("size")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>L</option>
                                                 <option>M</option>
@@ -297,7 +310,7 @@
                                             </select>
                                             </div>
                                             <div class="pull-left">
-                                                <label class="control-label">Color:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("color")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>Red</option>
                                                 <option>Blue</option>
@@ -330,12 +343,12 @@
                                                 </button>
                                                 &nbsp;
                                                 &nbsp;
-                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                                <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
                                             <hr>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default">Xem chi tiết</a>
+                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                         </div>
                                     </div>
 
@@ -398,13 +411,15 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
                                         <h2>${proList.productName}</h2>
+                                        <h4><%=showLanguage.get("category")%>: ${proList.category.categoryName} -
+                                            <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
                                                 <strong><span>$</span>${proList.price }</strong>
                                                 <em>$<span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
-                                                Số lượng tồn: <strong>${proList.amount}</strong>
+                                                <%=showLanguage.get("inventory")%>: <strong>${proList.amount}</strong>
                                             </div>
                                         </div>
                                         <div class="description">
@@ -412,7 +427,7 @@
                                         </div>
                                         <div class="product-page-options">
                                             <div class="pull-left">
-                                                <label class="control-label">Size:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("size")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>L</option>
                                                 <option>M</option>
@@ -420,7 +435,7 @@
                                             </select>
                                             </div>
                                             <div class="pull-left">
-                                                <label class="control-label">Color:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("color")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>Red</option>
                                                 <option>Blue</option>
@@ -453,7 +468,7 @@
                                                 </button>
                                                 &nbsp;
                                                 &nbsp;
-                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                                <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
 <%--                                            <div class="product-quantity">--%>
@@ -463,7 +478,7 @@
 <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
 <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default">Xem chi tiết</a>
+                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                         </div>
                                     </div>
 
@@ -494,7 +509,7 @@
 
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-8">
-                <h2>Three items</h2>
+                <h2><%=showLanguage.get("products")%></h2>
                 <div class="owl-carousel owl-carousel3">
 
 
@@ -506,9 +521,9 @@
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                           class="btn btn-default fancybox-button">Zoom</a> <a
+                                           class="btn btn-default fancybox-button"><%=showLanguage.get("zoom")%></a> <a
                                             href="#product-pop-upp${proList.productId}"
-                                            class="btn btn-default fancybox-fast-view">View</a>
+                                            class="btn btn-default fancybox-fast-view"><%=showLanguage.get("view")%></a>
                                     </div>
                                 </div>
                                 <h3>
@@ -516,7 +531,7 @@
                                 </h3>
                                 <div class="pi-price">$${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                   class="btn btn-default add2cart">Thêm vào giỏ hàng</a>
+                                   class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
 
                                 <div class="sticker sticker-new"></div>
                             </div>
@@ -556,13 +571,15 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
                                         <h2>${proList.productName}</h2>
+                                        <h4><%=showLanguage.get("category")%>: ${proList.category.categoryName} -
+                                            <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
                                                 <strong><span>$</span>${proList.price }</strong>
                                                 <em>$<span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
-                                                Số lượng tồn: <strong>${proList.stoke}</strong>
+                                                <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
                                             </div>
                                         </div>
                                         <div class="description">
@@ -570,7 +587,7 @@
                                         </div>
                                         <div class="product-page-options">
                                             <div class="pull-left">
-                                                <label class="control-label">Size:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("size")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>L</option>
                                                 <option>M</option>
@@ -578,7 +595,7 @@
                                             </select>
                                             </div>
                                             <div class="pull-left">
-                                                <label class="control-label">Color:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("color")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>Red</option>
                                                 <option>Blue</option>
@@ -611,7 +628,7 @@
                                                 </button>
                                                 &nbsp;
                                                 &nbsp;
-                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                                <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
 
@@ -623,7 +640,7 @@
 <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
 <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default">Xem chi tiết</a>
+                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                         </div>
                                     </div>
 
@@ -643,7 +660,7 @@
         <div class="row margin-bottom-35 ">
             <!-- BEGIN TWO PRODUCTS -->
             <div class="col-md-6 two-items-bottom-items">
-                <h2>Two items</h2>
+                <h2><%=showLanguage.get("products")%></h2>
                 <div class="owl-carousel owl-carousel2">
                     <c:forEach items="${productListNew}" var="proList">
                         <div>
@@ -656,10 +673,10 @@
                                     <div>
                                         <a
                                                 href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                                class="btn btn-default fancybox-button">Zoom</a>
+                                                class="btn btn-default fancybox-button"><%=showLanguage.get("zoom")%></a>
                                         <a
                                                 href="#product-pop-up${proList.productId}"
-                                                class="btn btn-default fancybox-fast-view">View</a>
+                                                class="btn btn-default fancybox-fast-view"><%=showLanguage.get("view")%></a>
                                     </div>
                                 </div>
                                 <h3>
@@ -668,7 +685,7 @@
                                 </h3>
                                 <div class="pi-price">$ ${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                   class="btn btn-default add2cart">Thêm vào giỏ hàng</a>
+                                   class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
                             </div>
                         </div>
 
@@ -705,13 +722,15 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
                                         <h2>${proList.productName}</h2>
+                                        <h4><%=showLanguage.get("category")%>: ${proList.category.categoryName} -
+                                            <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
                                                 <strong><span>$</span>${proList.price }</strong>
                                                 <em>$<span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
-                                                Số lượng tồn: <strong>${proList.stoke}</strong>
+                                                <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
                                             </div>
                                         </div>
                                         <div class="description">
@@ -719,7 +738,7 @@
                                         </div>
                                         <div class="product-page-options">
                                             <div class="pull-left">
-                                                <label class="control-label">Size:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("size")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>L</option>
                                                 <option>M</option>
@@ -727,7 +746,7 @@
                                             </select>
                                             </div>
                                             <div class="pull-left">
-                                                <label class="control-label">Color:</label> <select
+                                                <label class="control-label"><%=showLanguage.get("color")%>:</label> <select
                                                     class="form-control input-sm">
                                                 <option>Red</option>
                                                 <option>Blue</option>
@@ -760,7 +779,7 @@
                                                 </button>
                                                 &nbsp;
                                                 &nbsp;
-                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                                <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
 <%--                                            <div class="product-quantity">--%>
@@ -770,7 +789,7 @@
 <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
 <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default">Xem chi tiết</a>
+                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                         </div>
                                     </div>
 

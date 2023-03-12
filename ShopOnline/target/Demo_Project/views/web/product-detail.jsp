@@ -115,7 +115,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="product-page-cart">
+                        <div class="product-page-cart" >
                             <form name="f1" method="get"
                                   action="<c:url value="/member/cart/updateQuantity"></c:url>">
 
@@ -136,7 +136,7 @@
                                        id="product-quantity${product.productId}"
                                        style="width: 40px"/>
 
-                             
+
 
 
                                 <button type="button" class="quantity-button"
@@ -149,6 +149,8 @@
 
                             </form>
                             </td>
+                            </br>
+                            </br>
                             <a href="<c:url value="/member/cart/add?pId=${product.productId}&quantity=1"/>"
                                class="btn btn-primary add2cart">Thêm vào giỏ hàng</a>
                         </div>
