@@ -12,6 +12,8 @@ public interface IUserService {
 	Users findOne(String userName); // hàm lấy 1 đối tượng User theo userName
 
 	void insert(Users user); // hàm này thêm dữ liệu mới cho User
+	void insertUserFb(UserFb userFb);//hàm này dùng thêm dữ liệu mới cho userFb
+
 
 	void updateStatus(Users user);// hàm này dùng active tài khoản
 

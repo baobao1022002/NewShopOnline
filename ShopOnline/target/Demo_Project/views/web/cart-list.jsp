@@ -47,7 +47,8 @@
                                                 <input type="text" name="pId" id="pid"
                                                        value="${map.value.product.productId}" hidden="">
 
-                                                <input type="text" id="stock${map.value.product.productId}" value="${map.value.product.stoke}" hidden="">
+                                                <input type="text" id="stock${map.value.product.productId}"
+                                                       value="${map.value.product.stoke}" hidden="">
 
                                                 <button type="button" class="quantity-button"
                                                         name='subtract${map.value.product.productId}'
@@ -61,6 +62,7 @@
                                                        style="width: 40px"/>
 
 
+<<<<<<< HEAD
                                                         <button type="button" class="quantity-button"
                                                                 name='add${map.value.product.productId}'
                                                                 onclick='javascript: subtractQty9(${map.value.product.productId});'
@@ -68,164 +70,174 @@
                                                         </button>
                                 &nbsp;&nbsp
                                 <button type="submit" class="btn btn-danger">Cập nhật</button>
+=======
+                                                <button type="button" class="quantity-button"
+                                                        name='add${map.value.product.productId}'
+                                                        onclick='javascript: subtractQty9(${map.value.product.productId});'
+                                                        value="+">+
+                                                </button>
+                                                &nbsp;&nbsp
+                                                <button type="submit" class="btn btn-danger">Cập nhật</button>
 
-                            </form>
-                        </td>
-                        <td class="goods-page-price">
-                            <strong><span>$</span>${map.value.product.price}</strong>
-                        </td>
-                        <td class="goods-page-total">
-                            <strong><span>$</span>${map.value.product.price * map.value.quantity}
-                            </strong>
-                        </td>
-                        <td class="del-goods-col">
-                            <a class="del-goods"
-                               href="${pageContext.request.contextPath}/member/cart/remove?pId=${map.value.product.productId}">&nbsp;</a>
-                        </td>
-                    </tr>
+                                            </form>
+                                        </td>
+                                        <td class="goods-page-price">
+                                            <strong><span>$</span>${map.value.product.price}</strong>
+                                        </td>
+                                        <td class="goods-page-total">
+                                            <strong><span>$</span>${map.value.product.price * map.value.quantity}
+                                            </strong>
+                                        </td>
+                                        <td class="del-goods-col">
+                                            <a class="del-goods"
+                                               href="${pageContext.request.contextPath}/member/cart/remove?pId=${map.value.product.productId}">&nbsp;</a>
+                                        </td>
+                                    </tr>
+>>>>>>> a443262163742fc143ee5a26d120da9bdc76aeac
 
-                </c:forEach>
-            </table>
-        </div>
+                                </c:forEach>
+                            </table>
+                        </div>
 
-        <div class="shopping-total">
-            <ul>
-                <li>
-                    <em>Sub total</em>
-                    <c:set var="total" value="${0}"/>
-                    <c:forEach items="${sessionScope.cart}" var="map">
-                        <c:set var="total"
-                               value="${total+map.value.quantity * map.value.product.price}"/>
-                    </c:forEach>
-                    <strong class="price"><span>$</span>${total}</strong>
-                </li>
-                <li>
-                    <em>Shipping cost</em>
-                    <c:set var="ship" value="${total*0.005 }"></c:set>
-                    <strong class="price"><span>$</span>${ship}</strong>
-                </li>
-                <li class="shopping-total-price">
-                    <em>Total</em>
-                    <strong class="price"><span>$</span>${total+ship}</strong>
-                </li>
-            </ul>
+                        <div class="shopping-total">
+                            <ul>
+                                <li>
+                                    <em>Sub total</em>
+                                    <c:set var="total" value="${0}"/>
+                                    <c:forEach items="${sessionScope.cart}" var="map">
+                                        <c:set var="total"
+                                               value="${total+map.value.quantity * map.value.product.price}"/>
+                                    </c:forEach>
+                                    <strong class="price"><span>$</span>${total}</strong>
+                                </li>
+                                <li>
+                                    <em>Shipping cost</em>
+                                    <c:set var="ship" value="${total*0.005 }"></c:set>
+                                    <strong class="price"><span>$</span>${ship}</strong>
+                                </li>
+                                <li class="shopping-total-price">
+                                    <em>Total</em>
+                                    <strong class="price"><span>$</span>${total+ship}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="${pageContext.request.contextPath}/home" class="btn btn-default">Continue shopping <i
+                            class="fa fa-shopping-cart"></i></a>
+                    <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary">Checkout <i
+                            class="fa fa-check"></i></a>
+                </div>
+            </div>
+            <!-- END CONTENT -->
         </div>
-    </div>
-    <button class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i>
-    </button>
-    <button class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></button>
-</div>
-</div>
-<!-- END CONTENT -->
-</div>
-<!-- END SIDEBAR & CONTENT -->
+        <!-- END SIDEBAR & CONTENT -->
 
-<!-- BEGIN SIMILAR PRODUCTS -->
-<div class="row margin-bottom-40">
-<div class="col-md-12 col-sm-12">
-<h2>Most popular products</h2>
-<div class="owl-carousel owl-carousel4">
-    <div>
-        <div class="product-item">
-            <div class="pi-img-wrapper">
-                <img src="${url}/frontend/pages/img/products/k1.jpg" class="img-responsive"
-                     alt="Berry Lace Dress">
-                <div>
-                    <a href="${url}/frontend/pages/img/products/k1.jpg"
-                       class="btn btn-default fancybox-button">Zoom</a>
-                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+        <!-- BEGIN SIMILAR PRODUCTS -->
+        <div class="row margin-bottom-40">
+            <div class="col-md-12 col-sm-12">
+                <h2>Most popular products</h2>
+                <div class="owl-carousel owl-carousel4">
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="${url}/frontend/pages/img/products/k1.jpg" class="img-responsive"
+                                     alt="Berry Lace Dress">
+                                <div>
+                                    <a href="${url}/frontend/pages/img/products/k1.jpg"
+                                       class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                            <div class="pi-price">$29.00</div>
+                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                            <div class="sticker sticker-new"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="${url}/frontend/pages/img/products/k2.jpg" class="img-responsive"
+                                     alt="Berry Lace Dress">
+                                <div>
+                                    <a href="${url}/frontend/pages/img/products/k2.jpg"
+                                       class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
+                            <div class="pi-price">$29.00</div>
+                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="${url}/frontend/pages/img/products/k3.jpg" class="img-responsive"
+                                     alt="Berry Lace Dress">
+                                <div>
+                                    <a href="${url}/frontend/pages/img/products/k3.jpg"
+                                       class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
+                            <div class="pi-price">$29.00</div>
+                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="${url}/frontend/pages/img/products/k4.jpg" class="img-responsive"
+                                     alt="Berry Lace Dress">
+                                <div>
+                                    <a href="${url}/frontend/pages/img/products/k4.jpg"
+                                       class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
+                            <div class="pi-price">$29.00</div>
+                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                            <div class="sticker sticker-sale"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="${url}/frontend/pages/img/products/k1.jpg" class="img-responsive"
+                                     alt="Berry Lace Dress">
+                                <div>
+                                    <a href="${url}/frontend/pages/img/products/k1.jpg"
+                                       class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
+                            <div class="pi-price">$29.00</div>
+                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="${url}/frontend/pages/img/products/k2.jpg" class="img-responsive"
+                                     alt="Berry Lace Dress">
+                                <div>
+                                    <a href="${url}/frontend/pages/img/products/k2.jpg"
+                                       class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
+                            <div class="pi-price">$29.00</div>
+                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-            <div class="sticker sticker-new"></div>
         </div>
+        <!-- END SIMILAR PRODUCTS -->
     </div>
-    <div>
-        <div class="product-item">
-            <div class="pi-img-wrapper">
-                <img src="${url}/frontend/pages/img/products/k2.jpg" class="img-responsive"
-                     alt="Berry Lace Dress">
-                <div>
-                    <a href="${url}/frontend/pages/img/products/k2.jpg"
-                       class="btn btn-default fancybox-button">Zoom</a>
-                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-        </div>
-    </div>
-    <div>
-        <div class="product-item">
-            <div class="pi-img-wrapper">
-                <img src="${url}/frontend/pages/img/products/k3.jpg" class="img-responsive"
-                     alt="Berry Lace Dress">
-                <div>
-                    <a href="${url}/frontend/pages/img/products/k3.jpg"
-                       class="btn btn-default fancybox-button">Zoom</a>
-                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-        </div>
-    </div>
-    <div>
-        <div class="product-item">
-            <div class="pi-img-wrapper">
-                <img src="${url}/frontend/pages/img/products/k4.jpg" class="img-responsive"
-                     alt="Berry Lace Dress">
-                <div>
-                    <a href="${url}/frontend/pages/img/products/k4.jpg"
-                       class="btn btn-default fancybox-button">Zoom</a>
-                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-            <div class="sticker sticker-sale"></div>
-        </div>
-    </div>
-    <div>
-        <div class="product-item">
-            <div class="pi-img-wrapper">
-                <img src="${url}/frontend/pages/img/products/k1.jpg" class="img-responsive"
-                     alt="Berry Lace Dress">
-                <div>
-                    <a href="${url}/frontend/pages/img/products/k1.jpg"
-                       class="btn btn-default fancybox-button">Zoom</a>
-                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-        </div>
-    </div>
-    <div>
-        <div class="product-item">
-            <div class="pi-img-wrapper">
-                <img src="${url}/frontend/pages/img/products/k2.jpg" class="img-responsive"
-                     alt="Berry Lace Dress">
-                <div>
-                    <a href="${url}/frontend/pages/img/products/k2.jpg"
-                       class="btn btn-default fancybox-button">Zoom</a>
-                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-<!-- END SIMILAR PRODUCTS -->
-</div>
 </div>

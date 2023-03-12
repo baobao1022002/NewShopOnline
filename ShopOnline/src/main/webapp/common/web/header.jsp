@@ -49,9 +49,16 @@
                     <ul class="list-unstyled list-inline pull-right">
                     	<c:choose>
                     		<c:when test="${sessionScope.account!=null}">
+<<<<<<< HEAD
 		                        <li><a href="shop-account.html"><%=showLanguage.get("account")%></a></li>
 		                        <li><a href="shop-checkout.html"><%=showLanguage.get("checkout")%></a></li>
 		                        <li><a href="<c:url value="/logout"></c:url>"><%=showLanguage.get("logout")%></a></li>
+=======
+		                        <li><a href="shop-account.html">My Account</a></li>
+		                        <li><a href="shop-wishlist.html">My Wishlist</a></li>
+		                        <li><a href="<c:url value="/member/orderbuy"></c:url>">Đơn mua</a></li>
+		                        <li><a href="<c:url value="/logout"></c:url>">Log Out</a></li>
+>>>>>>> a443262163742fc143ee5a26d120da9bdc76aeac
 		                        <li>
 		                        	 <img alt="" width="26px" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>
 		                        	 ${sessionScope.account.fullName}
