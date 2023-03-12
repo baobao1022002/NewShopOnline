@@ -38,7 +38,7 @@
                     		<c:when test="${sessionScope.account!=null}">
 		                        <li><a href="shop-account.html">My Account</a></li>
 		                        <li><a href="shop-wishlist.html">My Wishlist</a></li>
-		                        <li><a href="shop-checkout.html">Checkout</a></li>
+		                        <li><a href="<c:url value="/member/orderbuy"></c:url>">Đơn mua</a></li>
 		                        <li><a href="<c:url value="/logout"></c:url>">Log Out</a></li>
 		                        <li>
 		                        	 <img alt="" width="26px" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>
