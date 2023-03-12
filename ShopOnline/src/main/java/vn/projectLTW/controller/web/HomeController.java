@@ -47,7 +47,8 @@ public class HomeController extends HttpServlet {
 			req.getRequestDispatcher("/views/web/verify.jsp").forward(req, resp);
 		} else if (url.contains("logout")) {
 			getLogout(req, resp);
-		}else {
+		}
+		else {
 			homePage(req, resp);
 		}
 	}

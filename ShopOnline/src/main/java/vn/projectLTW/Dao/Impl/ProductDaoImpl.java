@@ -137,6 +137,7 @@ public class ProductDaoImpl implements IProductDao {
 			while(rs.next()) {
 				Category category=categoryService.findOne(rs.getInt("categoryId"));
 				Seller seller=sellerService.findOne(rs.getInt("sellerId"));
+
 				Product product=new Product();
 				product.setProductId(rs.getInt("productId"));
 				product.setProductCode(rs.getLong("productCode"));
