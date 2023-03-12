@@ -1,6 +1,19 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="vn.projectLTW.util.Language" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
 
 <!doctype html>
 <html lang="en">
@@ -38,7 +51,7 @@
 			<div class="col-sm-12">	
 				<form action="forgotPass" method="post">
 					<div class="mb-3">
-						<label for="userName">User Name:</label> <input type="text"
+						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
 							class="form-control" id="userName" name="userName">
 					</div>
 
@@ -48,8 +61,9 @@
 					</div>
 					
 				
+					<br>
 
-					<button type="submit" class="btn btn-primary">Lấy lại mật khẩu</button>
+					<button type="submit" class="btn btn-primary" style="margin-left: 45%"><%=showLanguage.get("passwordretrieval")%></button>
 				</form>
 
 			</div>

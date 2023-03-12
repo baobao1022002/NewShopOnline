@@ -1,6 +1,19 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 ill<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+			pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
 
 <!doctype html>
 <html lang="en">
@@ -38,32 +51,32 @@ ill<%@ page language="java" contentType="text/html; charset=UTF-8"
 			<div class="col-sm-12">
 				<form action="register" method="post">
 					<div class="mb-3">
-						<label for="userName">User Name:</label> <input type="text"
+						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
 							class="form-control" id="userName" name="userName">
 					</div>
 
 					<div class="mb-3">
-						<label for="email">Email:</label> <input type="text"
+						<label for="email">Email</label> <input type="text"
 							class="form-control" id="email" name="email">
 					</div>
 
 					<div class="mb-3">
-						<label for="fullName">Full Name:</label> <input type="text"
+						<label for="fullName"><%=showLanguage.get("fullname")%></label> <input type="text"
 							class="form-control" id="fullName" name="fullName">
 					</div>
 
 					<div class="mb-3">
-						<label for="passWord">Password:</label> <input type="password"
+						<label for="passWord"><%=showLanguage.get("password")%></label> <input type="password"
 							class="form-control" id="passWord" name="passWord">
 					</div>
 
 					<div class="mb-3">
-						<label for="passWordConfirm">Confirm Password:</label> <input
+						<label for="passWordConfirm"><%=showLanguage.get("confirmpassword")%></label> <input
 							type="password" class="form-control" id="passWordConfirm"
 							name="passWordConfirm">
 					</div>
-
-					<button type="submit" class="btn btn-primary">Register</button>
+ 					<br>
+					<button type="submit" class="btn btn-primary" style="margin-left: 48%"><%=showLanguage.get("register")%></button>
 				</form>
 
 			</div>

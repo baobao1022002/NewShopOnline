@@ -62,6 +62,15 @@
                                                        style="width: 40px"/>
 
 
+<<<<<<< HEAD
+                                                        <button type="button" class="quantity-button"
+                                                                name='add${map.value.product.productId}'
+                                                                onclick='javascript: subtractQty9(${map.value.product.productId});'
+                                                                value="+">+
+                                                        </button>
+                                &nbsp;&nbsp
+                                <button type="submit" class="btn btn-danger">Cập nhật</button>
+=======
                                                 <button type="button" class="quantity-button"
                                                         name='add${map.value.product.productId}'
                                                         onclick='javascript: subtractQty9(${map.value.product.productId});'
@@ -84,6 +93,7 @@
                                                href="${pageContext.request.contextPath}/member/cart/remove?pId=${map.value.product.productId}">&nbsp;</a>
                                         </td>
                                     </tr>
+>>>>>>> a443262163742fc143ee5a26d120da9bdc76aeac
 
                                 </c:forEach>
                             </table>

@@ -1,6 +1,19 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
 
 <!doctype html>
 <html lang="en">
@@ -16,7 +29,7 @@
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
 
-<title>Register</title>
+<title>login</title>
 </head>
 <body>
 	<div class="container">
@@ -38,35 +51,39 @@
 			<div class="col-sm-12">
 				<form action="login" method="post">
 					<div class="mb-3">
-						<label for="userName">User Name:</label> <input type="text"
+						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
 							class="form-control" id="userName" name="userName">
 					</div>
 
 					<div class="mb-3">
-						<label for="passWord">Password:</label> <input type="password"
+						<label for="passWord"><%=showLanguage.get("password")%></label> <input type="password"
 							class="form-control" id="passWord" name="passWord">
 					</div>
 					
 					<div class="col-xs-6">
 						<label class="checkbox">
-							<input type="checkbox" name="remember"/><i></i>Remember me
+							<input type="checkbox" name="remember"/><i></i><%=showLanguage.get("remember")%>
 						</label>
 					</div>
 					<div class="col-xs-6 text-right">
-						<a href="${pageContext.request.contextPath}/forgotPass">Forgot password?</a>
+						<a href="${pageContext.request.contextPath}/forgotPass"><%=showLanguage.get("forgotpassword")%>?</a>
 					</div>
 					<div class="col-xs-6 text-right">
-						<a href="${pageContext.request.contextPath}/forgotPass">Register</a>
+						<a href="${pageContext.request.contextPath}/register"><%=showLanguage.get("register")%></a>
 					</div>
 
 
 					
 
+<<<<<<< HEAD
+					<button type="submit" class="btn btn-primary"><%=showLanguage.get("login")%></button>
+=======
 					<button type="submit" class="btn btn-primary">Login</button>
 
 
 
 
+>>>>>>> a443262163742fc143ee5a26d120da9bdc76aeac
 				</form>
 
 			</div>
