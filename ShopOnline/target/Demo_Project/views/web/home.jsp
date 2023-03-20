@@ -370,46 +370,46 @@
         <div class="row margin-bottom-40 ">
             <!-- BEGIN SIDEBAR -->
             <div class="sidebar col-md-3 col-sm-4">
-<%--                <ul class="list-group margin-bottom-25 sidebar-menu">--%>
-<%--                    --%>
-<%--                    <c:forEach items="${categoryList}" var="cateList">--%>
-<%--                        <li class="list-group-item clearfix"><a--%>
-<%--                                href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>">--%>
-<%--                            <img--%>
-<%--                                    style="width: 22px; margin-right: 10px"--%>
-<%--                                    src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">--%>
-<%--                            <i--%>
-<%--                                    class="fa fa-angle-right"></i>${cateList.categoryName}</a></li>--%>
+                <ul class="list-group margin-bottom-25 sidebar-menu">
 
-<%--                        <!-- BEGIN fast view of a product -->--%>
-<%--                        <div id="product-pop-upp${proList.productId }" style="display: none; width: 700px;">--%>
-<%--                            <div class="product-page product-pop-upp${proList.productId }">--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-md-6 col-sm-6 col-xs-3">--%>
-<%--                                        <div class="product-main-image">--%>
-<%--                                            <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"--%>
-<%--                                                 alt="Cool green dress with red bell 12" class="img-responsive">--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-other-images">--%>
+                    <c:forEach items="${categoryList}" var="cateList">
+                        <li class="list-group-item clearfix"><a
+                                href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>">
+                            <img
+                                    style="width: 22px; margin-right: 10px"
+                                    src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">
+                            <i
+                                    class="fa fa-angle-right"></i>${cateList.categoryName}</a></li>
 
-<%--                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"--%>
-<%--                                               class="active"><img alt="Berry Lace Dress"--%>
-<%--                                                                   src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>--%>
-<%--                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"--%>
-<%--                                               src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>--%>
-<%--                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img--%>
-<%--                                                    alt="Berry Lace Dress"--%>
-<%--                                                    src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>--%>
-<%--                                            <br>--%>
+                        <!-- BEGIN fast view of a product -->
+                        <div id="product-pop-upp${proList.productId }" style="display: none; width: 700px;">
+                            <div class="product-page product-pop-upp${proList.productId }">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-3">
+                                        <div class="product-main-image">
+                                            <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                                 alt="Cool green dress with red bell 12" class="img-responsive">
+                                        </div>
+                                        <div class="product-other-images">
 
-<%--                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img--%>
-<%--                                                    alt="Berry Lace Dress"--%>
-<%--                                                    src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>--%>
-<%--                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img--%>
-<%--                                                    alt="Berry Lace Dress"--%>
-<%--                                                    src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>--%>
+                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                               class="active"><img alt="Berry Lace Dress"
+                                                                   src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
+                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                               src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
+                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img
+                                                    alt="Berry Lace Dress"
+                                                    src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
+                                            <br>
 
-<<<<<<< HEAD
+                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img
+                                                    alt="Berry Lace Dress"
+                                                    src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
+                                            <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img
+                                                    alt="Berry Lace Dress"
+                                                    src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
+
+
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
                                         <h2>${proList.productName}</h2>
@@ -473,6 +473,79 @@
                                                 <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
+                                            <div class="product-quantity">
+                                                <input id="product-quantity2" type="text" value="1" readonly
+                                                       name="product-quantity2" class="form-control input-sm">
+                                            </div>
+                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
+                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>
+                                            <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
+                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <h2>${proList.productName}</h2>
+                                        <div class="price-availability-block clearfix">
+                                            <div class="price">
+                                                <strong><span>$</span>${proList.price }</strong>
+                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                            </div>
+                                            <div class="availability">
+                                                Số lượng tồn: <strong>${proList.amount}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="description">
+                                            <p>${proList.description }</p>
+                                        </div>
+                                        <div class="product-page-options">
+                                            <div class="pull-left">
+                                                <label class="control-label">Size:</label> <select
+                                                    class="form-control input-sm">
+                                                <option>L</option>
+                                                <option>M</option>
+                                                <option>XL</option>
+                                            </select>
+                                            </div>
+                                            <div class="pull-left">
+                                                <label class="control-label">Color:</label> <select
+                                                    class="form-control input-sm">
+                                                <option>Red</option>
+                                                <option>Blue</option>
+                                                <option>Black</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="product-page-cart">
+                                            <form name="f1" method="get"
+                                                  action="<c:url value="/member/cart/add"></c:url>">
+                                                <input type="text" name="pId" id="pid3"
+                                                       value="${proList.productId}" hidden="">
+                                                <input type="text" id="stock2${proList.productId}" value="${proList.stoke}"
+                                                       hidden="">
+
+
+                                                <button type="button" class="quantity-button"
+                                                        name='subtract${proList.productId}'
+                                                        onclick='javascript: subtractQty3(${proList.productId});'
+                                                        value="-">-
+                                                </button>
+
+                                                <input readonly type="text" name="quantity"
+                                                       value="1"
+                                                       id="product-quantity2${proList.productId}"
+                                                       style="width: 50px"/>
+                                                <button type="button" class="quantity-button"
+                                                        name='add${proList.productId}'
+                                                        onclick='javascript: subtractQty4(${proList.productId});'
+                                                        value="+">+
+                                                </button>
+                                                &nbsp;
+                                                &nbsp;
+                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+
+                                            </form>
 <%--                                            <div class="product-quantity">--%>
 <%--                                                <input id="product-quantity2" type="text" value="1" readonly--%>
 <%--                                                       name="product-quantity2" class="form-control input-sm">--%>
@@ -480,123 +553,49 @@
 <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
 <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
+                                               class="btn btn-default">Xem chi tiết</a>
                                         </div>
                                     </div>
-=======
-<%--                                    </div>--%>
-<%--                                    <div class="col-md-6 col-sm-6 col-xs-9">--%>
-<%--                                        <h2>${proList.productName}</h2>--%>
-<%--                                        <div class="price-availability-block clearfix">--%>
-<%--                                            <div class="price">--%>
-<%--                                                <strong><span>$</span>${proList.price }</strong>--%>
-<%--                                                <em>$<span>${proList.price/0.8 }</span></em>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="availability">--%>
-<%--                                                Số lượng tồn: <strong>${proList.amount}</strong>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="description">--%>
-<%--                                            <p>${proList.description }</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-page-options">--%>
-<%--                                            <div class="pull-left">--%>
-<%--                                                <label class="control-label">Size:</label> <select--%>
-<%--                                                    class="form-control input-sm">--%>
-<%--                                                <option>L</option>--%>
-<%--                                                <option>M</option>--%>
-<%--                                                <option>XL</option>--%>
-<%--                                            </select>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="pull-left">--%>
-<%--                                                <label class="control-label">Color:</label> <select--%>
-<%--                                                    class="form-control input-sm">--%>
-<%--                                                <option>Red</option>--%>
-<%--                                                <option>Blue</option>--%>
-<%--                                                <option>Black</option>--%>
-<%--                                            </select>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-page-cart">--%>
-<%--                                            <form name="f1" method="get"--%>
-<%--                                                  action="<c:url value="/member/cart/add"></c:url>">--%>
-<%--                                                <input type="text" name="pId" id="pid2"--%>
-<%--                                                       value="${proList.productId}" hidden="">--%>
-<%--                                                <input type="text" id="stock2${proList.productId}" value="${proList.stoke}"--%>
-<%--                                                       hidden="">--%>
->>>>>>> a443262163742fc143ee5a26d120da9bdc76aeac
 
-<%--                                                <button type="button" class="quantity-button"--%>
-<%--                                                        name='subtract${proList.productId}'--%>
-<%--                                                        onclick='javascript: subtractQty3(${proList.productId});'--%>
-<%--                                                        value="-">---%>
-<%--                                                </button>--%>
+                                    <div class="sticker sticker-sale"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END fast view of a product -->
+                    </c:forEach>
 
-<%--                                                <input readonly type="text" name="quantity"--%>
-<%--                                                       value="1"--%>
-<%--                                                       id="product-quantity2${proList.productId}"--%>
-<%--                                                       style="width: 50px"/>--%>
-<%--                                                <button type="button" class="quantity-button"--%>
-<%--                                                        name='add${proList.productId}'--%>
-<%--                                                        onclick='javascript: subtractQty4(${proList.productId});'--%>
-<%--                                                        value="+">+--%>
-<%--                                                </button>--%>
-<%--                                                &nbsp;--%>
-<%--                                                &nbsp;--%>
-<%--                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>--%>
+                </ul>
 
-<%--                                            </form>--%>
-<%--&lt;%&ndash;                                            <div class="product-quantity">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                                <input id="product-quantity2" type="text" value="1" readonly&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                                       name="product-quantity2" class="form-control input-sm">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                            </div>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>&ndash;%&gt;--%>
-<%--                                            <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"--%>
-<%--                                               class="btn btn-default">Xem chi tiết</a>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+                    <c:forEach items="${sellerList}" var="sellerList">
+                        <li class="list-group-item clearfix"><a
+                                href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img
+                                style="width: 22px"
+                                src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>">
+                            <i class="fa fa-angle-right"></i>${sellerList.sellerName}</a></li>
+                    </c:forEach>
 
-<%--                                    <div class="sticker sticker-sale"></div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <!-- END fast view of a product -->--%>
-<%--                    </c:forEach>--%>
+                </ul>
+<%--    <ul class="list-group margin-bottom-25 sidebar-menu">--%>
+<%--        <c:forEach items="${categoryList}" var="cateList">--%>
+<%--            <li class="list-group-item clearfix">--%>
+<%--                <a href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>"><img style="width:22px; margin-right:10px" src="<c:url value="/image?fname=category/${cateList.images }" ></c:url>"><i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>--%>
+<%--            </li>--%>
+<%--        </c:forEach>--%>
 
-<%--                </ul>--%>
+<%--    </ul>--%>
 
-<%--                <ul class="list-group margin-bottom-25 sidebar-menu">--%>
-<%--                    <c:forEach items="${sellerList}" var="sellerList">--%>
-<%--                        <li class="list-group-item clearfix"><a--%>
-<%--                                href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img--%>
-<%--                                style="width: 22px"--%>
-<%--                                src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>">--%>
-<%--                            <i class="fa fa-angle-right"></i>${sellerList.sellerName}</a></li>--%>
-<%--                    </c:forEach>--%>
+<%--    <ul class="list-group margin-bottom-25 sidebar-menu">--%>
+<%--        <c:forEach items="${sellerList}" var="sellerList">--%>
+<%--            <li class="list-group-item clearfix">--%>
+<%--                <a href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img style="width:22px" alt="" src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>"> <i class="fa fa-angle-right" style="width:22px"></i>${sellerList.sellerName}</a>--%>
+<%--            </li>--%>
+<%--        </c:forEach>--%>
 
-<%--                </ul>--%>
-    <ul class="list-group margin-bottom-25 sidebar-menu">
-        <c:forEach items="${categoryList}" var="cateList">
-            <li class="list-group-item clearfix">
-                <a href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>"><img style="width:22px; margin-right:10px" src="<c:url value="/image?fname=category/${cateList.images }" ></c:url>"><i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>
-            </li>
-        </c:forEach>
-
-    </ul>
-
-    <ul class="list-group margin-bottom-25 sidebar-menu">
-        <c:forEach items="${sellerList}" var="sellerList">
-            <li class="list-group-item clearfix">
-                <a href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img style="width:22px" alt="" src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>"> <i class="fa fa-angle-right" style="width:22px"></i>${sellerList.sellerName}</a>
-            </li>
-        </c:forEach>
-
-    </ul>
+<%--    </ul>--%>
 
             </div>
             <!-- END SIDEBAR -->
-
 
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-8">
@@ -697,7 +696,7 @@
                                         <div class="product-page-cart">
                                             <form name="f1" method="get"
                                                   action="<c:url value="/member/cart/add"></c:url>">
-                                                <input type="text" name="pId" id="pid3"
+                                                <input type="text" name="pId" id="pid4"
                                                        value="${proList.productId}" hidden="">
                                                 <input type="text" id="stock3${proList.productId}" value="${proList.stoke}"
                                                        hidden="">
@@ -848,7 +847,7 @@
                                         <div class="product-page-cart">
                                             <form name="f1" method="get"
                                                   action="<c:url value="/member/cart/add"></c:url>">
-                                                <input type="text" name="pId" id="pid4"
+                                                <input type="text" name="pId" id="pid5"
                                                        value="${proList.productId}" hidden="">
                                                 <input type="text" id="stock4${proList.productId}" value="${proList.stoke}"
                                                        hidden="">

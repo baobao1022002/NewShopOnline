@@ -10,6 +10,7 @@ import vn.projectLTW.Dao.DBConnection;
 import vn.projectLTW.Dao.IUserDao;
 import vn.projectLTW.model.UserRoles;
 import vn.projectLTW.model.Users;
+import vn.projectLTW.model.UserFb;
 import vn.projectLTW.service.IUserRoleService;
 import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 
@@ -167,6 +168,11 @@ public class UserDaoImpl implements IUserDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
+	}
+
+	@Override
+	public void insertUserFb(UserFb userFb) {
 
 	}
 

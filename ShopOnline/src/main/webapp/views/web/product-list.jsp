@@ -230,7 +230,7 @@
                                             </button>
 
                                             <input readonly type="text" name="quantity"
-                                                   value="${proList.quantity}"
+                                                   value="${1}"
                                                    id="product-quantity${proList.productId}"
                                                    style="width: 40px"/>
 
@@ -241,7 +241,7 @@
                                                     value="+">+
                                             </button>
                                             &nbsp;&nbsp
-                                            <button type="submit" class="btn btn-danger">Cập nhật</button>
+
 
                                         </form>
                                         </td>

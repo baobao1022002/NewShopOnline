@@ -30,12 +30,12 @@ public class CartItemDaoImpl implements ICartItemDao{
 	public Connection conn=null;
 	public PreparedStatement ps=null;
 	public ResultSet rs=null;
-	
+
 	ICartService cartService=new CartServiceImpl();
 	IProductService productService=new ProductServiceImpl();
 	IUserService userService=new UserServiceImpl();
 	ISellerService sellerService=new SellerServiceImpl();
-	
+
 	@Override
 	public void insert(CartItem cartItem) {
 		String sql="Insert into cart_item(cartItemId,cartId,productId,quantity,unitPrice) values(?,?,?,?,?)";
@@ -51,7 +51,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -68,8 +68,8 @@ public class CartItemDaoImpl implements ICartItemDao{
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
-		
+		}
+
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}				
+		}
 	}
 
 	@Override
@@ -97,28 +97,28 @@ public class CartItemDaoImpl implements ICartItemDao{
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
-				
+
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
 				cart.setCartId(rs.getString("cartId"));
-				
+
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
-				
+
 				CartItem cartItem=new CartItem();
 				cartItem.setCart(cart);
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unitPrice"));
-				
+
 				return cartItem;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return null;
 	}
 
@@ -133,28 +133,28 @@ public class CartItemDaoImpl implements ICartItemDao{
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
-				
+
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
 				cart.setCartId(rs.getString("cartId"));
-				
+
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
-				
+
 				CartItem cartItem=new CartItem();
 				cartItem.setCart(cart);
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unitPrice"));
-				
-				 cartListItem.add(cartItem);
+
+				cartListItem.add(cartItem);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return cartListItem;
 	}
 
@@ -167,7 +167,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 				+ "								INNER JOIN product ON cart_item.productId=product.productId \r\n"
 				+ "								INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
 				+ "			WHERE cart.userId=? ORDER BY cart.status ASC";
-			
+
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
@@ -176,20 +176,20 @@ public class CartItemDaoImpl implements ICartItemDao{
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
 				Seller seller=sellerService.findOne(rs.getInt("s_id"));
-				
+
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
 				cart.setCartId(rs.getString("cart_id"));
-				
+
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
 				product.setSellerId(rs.getInt("s_id"));
 				product.setSeller(seller);
-				
+
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
 				cartItem.setCartId(rs.getString("cart_id"));
@@ -198,12 +198,12 @@ public class CartItemDaoImpl implements ICartItemDao{
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unitPrice"));
-				
+
 				cartListItem.add(cartItem);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return null;
 	}
 
@@ -216,7 +216,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 				+ "								INNER JOIN product ON cart_item.productId=product.productId \r\n"
 				+ "								INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
 				+ "			WHERE cart.userId=? ";
-			
+
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
@@ -225,20 +225,20 @@ public class CartItemDaoImpl implements ICartItemDao{
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
 				Seller seller=sellerService.findOne(rs.getInt("s_id"));
-				
+
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
 				cart.setCartId(rs.getString("cart_id"));
-				
+
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
 				product.setSellerId(rs.getInt("s_id"));
 				product.setSeller(seller);
-				
+
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
 				cartItem.setCartId(rs.getString("cart_id"));
@@ -247,12 +247,12 @@ public class CartItemDaoImpl implements ICartItemDao{
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unitPrice"));
-				
+
 				cartListItem.add(cartItem);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return null;
 	}
 
@@ -265,7 +265,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 				+ "								INNER JOIN product ON cart_item.productId=product.productId \r\n"
 				+ "								INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
 				+ "			WHERE cart.userId=? ORDER BY cart.status ASC\r\n"
-				+"OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+				+" LIMIT 3 OFFSET ?";
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
@@ -275,20 +275,20 @@ public class CartItemDaoImpl implements ICartItemDao{
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
 				Seller seller=sellerService.findOne(rs.getInt("s_id"));
-				
+
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
 				cart.setCartId(rs.getString("cart_id"));
-				
+
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
 				product.setSellerId(rs.getInt("s_id"));
 				product.setSeller(seller);
-				
+
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
 				cartItem.setCartId(rs.getString("cart_id"));
@@ -297,12 +297,12 @@ public class CartItemDaoImpl implements ICartItemDao{
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unitPrice"));
-				
+
 				cartListItem.add(cartItem);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return null;
 	}
 
@@ -319,7 +319,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		return 0;
 	}
 
@@ -333,7 +333,7 @@ public class CartItemDaoImpl implements ICartItemDao{
 				+ "								INNER JOIN product ON cart_item.productId=product.productId \r\n"
 				+ "								INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
 				+ "			WHERE seller.sellerId=? ORDER BY cart.status ASC";
-		
+
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
@@ -342,20 +342,20 @@ public class CartItemDaoImpl implements ICartItemDao{
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
 				Seller seller=sellerService.findOne(rs.getInt("s_id"));
-				
+
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
 				cart.setCartId(rs.getString("cart_id"));
-				
+
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
 				product.setSellerId(rs.getInt("s_id"));
 				product.setSeller(seller);
-				
+
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
 				cartItem.setCartId(rs.getString("cart_id"));
@@ -364,12 +364,12 @@ public class CartItemDaoImpl implements ICartItemDao{
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unitPrice"));
-				
+
 				cartListItem.add(cartItem);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return null;
 	}
 

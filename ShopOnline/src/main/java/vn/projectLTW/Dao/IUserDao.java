@@ -3,6 +3,7 @@ package vn.projectLTW.Dao;
 import java.util.List;
 
 import vn.projectLTW.model.Users;
+import vn.projectLTW.model.UserFb;
 
 public interface IUserDao {
 	//Khai báo các hàm xử lí của Dao
