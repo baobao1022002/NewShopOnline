@@ -6,6 +6,7 @@ import vn.projectLTW.Dao.IUserDao;
 import vn.projectLTW.Dao.IUserRoleDao;
 import vn.projectLTW.Dao.Impl.UserDaoImpl;
 import vn.projectLTW.Dao.Impl.UserRoleDaoImpl;
+import vn.projectLTW.model.UserFb;
 import vn.projectLTW.model.UserRoles;
 import vn.projectLTW.model.Users;
 import vn.projectLTW.service.IUserService;
@@ -27,6 +28,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void insert(Users user) {
 		userDao.insert(user);
+	}
+
+	@Override
+	public void insertUserFb(UserFb userFb) {
+
 	}
 
 	@Override

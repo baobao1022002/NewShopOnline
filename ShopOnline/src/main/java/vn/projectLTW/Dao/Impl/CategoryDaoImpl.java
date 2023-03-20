@@ -19,8 +19,8 @@ public class CategoryDaoImpl implements ICategoryDao{
 	public Connection conn=null;
 	public PreparedStatement ps=null;
 	public ResultSet rs=null;
-	
-	
+
+
 	@Override
 	public void insert(Category category) {
 		String sql="Insert into category(categoryName,images,status) values(?,?,?)";
@@ -34,7 +34,7 @@ public class CategoryDaoImpl implements ICategoryDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	@Override
 	public void update(Category category) {
@@ -50,7 +50,7 @@ public class CategoryDaoImpl implements ICategoryDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	@Override
 	public void delete(int id) {
@@ -63,10 +63,10 @@ public class CategoryDaoImpl implements ICategoryDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	
+
 	@Override
 	public Category findOne(int id) {
 		// TODO Auto-generated method stub
@@ -84,7 +84,7 @@ public class CategoryDaoImpl implements ICategoryDao{
 				category.setCategoryName(rs.getString("categoryName"));
 				category.setImages(rs.getString("images"));
 				category.setStatus(rs.getInt("status"));
-				
+
 				return category;
 			}
 		} catch (Exception e) {
@@ -121,5 +121,5 @@ public class CategoryDaoImpl implements ICategoryDao{
 		return categoryList;
 
 	}
-	
+
 }

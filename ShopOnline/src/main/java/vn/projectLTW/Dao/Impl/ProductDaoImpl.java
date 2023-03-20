@@ -67,14 +67,14 @@ public class ProductDaoImpl implements IProductDao {
 			ps.executeUpdate();
 
 		} catch (Exception e) {
-			
+
 		}
-		
+
 	}
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM product where productId=?";
+		String sql = "DELETE FROM Product where productId=?";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -83,7 +83,7 @@ public class ProductDaoImpl implements IProductDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 	@Override
 	public Product findOne(int id) {
@@ -125,11 +125,11 @@ public class ProductDaoImpl implements IProductDao {
 	@Override
 	public List<Product> findAll() {
 		List<Product> productList=new ArrayList<Product>();
-		String sql="SELECT Product.productId,Product.productName,Product.productCode,Product.description,Product.amount,\r\n"
-				+ "		Product.price,Product.images,Product.createDate,Product.stoke,Product.wishList,Product.status,\r\n"
-				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
-				+ "	FROM Product INNER JOIN category ON Product.categoryId=category.categoryId\r\n"
-				+ "				 INNER JOIN seller ON Product.sellerId=seller.sellerId";
+		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\n" +
+				"product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\n" +
+				"category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\n" +
+				"FROM product INNER JOIN category ON product.categoryId=category.categoryId\n" +
+				"INNER JOIN seller ON product.sellerId=seller.sellerId;";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -137,7 +137,6 @@ public class ProductDaoImpl implements IProductDao {
 			while(rs.next()) {
 				Category category=categoryService.findOne(rs.getInt("categoryId"));
 				Seller seller=sellerService.findOne(rs.getInt("sellerId"));
-
 				Product product=new Product();
 				product.setProductId(rs.getInt("productId"));
 				product.setProductCode(rs.getLong("productCode"));
@@ -248,7 +247,7 @@ public class ProductDaoImpl implements IProductDao {
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
-				+ "WHERE Category.categoryId=? ORDER BY productId DESC OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+				+ "WHERE category.categoryId=? ORDER BY productId DESC LIMIT 3 OFFSET ? ";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -290,7 +289,7 @@ public class ProductDaoImpl implements IProductDao {
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
-				+ "WHERE Seller.sellerId=? ORDER BY productId DESC OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+				+ "WHERE seller.sellerId=? ORDER BY productId DESC LIMIT 3 OFFSET ?";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -332,12 +331,12 @@ public class ProductDaoImpl implements IProductDao {
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
-				+ "ORDER BY product.productId DESC OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+				+ "ORDER BY product.productId DESC LIMIT 3 OFFSET ?";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
 			ps.setInt(1, id);
-			
+
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Category category=categoryService.findOne(rs.getInt("categoryId"));
@@ -377,7 +376,7 @@ public class ProductDaoImpl implements IProductDao {
 				return rs.getInt(1);
 			}
 		}catch(Exception e) {
-			
+
 		}
 		return 0;
 	}
@@ -395,7 +394,7 @@ public class ProductDaoImpl implements IProductDao {
 				return rs.getInt(1);
 			}
 		}catch(Exception e) {
-			
+
 		}
 		return 0;
 	}
@@ -413,11 +412,11 @@ public class ProductDaoImpl implements IProductDao {
 				return rs.getInt(1);
 			}
 		}catch(Exception e) {
-			
+
 		}
-		return 0;		
+		return 0;
 	}
 
 
-	
+
 }

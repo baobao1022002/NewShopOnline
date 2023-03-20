@@ -3,6 +3,8 @@ package vn.projectLTW.service;
 import java.util.List;
 
 import vn.projectLTW.model.Users;
+import vn.projectLTW.model.UserFb;
+
 
 public interface IUserService {
 	//Khai báo các hàm xử lí
