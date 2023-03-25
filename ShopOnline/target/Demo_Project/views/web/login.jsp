@@ -75,15 +75,15 @@
 
 					
 
-<<<<<<< HEAD
+
 					<button type="submit" class="btn btn-primary"><%=showLanguage.get("login")%></button>
-=======
-					<button type="submit" class="btn btn-primary">Login</button>
 
 
 
 
->>>>>>> a443262163742fc143ee5a26d120da9bdc76aeac
+
+
+
 				</form>
 
 			</div>

@@ -35,11 +35,13 @@ public class OrderBuyerController extends HttpServlet {
         //kiểm tra session
         HttpSession session=req.getSession();
         Object obj= session.getAttribute("account");
+
         Users user=(Users) obj;
         int uid=user.getUserId();
-        int sellid=user.getSellerId();
+        int sellerId=user.getSellerId();
 
-        Seller seller=sellerService.findOne(sellid);
+
+        Seller seller=sellerService.findOne(sellerId);
         req.setAttribute("seller",seller);
         String indexPage=req.getParameter("index");
         if(indexPage==null){
@@ -82,8 +84,7 @@ public class OrderBuyerController extends HttpServlet {
             dispatcher.forward(req,resp);
         }else{
             req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
-//            RequestDispatcher dispatcher=req.getRequestDispatcher("views/web/orderbuy-list.jsp");
-//            dispatcher.forward(req,resp);
+
         }
 
 
