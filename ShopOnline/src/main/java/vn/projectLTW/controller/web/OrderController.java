@@ -30,8 +30,10 @@ public class OrderController extends HttpServlet {
 
     long time=System.currentTimeMillis();
 
+
+
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
@@ -67,5 +69,10 @@ public class OrderController extends HttpServlet {
         //bỏ session cart
         session.removeAttribute("cart");
         resp.sendRedirect(req.getContextPath()+"/home");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }

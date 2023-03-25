@@ -175,24 +175,24 @@ public class CartItemDaoImpl implements ICartItemDao{
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
-				Seller seller=sellerService.findOne(rs.getInt("s_id"));
+				Seller seller=sellerService.findOne(rs.getInt("sellerId"));
 
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
-				cart.setCartId(rs.getString("cart_id"));
+				cart.setCartId(rs.getString("cartId"));
 
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
-				product.setSellerId(rs.getInt("s_id"));
+				product.setSellerId(rs.getInt("sellerId"));
 				product.setSeller(seller);
 
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
-				cartItem.setCartId(rs.getString("cart_id"));
+				cartItem.setCartId(rs.getString("cardId"));
 				cartItem.setProductId(rs.getInt("productId"));;
 				cartItem.setCart(cart);
 				cartItem.setProduct(product);
@@ -224,24 +224,24 @@ public class CartItemDaoImpl implements ICartItemDao{
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
-				Seller seller=sellerService.findOne(rs.getInt("s_id"));
+				Seller seller=sellerService.findOne(rs.getInt("sellerId"));
 
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
-				cart.setCartId(rs.getString("cart_id"));
+				cart.setCartId(rs.getString("cartId"));
 
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
-				product.setSellerId(rs.getInt("s_id"));
+				product.setSellerId(rs.getInt("sellerId"));
 				product.setSeller(seller);
 
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
-				cartItem.setCartId(rs.getString("cart_id"));
+				cartItem.setCartId(rs.getString("cartId"));
 				cartItem.setProductId(rs.getInt("productId"));;
 				cartItem.setCart(cart);
 				cartItem.setProduct(product);
@@ -274,24 +274,24 @@ public class CartItemDaoImpl implements ICartItemDao{
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
-				Seller seller=sellerService.findOne(rs.getInt("s_id"));
+				Seller seller=sellerService.findOne(rs.getInt("sellerId"));
 
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
-				cart.setCartId(rs.getString("cart_id"));
+				cart.setCartId(rs.getString("cartId"));
 
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
-				product.setSellerId(rs.getInt("s_id"));
+				product.setSellerId(rs.getInt("sellerId"));
 				product.setSeller(seller);
 
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
-				cartItem.setCartId(rs.getString("cart_id"));
+				cartItem.setCartId(rs.getString("cartId"));
 				cartItem.setProductId(rs.getInt("productId"));;
 				cartItem.setCart(cart);
 				cartItem.setProduct(product);
@@ -341,24 +341,24 @@ public class CartItemDaoImpl implements ICartItemDao{
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Users user=userService.findOne(rs.getInt("userId"));
-				Seller seller=sellerService.findOne(rs.getInt("s_id"));
+				Seller seller=sellerService.findOne(rs.getInt("sellerId"));
 
 				Cart cart=new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buyDate"));
 				cart.setStatus(rs.getInt("status"));
-				cart.setCartId(rs.getString("cart_id"));
+				cart.setCartId(rs.getString("cartId"));
 
 				Product product=new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImages(rs.getString("images"));
-				product.setSellerId(rs.getInt("s_id"));
+				product.setSellerId(rs.getInt("sellerId"));
 				product.setSeller(seller);
 
 				CartItem cartItem=new CartItem();
 				cartItem.setCartItemId(rs.getString("cartItemId"));
-				cartItem.setCartId(rs.getString("cart_id"));
+				cartItem.setCartId(rs.getString("cartId"));
 				cartItem.setProductId(rs.getInt("productId"));;
 				cartItem.setCart(cart);
 				cartItem.setProduct(product);
