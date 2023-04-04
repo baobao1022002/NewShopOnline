@@ -1,20 +1,5 @@
 package vn.projectLTW.controller.web;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-
-//import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import vn.projectLTW.model.Cart;
 import vn.projectLTW.model.CartItem;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.service.ICategoryService;
@@ -25,6 +10,17 @@ import vn.projectLTW.service.Impl.CategoryServiceImpl;
 import vn.projectLTW.service.Impl.ProductServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/member/cart", "/member/cart/add", "/member/cart/remove","/member/cart/updateQuantity" })
 public class CartController extends HttpServlet {

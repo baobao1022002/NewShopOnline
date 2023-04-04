@@ -1,12 +1,5 @@
 package vn.projectLTW.Dao.Impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import vn.projectLTW.Dao.DBConnection;
 import vn.projectLTW.Dao.IProductDao;
 import vn.projectLTW.model.Category;
@@ -16,6 +9,12 @@ import vn.projectLTW.service.ICategoryService;
 import vn.projectLTW.service.ISellerService;
 import vn.projectLTW.service.Impl.CategoryServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDaoImpl implements IProductDao {
 	public Connection conn = null;

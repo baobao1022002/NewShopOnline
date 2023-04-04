@@ -1,15 +1,11 @@
 package vn.projectLTW.util;
 
-import java.util.Properties;
-import java.util.Random;
-import javax.mail.Message;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import java.util.Random;
 
 
 public class Email {

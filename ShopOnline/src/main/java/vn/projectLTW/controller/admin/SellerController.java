@@ -1,8 +1,14 @@
 package vn.projectLTW.controller.admin;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import vn.projectLTW.model.Seller;
+import vn.projectLTW.service.ISellerService;
+import vn.projectLTW.service.Impl.SellerServiceImpl;
+import vn.projectLTW.util.Constant;
+import vn.projectLTW.util.UploadUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,23 +17,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import vn.projectLTW.model.Seller;
-import vn.projectLTW.model.UserRoles;
-import vn.projectLTW.model.Users;
-
-import vn.projectLTW.service.ISellerService;
-import vn.projectLTW.service.IUserRoleService;
-import vn.projectLTW.service.IUserService;
-import vn.projectLTW.service.Impl.SellerServiceImpl;
-import vn.projectLTW.service.Impl.UserRoleServiceImpl;
-import vn.projectLTW.service.Impl.UserServiceImpl;
-import vn.projectLTW.util.Constant;
-import vn.projectLTW.util.UploadUtils;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10MB
 		maxFileSize = 1024 * 1024 * 50, // 50MB

@@ -1,9 +1,9 @@
 package vn.projectLTW.controller.admin;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Date;
-import java.util.List;
+import org.apache.commons.beanutils.BeanUtils;
+import vn.projectLTW.model.UserRoles;
+import vn.projectLTW.service.IUserRoleService;
+import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
-import vn.projectLTW.model.Product;
-import vn.projectLTW.model.Seller;
-import vn.projectLTW.model.UserRoles;
-import vn.projectLTW.model.Users;
-import vn.projectLTW.service.IUserRoleService;
-import vn.projectLTW.service.Impl.UserRoleServiceImpl;
-import vn.projectLTW.util.Constant;
-import vn.projectLTW.util.UploadUtils;
+import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = { "/admin/userRole", "/admin/userRole/create", "/admin/userRole/update", "/admin/userRole/edit",
 		"/admin/userRole/delete", "/admin/userRole/reset" })
@@ -33,6 +21,7 @@ public class UserRoleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//truy xuất vào Interface  userRoleService để lấy  các hàm implement  Service userRole
     IUserRoleService userRoleService= new UserRoleServiceImpl();
+
 
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //

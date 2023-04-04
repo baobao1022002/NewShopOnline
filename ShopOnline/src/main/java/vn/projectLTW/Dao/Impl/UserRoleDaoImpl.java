@@ -1,14 +1,14 @@
 package vn.projectLTW.Dao.Impl;
 
+import vn.projectLTW.Dao.DBConnection;
+import vn.projectLTW.Dao.IUserRoleDao;
+import vn.projectLTW.model.UserRoles;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import vn.projectLTW.Dao.DBConnection;
-import vn.projectLTW.Dao.IUserRoleDao;
-import vn.projectLTW.model.UserRoles;
 
 public class UserRoleDaoImpl implements IUserRoleDao {
 	public Connection conn = null;

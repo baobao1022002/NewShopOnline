@@ -212,6 +212,14 @@
 
 <div class="main">
     <div class="container-fluid">
+<%--        <%--%>
+<%--            String id = request.getAttribute("id").toString();--%>
+<%--            String name = request.getAttribute("name").toString();--%>
+<%--            String email = request.getAttribute("email").toString();--%>
+<%--            out.print("Id: " + id);--%>
+<%--            out.print("<br/>Name: " + name);--%>
+<%--            out.print("<br/>Email: " + email);--%>
+<%--        %>--%>
         <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SALE PRODUCT -->
@@ -576,23 +584,6 @@
                     </c:forEach>
 
                 </ul>
-<%--    <ul class="list-group margin-bottom-25 sidebar-menu">--%>
-<%--        <c:forEach items="${categoryList}" var="cateList">--%>
-<%--            <li class="list-group-item clearfix">--%>
-<%--                <a href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>"><img style="width:22px; margin-right:10px" src="<c:url value="/image?fname=category/${cateList.images }" ></c:url>"><i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>--%>
-<%--            </li>--%>
-<%--        </c:forEach>--%>
-
-<%--    </ul>--%>
-
-<%--    <ul class="list-group margin-bottom-25 sidebar-menu">--%>
-<%--        <c:forEach items="${sellerList}" var="sellerList">--%>
-<%--            <li class="list-group-item clearfix">--%>
-<%--                <a href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img style="width:22px" alt="" src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>"> <i class="fa fa-angle-right" style="width:22px"></i>${sellerList.sellerName}</a>--%>
-<%--            </li>--%>
-<%--        </c:forEach>--%>
-
-<%--    </ul>--%>
 
             </div>
             <!-- END SIDEBAR -->

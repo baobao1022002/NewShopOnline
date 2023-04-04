@@ -1,9 +1,9 @@
 package vn.projectLTW.service;
 
-import java.util.List;
-
+import vn.projectLTW.model.UserGG;
 import vn.projectLTW.model.Users;
-import vn.projectLTW.model.UserFb;
+
+import java.util.List;
 
 
 public interface IUserService {
@@ -11,10 +11,12 @@ public interface IUserService {
 	List<Users> findAll(); // hàm lấy toàn bộ User
 
 	Users findOne(int id); // hàm lấy 1 đối tượng User
+	UserGG findOneGG(int id); // hàm lấy 1 đối tượng User
+
+
 	Users findOne(String userName); // hàm lấy 1 đối tượng User theo userName
 
 	void insert(Users user); // hàm này thêm dữ liệu mới cho User
-	void insertUserFb(UserFb userFb);//hàm này dùng thêm dữ liệu mới cho userFb
 
 
 	void updateStatus(Users user);// hàm này dùng active tài khoản
@@ -24,8 +26,12 @@ public interface IUserService {
 	void delete(int id);	//hàm này xóa 1 đối tượng User
 	
 	boolean register(String email,String passWord,String userName,String fullName,String code);
-	
+
+	boolean registerGG(String email,String userName);
+
+
 	Users login(String userName,String passWord);
+	UserGG loginGG(int userGG_Id);
 	
 	boolean checkExistEmail(String email);
 	

@@ -1,15 +1,12 @@
 package vn.projectLTW.service.Impl;
 
-import java.util.List;
-
 import vn.projectLTW.Dao.IUserDao;
-import vn.projectLTW.Dao.IUserRoleDao;
 import vn.projectLTW.Dao.Impl.UserDaoImpl;
-import vn.projectLTW.Dao.Impl.UserRoleDaoImpl;
-import vn.projectLTW.model.UserFb;
-import vn.projectLTW.model.UserRoles;
+import vn.projectLTW.model.UserGG;
 import vn.projectLTW.model.Users;
 import vn.projectLTW.service.IUserService;
+
+import java.util.List;
 
 public class UserServiceImpl implements IUserService {
 	
@@ -26,14 +23,16 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	public UserGG findOneGG(int id) {
+		return null;
+	}
+
+	@Override
 	public void insert(Users user) {
 		userDao.insert(user);
 	}
 
-	@Override
-	public void insertUserFb(UserFb userFb) {
 
-	}
 
 	@Override
 	public void update(Users user) {
@@ -69,10 +68,25 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	public boolean registerGG(String email, String userName) {
+		userDao.insertRegisterGG(new UserGG(email,userName,3));
+		return true;
+	}
+
+	@Override
 	public Users login(String userName, String passWord) {
 		Users user=this.findOne(userName);
 		if (user!=null && passWord.equals(user.getPassWord())) {
 			return user;
+		}
+		return null;
+	}
+
+	@Override
+	public UserGG loginGG(int userGG_Id) {
+		UserGG userGG=this.findOneGG(userGG_Id);
+		if(userGG!=null ) {
+			return userGG;
 		}
 		return null;
 	}

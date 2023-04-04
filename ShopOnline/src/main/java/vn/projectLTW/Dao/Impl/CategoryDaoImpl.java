@@ -1,18 +1,14 @@
 package vn.projectLTW.Dao.Impl;
 
+import vn.projectLTW.Dao.DBConnection;
+import vn.projectLTW.Dao.ICategoryDao;
+import vn.projectLTW.model.Category;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-import vn.projectLTW.Dao.DBConnection;
-import vn.projectLTW.Dao.ICategoryDao;
-import vn.projectLTW.model.Category;
-import vn.projectLTW.model.UserRoles;
 
 public class CategoryDaoImpl implements ICategoryDao{
 

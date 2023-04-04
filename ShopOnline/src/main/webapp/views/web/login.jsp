@@ -73,11 +73,13 @@
 					</div>
 
 
-					
+
 
 
 					<button type="submit" class="btn btn-primary"><%=showLanguage.get("login")%></button>
 
+					<a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/ShopOnline_war/login-google&response_type=code
+    &client_id=40797728958-hb54ffp98q2v5brfbduqv6togf6h2kf7.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
 
 
 
@@ -152,8 +154,8 @@
      the FB.login() function when clicked.
     -->
 	<br><br>
-	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-	</fb:login-button>
+<%--	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">--%>
+<%--	</fb:login-button>--%>
 	<div id="status">
 	</div>
 	<script type="text/javascript">

@@ -1,9 +1,8 @@
 package vn.projectLTW.service;
 
-import java.util.List;
-
 import vn.projectLTW.model.Category;
-import vn.projectLTW.model.UserRoles;
+
+import java.util.List;
 
 public interface ICategoryService {
 	void insert(Category category); // hàm này thêm dữ liệu mới cho User

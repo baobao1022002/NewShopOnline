@@ -1,10 +1,11 @@
 package vn.projectLTW.service.Impl;
 
-import java.util.List;
 import vn.projectLTW.Dao.ISellerDao;
 import vn.projectLTW.Dao.Impl.SellerDaoImpl;
 import vn.projectLTW.model.Seller;
 import vn.projectLTW.service.ISellerService;
+
+import java.util.List;
 
 public class SellerServiceImpl implements ISellerService {
 	ISellerDao sellerDao=new SellerDaoImpl();

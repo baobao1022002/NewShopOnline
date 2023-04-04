@@ -1,14 +1,14 @@
 package vn.projectLTW.Dao.Impl;
 
+import vn.projectLTW.Dao.DBConnection;
+import vn.projectLTW.Dao.ISellerDao;
+import vn.projectLTW.model.Seller;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import vn.projectLTW.Dao.DBConnection;
-import vn.projectLTW.Dao.ISellerDao;
-import vn.projectLTW.model.Seller;
 
 
 public class SellerDaoImpl implements ISellerDao {

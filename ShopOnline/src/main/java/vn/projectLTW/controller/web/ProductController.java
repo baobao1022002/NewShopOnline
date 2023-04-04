@@ -1,27 +1,22 @@
 package vn.projectLTW.controller.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import vn.projectLTW.model.Category;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.model.Seller;
 import vn.projectLTW.service.ICategoryService;
 import vn.projectLTW.service.IProductService;
 import vn.projectLTW.service.ISellerService;
-import vn.projectLTW.service.IUserService;
 import vn.projectLTW.service.Impl.CategoryServiceImpl;
 import vn.projectLTW.service.Impl.ProductServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
-import vn.projectLTW.service.Impl.UserServiceImpl;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 //"product/detail"
 @WebServlet(urlPatterns = { "/product/list","/product/loadAjax","/product/detail"	})
@@ -75,12 +70,7 @@ public class ProductController extends HttpServlet {
 		if(indexPage==null) {
 			indexPage="1";
 		}
-//		if(categoryId==null) {
-//			categoryId="0";
-//		}
-//		if(sellerId==null) {
-//			sellerId= "0";
-//		}
+
 		int indexp=Integer.parseInt(indexPage);
 		
 		//Get Data từ DAO

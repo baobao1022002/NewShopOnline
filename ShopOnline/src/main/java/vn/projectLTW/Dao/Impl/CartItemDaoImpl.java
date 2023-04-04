@@ -1,21 +1,8 @@
 package vn.projectLTW.Dao.Impl;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-//import org.apache.catalina.storeconfig.StoreContextAppender;
-
 import vn.projectLTW.Dao.DBConnection;
 import vn.projectLTW.Dao.ICartItemDao;
-import vn.projectLTW.model.Cart;
-import vn.projectLTW.model.CartItem;
-import vn.projectLTW.model.Product;
-import vn.projectLTW.model.Seller;
-import vn.projectLTW.model.Users;
+import vn.projectLTW.model.*;
 import vn.projectLTW.service.ICartService;
 import vn.projectLTW.service.IProductService;
 import vn.projectLTW.service.ISellerService;
@@ -24,6 +11,12 @@ import vn.projectLTW.service.Impl.CartServiceImpl;
 import vn.projectLTW.service.Impl.ProductServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartItemDaoImpl implements ICartItemDao{
 

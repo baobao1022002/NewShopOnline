@@ -1,8 +1,8 @@
 package vn.projectLTW.service;
 
-import java.util.List;
-
 import vn.projectLTW.model.Product;
+
+import java.util.List;
 
 public interface IProductService {
 	void insert(Product product); // hàm này thêm dữ liệu mới cho User

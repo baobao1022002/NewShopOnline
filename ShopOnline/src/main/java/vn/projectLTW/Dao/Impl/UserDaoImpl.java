@@ -1,18 +1,18 @@
 package vn.projectLTW.Dao.Impl;
 
+import vn.projectLTW.Dao.DBConnection;
+import vn.projectLTW.Dao.IUserDao;
+import vn.projectLTW.model.UserGG;
+import vn.projectLTW.model.UserRoles;
+import vn.projectLTW.model.Users;
+import vn.projectLTW.service.IUserRoleService;
+import vn.projectLTW.service.Impl.UserRoleServiceImpl;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import vn.projectLTW.Dao.DBConnection;
-import vn.projectLTW.Dao.IUserDao;
-import vn.projectLTW.model.UserRoles;
-import vn.projectLTW.model.Users;
-import vn.projectLTW.model.UserFb;
-import vn.projectLTW.service.IUserRoleService;
-import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 
 public class UserDaoImpl implements IUserDao {
 	public Connection conn = null;
@@ -102,7 +102,40 @@ public class UserDaoImpl implements IUserDao {
 		return null;
 
 	}
+	@Override
+	public UserGG findOneGG(int id) {
+		List<UserGG> userGGList = new ArrayList<UserGG>();
+		String sql = "SELECT user_gg.userGGId,user_gg.email,user_gg.userName,user_roles.roleName,user_roles.roleId\n" +
+				"\t\t\tFROM user_gg INNER JOIN user_roles ON user_gg.roleId=user_roles.roleId\n" +
+				"            where user_gg.userGGId=?";
 
+		try {
+			conn = new DBConnection().getConnection(); // Kết nối CSDL
+			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
+			ps.setInt(1, id);
+			rs = ps.executeQuery(); // Thực thi câu query và trả về ResultSet
+
+			while (rs.next()) { // Duyệt từng dòng trong ResultSet và trả về ds đối tượng
+
+				UserRoles userRoles = userRoleService.findOne(rs.getInt("roleId"));
+				UserGG user = new UserGG();
+
+				user.setUserGGId(rs.getInt("userId"));
+				user.setEmail(rs.getString("email"));
+				user.setUserName(rs.getString("userName"));
+				user.setRoleId(rs.getInt("roleId"));
+				user.setRoles(userRoles);
+
+
+				return user;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	@Override
 	public Users findOne(String userName) {
 		// TODO Auto-generated method stub
@@ -145,6 +178,8 @@ public class UserDaoImpl implements IUserDao {
 		return null;
 	}
 
+
+
 	@Override
 	public void insert(Users user) {
 		
@@ -171,10 +206,7 @@ public class UserDaoImpl implements IUserDao {
 
 	}
 
-	@Override
-	public void insertUserFb(UserFb userFb) {
 
-	}
 
 	@Override
 	public void update(Users user) {
@@ -261,7 +293,6 @@ public class UserDaoImpl implements IUserDao {
 		}
 		return duplicate;
 	}
-
 	@Override
 	public void insertRegister(Users user) {
 		String sql = "INSERT INTO users(email,userName,fullName,passWord,status,roleId,code)VALUES(?,?,?,?,?,?,?)";
@@ -275,6 +306,22 @@ public class UserDaoImpl implements IUserDao {
 			ps.setInt(5, user.getStatus());
 			ps.setInt(6, user.getRoleId());
 			ps.setString(7, user.getCode());
+
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void insertRegisterGG(UserGG userGG) {
+		String sql = "INSERT INTO user_gg(email,userName,roleId)VALUES(?,?,?,?,?,?,?)";
+		try {
+			conn = new DBConnection().getConnection(); // Kết nối CSDL
+			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
+			ps.setString(1, userGG.getEmail());
+			ps.setString(2, userGG.getUserName());
+			ps.setInt(3, userGG.getRoleId());
 
 			ps.executeUpdate();
 		} catch (Exception e) {

@@ -1,9 +1,9 @@
 package vn.projectLTW.Dao;
 
-import java.util.List;
-
+import vn.projectLTW.model.UserGG;
 import vn.projectLTW.model.Users;
-import vn.projectLTW.model.UserFb;
+
+import java.util.List;
 
 public interface IUserDao {
 	//Khai báo các hàm xử lí của Dao
@@ -12,11 +12,15 @@ public interface IUserDao {
 	Users findOne(int id);
 	Users findOne(String userName);// hàm lấy 1 đối tượng User theo ID
 
+	UserGG findOneGG(int id);
+
 	void insert(Users user); // hàm này thêm dữ liệu mới cho User
-	void insertUserFb(UserFb userFb);
+
 
 	void insertRegister(Users user);// hàm này dùng cho Register
-	
+	void insertRegisterGG(UserGG userGG);// hàm này dùng cho Register
+
+
 	void update(Users user); // hàm này cập nhật đối tượng User
 	
 	void updateStatus(Users user);// hàm này dùng active tài khoản

@@ -1,24 +1,6 @@
 package vn.projectLTW.controller.admin;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Date;
-import java.util.List;
-
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 import vn.projectLTW.model.Category;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.model.Seller;
@@ -30,6 +12,17 @@ import vn.projectLTW.service.Impl.ProductServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.UploadUtils;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
 
 @MultipartConfig(fileSizeThreshold = 1024*1024*10,//10MB
 					maxFileSize = 1024*1024*50,//50MB

@@ -1,13 +1,11 @@
 package vn.projectLTW.service.Impl;
 
-import java.util.List;
-
 import vn.projectLTW.Dao.IUserRoleDao;
 import vn.projectLTW.Dao.Impl.UserRoleDaoImpl;
-import vn.projectLTW.model.Category;
 import vn.projectLTW.model.UserRoles;
 import vn.projectLTW.service.IUserRoleService;
-import vn.projectLTW.service.IUserService;
+
+import java.util.List;
 
 public class UserRoleServiceImpl implements IUserRoleService{
 	//Truy xuất các hàm Interface của Dao để thực thi các hàm  trong impl userRoleDao 	

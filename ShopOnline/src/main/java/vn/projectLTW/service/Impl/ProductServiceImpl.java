@@ -1,12 +1,11 @@
 package vn.projectLTW.service.Impl;
 
-import java.sql.Date;
-import java.util.List;
-
 import vn.projectLTW.Dao.IProductDao;
 import vn.projectLTW.Dao.Impl.ProductDaoImpl;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.service.IProductService;
+
+import java.util.List;
 
 public class ProductServiceImpl implements IProductService {
 	IProductDao productDao=new ProductDaoImpl();

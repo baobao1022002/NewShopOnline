@@ -16,5 +16,10 @@
   <session-config>
   		<tracking-mode>COOKIE</tracking-mode>
   </session-config>
+  <context-param>
+      <param-name>log4j-config-location</param-name>
+      <param-value>WEB-INF/log4j.properties</param-value>
+  </context-param>
+
   
 </web-app>

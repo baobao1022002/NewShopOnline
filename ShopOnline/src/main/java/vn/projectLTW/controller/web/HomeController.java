@@ -21,11 +21,13 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 @WebServlet(urlPatterns = { "/home", "/login", "/register", "/forgotPass", "/waiting", "/verifyCode","/logout" })
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 5889168824989045500L;
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 
 	IUserService userService = new UserServiceImpl();
 	IProductService productService=new ProductServiceImpl();
@@ -58,7 +60,7 @@ public class HomeController extends HttpServlet {
 		String url = req.getRequestURL().toString();
 
 		if (url.contains("register")) {
-//			postRegister(req, resp);
+			postRegister(req, resp);
 		} else if (url.contains("login")) {
 			postLogin(req, resp);
 		} else if (url.contains("forgotPass")) {
@@ -135,12 +137,13 @@ public class HomeController extends HttpServlet {
 
 	protected void getLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// check session
+
 		HttpSession session = req.getSession(false);
 		if (session != null && session.getAttribute("account") != null) {
 			resp.sendRedirect(req.getContextPath() + "/waiting");
+			LOGGER.info("Login success 1");
 			return;
 		}
-
 		// check cookies
 		Cookie[] cookies = req.getCookies();
 		if (cookies != null) {
@@ -149,10 +152,12 @@ public class HomeController extends HttpServlet {
 					session = req.getSession(true);
 					session.setAttribute("userName", cookie.getValue());
 					resp.sendRedirect(req.getContextPath() + "/waiting");
+					LOGGER.info("Login success");
 					return;
 				}
 			}
 		}
+		LOGGER.info("Login success3");
 		req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 	}
 
@@ -244,12 +249,14 @@ public class HomeController extends HttpServlet {
 		String remember = req.getParameter("remember");
 		if ("on".equals(remember)) {
 			isRemeberMe = true;
+			LOGGER.info("Login success4");
 		}
 
 		String alertMsg = "";
 
 		if (userName.isEmpty() || passWord.isEmpty()) {
 			alertMsg = "Tài khoản hoặc mật khẩu không đúng";
+			LOGGER.warning("Sai mat khau");
 			req.setAttribute("error", alertMsg);
 			req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 			return;
@@ -269,6 +276,7 @@ public class HomeController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath()+"/waiting");
 			}else {
 				alertMsg="Tài khoản đã bị khóa, liên hệ Admin nhé";
+				LOGGER.warning("Tai khoan da bi khoa");
 				req.setAttribute("error", alertMsg);
 				req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 			}

@@ -1,8 +1,8 @@
 package vn.projectLTW.service;
 
-import java.util.List;
-
 import vn.projectLTW.model.Seller;
+
+import java.util.List;
 
 public interface ISellerService {
 	void insert(Seller seller); // hàm này thêm dữ liệu mới cho Seller
