@@ -23,6 +23,7 @@ import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 @WebServlet(urlPatterns={"/login-google","/loginGG","/registerGG","/waitingGG","/verifyCodeGG"})
+//@WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
@@ -38,11 +39,8 @@ public class LoginGoogleServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = req.getRequestURL().toString();
         if (url.contains("login-google")) {
-            getRegisterFb(req, resp);
-            getLoginFb(req, resp);
-        } else if (url.contains("registerGG")) {
-            getRegisterFb(req, resp);
-        }else if (url.contains("waitingGG")) {
+            doGetGG(req, resp);
+        } else if (url.contains("waitingGG")) {
             getWaiting(req, resp);
         } else if (url.contains("verifyCodeGG")) {
             req.getRequestDispatcher("/views/web/verify.jsp").forward(req, resp);
@@ -53,138 +51,49 @@ public class LoginGoogleServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = req.getRequestURL().toString();
         if (url.contains("login-google")) {
-            postRegisterFb(req, resp);
-            postLoginFb(req, resp);
-        } else if (url.contains("registerGG")) {
-            postRegisterFb(req, resp);
-        }else if (url.contains("verifyCodeGG")) {
-            postVerifyCode(req, resp);
+            doPostGG(req, resp);
+//            postLoginFb(req, resp);
         }
     }
 
-    protected void getLoginFb(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String code = request.getParameter("code");
-        HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("account") != null) {
-            response.sendRedirect(request.getContextPath() + "/waiting");
-            return;
-        }
-        // check cookies
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userName")) {
-                    session = request.getSession(true);
-                    session.setAttribute("userName", cookie.getValue());
-                    response.sendRedirect(request.getContextPath() + "/waiting");
-                    LOGGER.info("Login success");
-                    return;
-                }
-            }
-        }
-        LOGGER.info("Login success3");
-
-
-        if (code == null || code.isEmpty()) {
-            RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
-            dis.forward(request, response);
-        } else {
-            String accessToken = GoogleUtils.getToken(code);
-            GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-            request.setAttribute("id", googlePojo.getId());
-            request.setAttribute("name", googlePojo.getName());
-            request.setAttribute("email", googlePojo.getEmail());
-            RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-            dis.forward(request, response);
-        }
-    }
-
-    protected void postLoginFb(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-
-        // lấy tham số từ form
-        String id = req.getParameter("id");
-        String alertMsg = "";
-
-
-        UserGG user=userService.loginGG(Integer.parseInt(id));
-
-        if(user!=null) {
-                //tạo session
-                HttpSession session=req.getSession(true);
-                session.setAttribute("account", user);
-
-                resp.sendRedirect(req.getContextPath()+"/waiting");
-            }else {
-                alertMsg="Tài khoản đã bị khóa, liên hệ Admin nhé";
-                LOGGER.warning("Tai khoan da bi khoa");
-                req.setAttribute("error", alertMsg);
-                req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
-            }
-
-    }
-
-    protected void getRegisterFb(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String code = request.getParameter("code");
-//
-//        if (code == null || code.isEmpty()) {
-//            RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
-//            dis.forward(request, response);
-//        } else {
-//            String accessToken = GoogleUtils.getToken(code);
-//            GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-//            request.setAttribute("id", googlePojo.getId());
-//            request.setAttribute("name", googlePojo.getName());
-//            request.setAttribute("email", googlePojo.getEmail());
-//            RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-//            dis.forward(request, response);
-//        }
-//        request.getRequestDispatcher("/views/web/register.jsp").forward(request, response);
-    }
-
-    protected void postRegisterFb(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-
-        // lấy tham số từ form
+    protected void doGetGG(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         String code = req.getParameter("code");
         String accessToken = GoogleUtils.getToken(code);
         GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-        String id = googlePojo.getId();
-        String userName = googlePojo.getName();
-        String email = googlePojo.getEmail();
+        String id=googlePojo.getId();
+        String name= googlePojo.getName();
+        String email=googlePojo.getEmail();
 
-        String alertMsg = "";
-        UserGG userGG = new UserGG(Integer.parseInt(id),userName,email);
-
-
-//            boolean isSuccess = userService.registerGG(email, userName);
-        boolean test = Email.getInstance().sendEmail(userGG.getEmail(), code);
-        if (test) {
-
-            // tạo session
-            HttpSession session = req.getSession();
-            session.setAttribute("account", userGG);
-            boolean isSuccess = userService.registerGG(email,userName);
-            if (isSuccess) {
-                resp.sendRedirect(req.getContextPath() + "/verifyCode");
-            } else {
-                alertMsg = "Lỗi hệ thống";
-                req.setAttribute("error", alertMsg);
-//                req.getRequestDispatcher("/views/web/register.jsp").forward(req, resp);
-            }
+        System.out.println(googlePojo.getId());
+        System.out.println(googlePojo.getName());
+        System.out.println(googlePojo.getEmail());
+        if (code == null || code.isEmpty()) {
+            RequestDispatcher dis = req.getRequestDispatcher("login.jsp");
+            dis.forward(req, resp);
         } else {
-            PrintWriter out = resp.getWriter();
-            out.println("Lỗi khi gửi Email!!!!");
-        }
-//            req.getRequestDispatcher("/views/web/register.jsp").forward(req, resp);
-        }
+                UserGG userGG=new UserGG(id,email);
+                // tạo session
+                HttpSession session = req.getSession();
+                session.setAttribute("account", userGG);
+                boolean isSuccess = userService.registerGG(id,email);
 
+                if (isSuccess) {
+                    userGG.setEmail(userGG.getEmail());
+                    userGG.setStatus(1);
+                    userService.updateStatusGG(userGG);
+                    System.out.println("Dang ky thanh cong");
+                } else {
+                    req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+                }
+                RequestDispatcher dis = req.getRequestDispatcher("index.jsp");
+                dis.forward(req, resp);
+        }
+    }
+    protected void doPostGG(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 
     protected void getWaiting(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //kiểm tra session

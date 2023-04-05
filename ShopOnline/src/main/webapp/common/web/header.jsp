@@ -59,10 +59,10 @@
 
 
 
-		                        <li>
-		                        	 <img alt="" width="26px" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>
-		                        	 ${sessionScope.account.fullName}
-		                        </li>
+<%--		                        <li>--%>
+<%--		                        	 <img alt="" width="26px" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>--%>
+<%--		                        	 ${sessionScope.account.fullName}--%>
+<%--		                        </li>--%>
 	                        </c:when>
 	                        <c:otherwise>
 	                        		<li><a href="<c:url value="/login"></c:url>"><%=showLanguage.get("login")%></a></li>

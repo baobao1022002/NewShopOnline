@@ -12,7 +12,7 @@ public interface IUserDao {
 	Users findOne(int id);
 	Users findOne(String userName);// hàm lấy 1 đối tượng User theo ID
 
-	UserGG findOneGG(int id);
+	UserGG findOneGG(String id);
 
 	void insert(Users user); // hàm này thêm dữ liệu mới cho User
 
@@ -24,7 +24,7 @@ public interface IUserDao {
 	void update(Users user); // hàm này cập nhật đối tượng User
 	
 	void updateStatus(Users user);// hàm này dùng active tài khoản
-	
+	void updateStatusGG(UserGG userGG);// hàm này dùng active tài khoản
 	void delete(int id);	//hàm này xóa 1 đối tượng User
 	
 	

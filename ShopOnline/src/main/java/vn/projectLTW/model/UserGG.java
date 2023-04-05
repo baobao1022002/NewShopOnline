@@ -4,60 +4,68 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class UserGG implements Serializable {
-    private int userGGId;
-    private String userName;
+    private int id;
+    private String userGGId;
     private String email;
     private int roleId;
-
+    private int status;
     private int sellerId;
     private UserRoles roles;
     private Seller sellers;
 
     public UserGG() {}
 
-    public UserGG(int userGGId, String userName, String email, int roleId, int sellerId, UserRoles roles, Seller sellers) {
+    public UserGG(int id, String userGGId, String email, int roleId,int status, int sellerId, UserRoles roles, Seller sellers) {
+        this.id = id;
         this.userGGId = userGGId;
-        this.userName = userName;
         this.email = email;
         this.roleId = roleId;
+        this.status=status;
         this.sellerId = sellerId;
         this.roles = roles;
         this.sellers = sellers;
     }
 
-    public UserGG(int userGGId, String userName, String email, int roleId) {
+    public UserGG(int id, String userGGId, String email, int roleId,int status) {
         this.userGGId = userGGId;
-        this.userName = userName;
+        this.id = id;
+        this.email = email;
+        this.roleId = roleId;
+        this.status=status;
+    }
+
+    public UserGG(int id, String userGGId, String email,int status) {
+        this.userGGId = userGGId;
+        this.id = id;
+        this.email = email;
+        this.status=status;
+    }
+    public UserGG(String userGGId, String email) {
+        this.userGGId = userGGId;
+        this.email = email;
+    }
+
+    public UserGG(String userGGId, String email, int roleId) {
+        this.userGGId = userGGId;
         this.email = email;
         this.roleId = roleId;
     }
 
-    public UserGG(int userGGId, String userName, String email) {
-        this.userGGId = userGGId;
-        this.userName = userName;
-        this.email = email;
-    }
-
-    public UserGG(String userName, String email, int roleId) {
-        this.userName = userName;
-        this.email = email;
-        this.roleId = roleId;
-    }
-
-    public int getUserGGId() {
+    public String getUserGGId() {
         return userGGId;
     }
 
-    public void setUserGGId(int userGGId) {
+    public void setUserGGId(String userGGId) {
         this.userGGId = userGGId;
     }
 
-    public String getUserName() {
-        return userName;
+
+    public int getStatus() {
+        return status;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getEmail() {
@@ -94,6 +102,14 @@ public class UserGG implements Serializable {
 
     public Seller getSellers() {
         return sellers;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setSellers(Seller sellers) {
