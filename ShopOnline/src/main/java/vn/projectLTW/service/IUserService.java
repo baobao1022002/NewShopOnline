@@ -11,7 +11,7 @@ public interface IUserService {
 	List<Users> findAll(); // hàm lấy toàn bộ User
 
 	Users findOne(int id); // hàm lấy 1 đối tượng User
-	UserGG findOneGG(int id); // hàm lấy 1 đối tượng User
+		UserGG findOneGG(String id); // hàm lấy 1 đối tượng User
 
 
 	Users findOne(String userName); // hàm lấy 1 đối tượng User theo userName
@@ -21,17 +21,19 @@ public interface IUserService {
 
 	void updateStatus(Users user);// hàm này dùng active tài khoản
 
+	void updateStatusGG(UserGG user);// hàm này dùng active tài khoản
+
 	void update(Users user); // hàm này cập nhật đối tượng User
 	
 	void delete(int id);	//hàm này xóa 1 đối tượng User
 	
 	boolean register(String email,String passWord,String userName,String fullName,String code);
 
-	boolean registerGG(String email,String userName);
+	boolean registerGG(String userGGId,String email);
 
 
 	Users login(String userName,String passWord);
-	UserGG loginGG(int userGG_Id);
+	UserGG loginGG(String userGG_Id);
 	
 	boolean checkExistEmail(String email);
 	

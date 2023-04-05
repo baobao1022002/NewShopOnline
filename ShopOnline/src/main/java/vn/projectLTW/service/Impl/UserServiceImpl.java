@@ -23,8 +23,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserGG findOneGG(int id) {
-		return null;
+	public UserGG findOneGG(String id) {
+		return userDao.findOneGG(id);
 	}
 
 	@Override
@@ -68,8 +68,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean registerGG(String email, String userName) {
-		userDao.insertRegisterGG(new UserGG(email,userName,3));
+	public boolean registerGG(String userGGId, String email) {
+		userDao.insertRegisterGG(new UserGG(userGGId,email,3));
 		return true;
 	}
 
@@ -83,7 +83,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserGG loginGG(int userGG_Id) {
+	public UserGG loginGG(String userGG_Id) {
 		UserGG userGG=this.findOneGG(userGG_Id);
 		if(userGG!=null ) {
 			return userGG;
@@ -110,5 +110,12 @@ public class UserServiceImpl implements IUserService {
 	public void updateStatus(Users user) {
 		userDao.updateStatus(user);
 	}
+
+	@Override
+	public void updateStatusGG(UserGG user) {
+		userDao.updateStatusGG(user);
+	}
+
+
 
 }

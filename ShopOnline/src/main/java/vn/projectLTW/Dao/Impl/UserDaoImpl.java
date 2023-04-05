@@ -103,16 +103,16 @@ public class UserDaoImpl implements IUserDao {
 
 	}
 	@Override
-	public UserGG findOneGG(int id) {
+	public UserGG findOneGG(String id) {
 		List<UserGG> userGGList = new ArrayList<UserGG>();
-		String sql = "SELECT user_gg.userGGId,user_gg.email,user_gg.userName,user_roles.roleName,user_roles.roleId\n" +
+		String sql = "SELECT user_gg.id,user_gg.userGGId,user_gg.email,user_roles.roleName,user_roles.roleId\n" +
 				"\t\t\tFROM user_gg INNER JOIN user_roles ON user_gg.roleId=user_roles.roleId\n" +
 				"            where user_gg.userGGId=?";
 
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
-			ps.setInt(1, id);
+			ps.setString(1, id);
 			rs = ps.executeQuery(); // Thực thi câu query và trả về ResultSet
 
 			while (rs.next()) { // Duyệt từng dòng trong ResultSet và trả về ds đối tượng
@@ -120,9 +120,9 @@ public class UserDaoImpl implements IUserDao {
 				UserRoles userRoles = userRoleService.findOne(rs.getInt("roleId"));
 				UserGG user = new UserGG();
 
-				user.setUserGGId(rs.getInt("userId"));
+				user.setId(rs.getInt("id"));
 				user.setEmail(rs.getString("email"));
-				user.setUserName(rs.getString("userName"));
+				user.setUserGGId(rs.getString("userName"));
 				user.setRoleId(rs.getInt("roleId"));
 				user.setRoles(userRoles);
 
@@ -315,13 +315,15 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public void insertRegisterGG(UserGG userGG) {
-		String sql = "INSERT INTO user_gg(email,userName,roleId)VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO user_gg(userGGId,email,roleId,status)VALUES(?,?,?,?)";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
-			ps.setString(1, userGG.getEmail());
-			ps.setString(2, userGG.getUserName());
+
+			ps.setString(1, userGG.getUserGGId());
+			ps.setString(2, userGG.getEmail());
 			ps.setInt(3, userGG.getRoleId());
+			ps.setInt(4, 1);
 
 			ps.executeUpdate();
 		} catch (Exception e) {
@@ -338,6 +340,20 @@ public class UserDaoImpl implements IUserDao {
 			ps.setInt(1, user.getStatus());
 			ps.setString(2, user.getCode());
 			ps.setString(3, user.getEmail());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateStatusGG(UserGG user) {
+		String sql = "UPDATE user_gg SET status=?, WHERE email=?";
+		try {
+			conn = new DBConnection().getConnection(); // Kết nối CSDL
+			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
+			ps.setInt(1, user.getStatus());
+			ps.setString(2, user.getEmail());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
