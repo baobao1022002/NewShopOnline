@@ -1,15 +1,10 @@
 package vn.projectLTW.controller.web;
 
 import vn.projectLTW.model.CartItem;
+import vn.projectLTW.model.Log;
 import vn.projectLTW.model.Product;
-import vn.projectLTW.service.ICategoryService;
-import vn.projectLTW.service.IProductService;
-import vn.projectLTW.service.ISellerService;
-import vn.projectLTW.service.IUserService;
-import vn.projectLTW.service.Impl.CategoryServiceImpl;
-import vn.projectLTW.service.Impl.ProductServiceImpl;
-import vn.projectLTW.service.Impl.SellerServiceImpl;
-import vn.projectLTW.service.Impl.UserServiceImpl;
+import vn.projectLTW.service.*;
+import vn.projectLTW.service.Impl.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,14 +16,18 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = { "/member/cart", "/member/cart/add", "/member/cart/remove","/member/cart/updateQuantity" })
 public class CartController extends HttpServlet {
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
+	String name= "AUTH";
 
 	IUserService userService = new UserServiceImpl();
 	IProductService productService=new ProductServiceImpl();
 	ICategoryService categoryService=new CategoryServiceImpl();
 	ISellerService sellerService=new SellerServiceImpl();
+	ILogService logService=new LogServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -91,6 +90,7 @@ public class CartController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		//nhận tham số từ view
+		String userName = req.getParameter("userName");
 		String pId=req.getParameter("pId");
 		String quantity=req.getParameter("quantity");
 		//truy vấn Product bằng pId
@@ -99,7 +99,12 @@ public class CartController extends HttpServlet {
 		CartItem cartItem=new CartItem();
 		cartItem.setQuantity(Integer.parseInt(quantity));
 		cartItem.setUnitPrice(product.getPrice());
-		cartItem.setProduct(product);	
+		cartItem.setProduct(product);
+
+		Log log = new Log(Log.INFO,"",this.name,"",1);
+//		log.setUserName(userService.findOne(userName).getUserName());
+//		log.setStatus(userService.findOne(userName).getStatus());
+		log.setLevel(Log.INFO);
 		
 		//Tạo session
 		HttpSession session=req.getSession();
@@ -108,15 +113,26 @@ public class CartController extends HttpServlet {
 			Map<Integer, CartItem> map=new HashMap<Integer,CartItem>();
 			map.put(cartItem.getProduct().getProductId(), cartItem);
 			session.setAttribute("cart", map);
+			log.setSrc("Create new empty cart");
+			log.setContent("Don't have cart before, create new cart");
+			logService.insert(log);
+
 		}else {
 			Map<Integer, CartItem> map= extracted(obj);
 			CartItem existCartItem=map.get(Integer.valueOf(pId));
 			if(existCartItem==null) {
 				map.put(product.getProductId(), cartItem);
+				log.setSrc("Add product to cart");
+				log.setContent("Add new product to cart");
+				logService.insert(log);
 			}else {
 				existCartItem.setQuantity(existCartItem.getQuantity()+Integer.parseInt(quantity));
+				log.setSrc("Add already product to cart");
+				log.setContent("Add product and update quantity product in cart");
+				logService.insert(log);
 			}
 			session.setAttribute("cart", map);
+			LOGGER.info("add cart");
 		}
 		resp.sendRedirect(req.getContextPath()+"/member/cart");
 	}
@@ -144,7 +160,7 @@ public class CartController extends HttpServlet {
 		}
 			
 		resp.sendRedirect(req.getContextPath()+"/member/cart");
-		
+		LOGGER.warning("loai hang khoi gio");
 		
 	}
 

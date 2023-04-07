@@ -1,9 +1,6 @@
 package vn.projectLTW.controller.web;
 
-import vn.projectLTW.model.Category;
-import vn.projectLTW.model.Product;
-import vn.projectLTW.model.Seller;
-import vn.projectLTW.model.Users;
+import vn.projectLTW.model.*;
 import vn.projectLTW.service.ICategoryService;
 import vn.projectLTW.service.IProductService;
 import vn.projectLTW.service.ISellerService;
@@ -28,7 +25,7 @@ import java.util.logging.Logger;
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 5889168824989045500L;
 	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
-
+	String name= "AUTH";
 	IUserService userService = new UserServiceImpl();
 	IProductService productService=new ProductServiceImpl();
 	ICategoryService categoryService=new CategoryServiceImpl();
@@ -141,7 +138,7 @@ public class HomeController extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		if (session != null && session.getAttribute("account") != null) {
 			resp.sendRedirect(req.getContextPath() + "/waiting");
-			LOGGER.info("Login success 1");
+			LOGGER.info("Login success new 1");
 			return;
 		}
 		// check cookies
@@ -152,12 +149,12 @@ public class HomeController extends HttpServlet {
 					session = req.getSession(true);
 					session.setAttribute("userName", cookie.getValue());
 					resp.sendRedirect(req.getContextPath() + "/waiting");
-					LOGGER.info("Login success");
+					LOGGER.info("Login success new 2");
 					return;
 				}
 			}
 		}
-		LOGGER.info("Login success3");
+		LOGGER.info("Login success new 3");
 		req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 	}
 
