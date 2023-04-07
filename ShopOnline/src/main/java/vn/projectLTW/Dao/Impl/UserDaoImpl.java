@@ -122,7 +122,7 @@ public class UserDaoImpl implements IUserDao {
 
 				user.setId(rs.getInt("id"));
 				user.setEmail(rs.getString("email"));
-				user.setUserGGId(rs.getString("userName"));
+				user.setUserGGId(rs.getString("userGGId"));
 				user.setRoleId(rs.getInt("roleId"));
 				user.setRoles(userRoles);
 
