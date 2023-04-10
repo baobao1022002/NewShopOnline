@@ -2,16 +2,11 @@ package vn.projectLTW.controller.web;
 
 import vn.projectLTW.accessgoogle.GooglePojo;
 import vn.projectLTW.accessgoogle.GoogleUtils;
+import vn.projectLTW.model.Log;
 import vn.projectLTW.model.UserGG;
 import vn.projectLTW.model.Users;
-import vn.projectLTW.service.ICategoryService;
-import vn.projectLTW.service.IProductService;
-import vn.projectLTW.service.ISellerService;
-import vn.projectLTW.service.IUserService;
-import vn.projectLTW.service.Impl.CategoryServiceImpl;
-import vn.projectLTW.service.Impl.ProductServiceImpl;
-import vn.projectLTW.service.Impl.SellerServiceImpl;
-import vn.projectLTW.service.Impl.UserServiceImpl;
+import vn.projectLTW.service.*;
+import vn.projectLTW.service.Impl.*;
 import vn.projectLTW.util.Email;
 
 import javax.servlet.RequestDispatcher;
@@ -22,16 +17,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
+import vn.projectLTW.model.Log;
+import java.util.logging.Logger;
 @WebServlet(urlPatterns={"/login-google","/loginGG","/registerGG","/waitingGG","/verifyCodeGG"})
 //@WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
-
     IUserService userService = new UserServiceImpl();
     IProductService productService=new ProductServiceImpl();
     ICategoryService categoryService=new CategoryServiceImpl();
     ISellerService sellerService=new SellerServiceImpl();
+    ILogService logService=new LogServiceImpl();
+    Log log = new Log(Log.INFO,"","","",1);
+    static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
     public LoginGoogleServlet() {
         super();
     }
@@ -86,6 +84,12 @@ public class LoginGoogleServlet extends HttpServlet {
                 } else {
                     req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
                 }
+            log.setLevel(Log.INFO);
+            log.setStatus(1);
+            log.setSrc("login with google account successfull");
+            log.setContent("login with google account successfully");
+            logService.insert(log);
+            LOGGER.info("login with google account successfull");
                 RequestDispatcher dis = req.getRequestDispatcher("index.jsp");
                 dis.forward(req, resp);
         }
@@ -134,6 +138,12 @@ public class LoginGoogleServlet extends HttpServlet {
 
                 out.println("div class=\"container\"><br/>\r\n" + "    <br/>\r\n"
                         + "    <br/>Kích hoạt tài khoản thành công!<br/>\r\n" + "    <br/>\r\n" + "    <br/></div>");
+                log.setLevel(Log.ALERT);
+                log.setStatus(2);
+                log.setSrc("Đăng kí thành công");
+                log.setContent("Kích hoạt thành công tài khoản mới");
+                logService.insert(log);
+                LOGGER.info("Đăng kí thành công");
             } else {
                 out.println("div class=\"container\"><br/>\r\n" + "    <br/>\r\n"
                         + "    <br/>Sai mã kích hoạt, vui lòng kiểm tra lại!<br/>\r\n" + "    <br/>\r\n"

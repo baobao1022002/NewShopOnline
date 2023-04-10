@@ -1,14 +1,8 @@
 package vn.projectLTW.controller.web;
 
 import vn.projectLTW.model.*;
-import vn.projectLTW.service.ICategoryService;
-import vn.projectLTW.service.IProductService;
-import vn.projectLTW.service.ISellerService;
-import vn.projectLTW.service.IUserService;
-import vn.projectLTW.service.Impl.CategoryServiceImpl;
-import vn.projectLTW.service.Impl.ProductServiceImpl;
-import vn.projectLTW.service.Impl.SellerServiceImpl;
-import vn.projectLTW.service.Impl.UserServiceImpl;
+import vn.projectLTW.service.*;
+import vn.projectLTW.service.Impl.*;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.Email;
 
@@ -18,18 +12,21 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import vn.projectLTW.model.Log;
 import java.util.logging.Logger;
 
 
 @WebServlet(urlPatterns = { "/home", "/login", "/register", "/forgotPass", "/waiting", "/verifyCode","/logout" })
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 5889168824989045500L;
-	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 	String name= "AUTH";
 	IUserService userService = new UserServiceImpl();
 	IProductService productService=new ProductServiceImpl();
 	ICategoryService categoryService=new CategoryServiceImpl();
 	ISellerService sellerService=new SellerServiceImpl();
+	ILogService logService=new LogServiceImpl();
+	Log log = new Log(Log.INFO,"","","",1);
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURL().toString();
@@ -128,6 +125,7 @@ public class HomeController extends HttpServlet {
 			} else {
 				PrintWriter out = resp.getWriter();
 				out.println("Lỗi khi gửi Email!!!!");
+
 			}
 		}
 	}
@@ -138,7 +136,7 @@ public class HomeController extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		if (session != null && session.getAttribute("account") != null) {
 			resp.sendRedirect(req.getContextPath() + "/waiting");
-			LOGGER.info("Login success new 1");
+//			LOGGER.info("Login success new 1");
 			return;
 		}
 		// check cookies
@@ -149,12 +147,18 @@ public class HomeController extends HttpServlet {
 					session = req.getSession(true);
 					session.setAttribute("userName", cookie.getValue());
 					resp.sendRedirect(req.getContextPath() + "/waiting");
-					LOGGER.info("Login success new 2");
+//					LOGGER.info("Login success new 2");
 					return;
 				}
 			}
 		}
-		LOGGER.info("Login success new 3");
+//		LOGGER.info("Login success new 3");
+		log.setLevel(Log.ALERT);
+		log.setStatus(2);
+		log.setSrc("login successfull");
+		log.setContent("Account has been successfully logged in");
+		logService.insert(log);
+		LOGGER.info("login successfull");
 		req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 	}
 
@@ -173,6 +177,12 @@ public class HomeController extends HttpServlet {
 				}
 			}
 		}
+		log.setLevel(Log.ALERT);
+		log.setStatus(2);
+		log.setSrc("logout successfull");
+		log.setContent("Account has been successfully logged out");
+		logService.insert(log);
+		LOGGER.info("logout successfull");
 		resp.sendRedirect("./login");
 	}
 
@@ -220,6 +230,14 @@ public class HomeController extends HttpServlet {
 			}
 		}else {
 			req.setAttribute("error", "User  Name hoặc Email không tồn tại trong hệ thống!");
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(2);
+			log.setSrc("forgot password false");
+			log.setContent("userName or email does not exist in the system");
+			logService.insert(log);
+			LOGGER.info("forgot password false");
+
 			req.getRequestDispatcher("/views/web/forgotPassword.jsp").forward(req, resp);
 			return;
 		}
@@ -246,15 +264,29 @@ public class HomeController extends HttpServlet {
 		String remember = req.getParameter("remember");
 		if ("on".equals(remember)) {
 			isRemeberMe = true;
-			LOGGER.info("Login success4");
+//			LOGGER.info("Login success4");
+			log.setLevel(Log.ALERT);
+			log.setStatus(2);
+			log.setSrc("login successfull");
+			log.setContent("Account has been successfully logged in");
+			logService.insert(log);
+			LOGGER.info("login successfull");
 		}
 
 		String alertMsg = "";
 
 		if (userName.isEmpty() || passWord.isEmpty()) {
 			alertMsg = "Tài khoản hoặc mật khẩu không đúng";
-			LOGGER.warning("Sai mat khau");
+//			LOGGER.warning("Sai mat khau");
 			req.setAttribute("error", alertMsg);
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(2);
+			log.setSrc("login false");
+			log.setContent("Incorrect account or password");
+			logService.insert(log);
+			LOGGER.info("login false");
+
 			req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 			return;
 		}
@@ -273,13 +305,27 @@ public class HomeController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath()+"/waiting");
 			}else {
 				alertMsg="Tài khoản đã bị khóa, liên hệ Admin nhé";
-				LOGGER.warning("Tai khoan da bi khoa");
+//				LOGGER.warning("Tai khoan da bi khoa");
 				req.setAttribute("error", alertMsg);
+
+				log.setLevel(Log.ALERT);
+				log.setStatus(2);
+				log.setSrc("login false");
+				log.setContent("Account has been locked");
+				logService.insert(log);
+				LOGGER.info("login false");
+
 				req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 			}
 		}else {
 			alertMsg="Tài khoản hoặc mật khẩu không đúng";
 			req.setAttribute("error", alertMsg);
+			log.setLevel(Log.ALERT);
+			log.setStatus(2);
+			log.setSrc("login false");
+			log.setContent("Incorrect account or password");
+			logService.insert(log);
+			LOGGER.info("login false");
 			req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 		}
 	}
@@ -303,6 +349,13 @@ public class HomeController extends HttpServlet {
 
 				out.println("div class=\"container\"><br/>\r\n" + "    <br/>\r\n"
 						+ "    <br/>Kích hoạt tài khoản thành công!<br/>\r\n" + "    <br/>\r\n" + "    <br/></div>");
+
+				log.setLevel(Log.ALERT);
+				log.setStatus(2);
+				log.setSrc("register successfull");
+				log.setContent("Successfully activated new account");
+				logService.insert(log);
+				LOGGER.info("register successfull");
 			} else {
 				out.println("div class=\"container\"><br/>\r\n" + "    <br/>\r\n"
 						+ "    <br/>Sai mã kích hoạt, vui lòng kiểm tra lại!<br/>\r\n" + "    <br/>\r\n"

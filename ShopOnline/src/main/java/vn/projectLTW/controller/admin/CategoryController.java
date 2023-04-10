@@ -1,9 +1,13 @@
 package vn.projectLTW.controller.admin;
 
 import org.apache.commons.beanutils.BeanUtils;
+import vn.projectLTW.controller.web.HomeController;
 import vn.projectLTW.model.Category;
+import vn.projectLTW.model.Users;
 import vn.projectLTW.service.ICategoryService;
+import vn.projectLTW.service.ILogService;
 import vn.projectLTW.service.Impl.CategoryServiceImpl;
+import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.UploadUtils;
 
@@ -16,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import vn.projectLTW.model.Log;
+import java.util.logging.Logger;
+
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10MB
 		maxFileSize = 1024 * 1024 * 50, // 50MB
@@ -26,11 +33,15 @@ import java.util.List;
 		"/admin/category/edit", "/admin/category/delete", "/admin/category/reset" })
 public class CategoryController extends HttpServlet {
 	ICategoryService categoryService = new CategoryServiceImpl();
+	ILogService logService=new LogServiceImpl();
+	Log log = new Log(Log.INFO,"","","",1);
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
+
 
 		String url = req.getRequestURL().toString();
 		Category category = null;
@@ -40,11 +51,16 @@ public class CategoryController extends HttpServlet {
 			category = new Category();
 			req.setAttribute("category", category);// đẩy dữ liệu lên Views
 
+
 		} else if (url.contains("edit")) {
 			edit(req, resp);
+
+
+
 		} else if (url.contains("reset")) {
 			category = new Category();
 			req.setAttribute("category", category);// đẩy dữ liệu lên Views
+
 
 		}
 		req.setAttribute("tag", "cate");
@@ -109,6 +125,16 @@ public class CategoryController extends HttpServlet {
 			}
 			categoryService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa Category thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
+
+			log.setLevel(Log.WARNING);
+			log.setStatus(4);
+			log.setSrc("Delete category");
+			log.setContent("1 category has been removed from the list");
+			log.getStatus();
+			logService.insert(log);
+			LOGGER.warning("delete category");
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error: " + e.getMessage());
@@ -122,6 +148,13 @@ public class CategoryController extends HttpServlet {
 																				// category thông
 			// qua id
 			req.setAttribute("category", category);
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(3);
+			log.setSrc("Edit category");
+			log.setContent("1 category has been edited");
+			logService.insert(log);
+			LOGGER.warning("edit category");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -147,6 +180,14 @@ public class CategoryController extends HttpServlet {
 			categoryService.insert(category);
 			req.setAttribute("category", category);
 			req.setAttribute("message", "Đã thêm thành công");
+
+			log.setLevel(Log.INFO);
+			log.setStatus(1);
+			log.setSrc("create success");
+			log.setContent("1 new category added successfully");
+			logService.insert(log);
+			LOGGER.info("1 new category added successfully");
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
