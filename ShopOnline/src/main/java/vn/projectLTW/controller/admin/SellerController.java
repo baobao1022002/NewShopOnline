@@ -4,8 +4,11 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import vn.projectLTW.controller.web.HomeController;
 import vn.projectLTW.model.Seller;
+import vn.projectLTW.service.ILogService;
 import vn.projectLTW.service.ISellerService;
+import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.UploadUtils;
@@ -20,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+import vn.projectLTW.model.Log;
+import java.util.logging.Logger;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10MB
 		maxFileSize = 1024 * 1024 * 50, // 50MB
 		maxRequestSize = 1024 * 1024 * 50) // 50MB
@@ -30,6 +34,9 @@ import java.util.List;
 		"/admin/seller/edit", "/admin/seller/delete", "/admin/seller/reset" })
 public class SellerController extends HttpServlet {
 	ISellerService sellerService = new SellerServiceImpl();
+	ILogService logService=new LogServiceImpl();
+	Log log = new Log(Log.INFO,"","","",1);
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -114,6 +121,14 @@ public class SellerController extends HttpServlet {
 			}
 			sellerService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa seller thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
+
+			log.setLevel(Log.WARNING);
+			log.setStatus(4);
+			log.setSrc("Delete seller");
+			log.setContent("1 seller has been removed from the list");
+			logService.insert(log);
+			LOGGER.warning("delete seller");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error: " + e.getMessage());
@@ -127,6 +142,13 @@ public class SellerController extends HttpServlet {
 																				// seller thông
 			// qua id
 			req.setAttribute("seller", seller);
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(3);
+			log.setSrc("Edit seller");
+			log.setContent("1 seller has been edited");
+			logService.insert(log);
+			LOGGER.warning("edit seller");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,6 +188,14 @@ public class SellerController extends HttpServlet {
 			// thông báo
 			req.setAttribute("seller", seller);
 			req.setAttribute("message", "Cập nhật thành công");
+
+			log.setLevel(Log.INFO);
+			log.setStatus(1);
+			log.setSrc("Create seller");
+			log.setContent("1 new seller added successfully");
+			logService.insert(log);
+			LOGGER.info("create seller");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error" + e.getMessage());

@@ -122,17 +122,17 @@ public class CartController extends HttpServlet {
 			CartItem existCartItem=map.get(Integer.valueOf(pId));
 			if(existCartItem==null) {
 				map.put(product.getProductId(), cartItem);
-				log.setSrc("Add product to cart");
-				log.setContent("Add new product to cart");
+				log.setSrc("Add to cart");
+				log.setContent("Add products to cart");
 				logService.insert(log);
 			}else {
 				existCartItem.setQuantity(existCartItem.getQuantity()+Integer.parseInt(quantity));
-				log.setSrc("Add already product to cart");
-				log.setContent("Add product and update quantity product in cart");
+				log.setSrc("Add existing products to cart");
+				log.setContent("Add products and update the number of products in the cart");
 				logService.insert(log);
 			}
 			session.setAttribute("cart", map);
-			LOGGER.info("add cart");
+			LOGGER.info("Add to cart");
 		}
 		resp.sendRedirect(req.getContextPath()+"/member/cart");
 	}
@@ -160,7 +160,7 @@ public class CartController extends HttpServlet {
 		}
 			
 		resp.sendRedirect(req.getContextPath()+"/member/cart");
-		LOGGER.warning("loai hang khoi gio");
+		LOGGER.warning("Remove product from cart");
 		
 	}
 

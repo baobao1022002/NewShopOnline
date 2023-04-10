@@ -1,8 +1,11 @@
 package vn.projectLTW.controller.admin;
 
 import org.apache.commons.beanutils.BeanUtils;
+import vn.projectLTW.controller.web.HomeController;
 import vn.projectLTW.model.UserRoles;
+import vn.projectLTW.service.ILogService;
 import vn.projectLTW.service.IUserRoleService;
+import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+import vn.projectLTW.model.Log;
+import java.util.logging.Logger;
 @WebServlet(urlPatterns = { "/admin/userRole", "/admin/userRole/create", "/admin/userRole/update", "/admin/userRole/edit",
 		"/admin/userRole/delete", "/admin/userRole/reset" })
 
@@ -21,6 +25,9 @@ public class UserRoleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//truy xuất vào Interface  userRoleService để lấy  các hàm implement  Service userRole
     IUserRoleService userRoleService= new UserRoleServiceImpl();
+	ILogService logService=new LogServiceImpl();
+	Log log = new Log(Log.INFO,"","","",1);
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 
 
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -134,6 +141,14 @@ public class UserRoleController extends HttpServlet {
 
 			userRoleService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa User thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
+
+			log.setLevel(Log.WARNING);
+			log.setStatus(4);
+			log.setSrc("Delete userRole");
+			log.setContent("1 userRole has been removed from the list");
+			logService.insert(log);
+			LOGGER.warning("delete userRole");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error: " + e.getMessage());
@@ -149,6 +164,13 @@ public class UserRoleController extends HttpServlet {
 																// seller thông
 			// qua id
 			req.setAttribute("role", role);
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(3);
+			log.setSrc("Edit userRole");
+			log.setContent("1 userRole has been edited");
+			logService.insert(log);
+			LOGGER.warning("edit userRole");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,6 +202,14 @@ public class UserRoleController extends HttpServlet {
 
 			req.setAttribute("role", role);
 			req.setAttribute("message", "Đã thêm thành công");
+
+			log.setLevel(Log.INFO);
+			log.setStatus(1);
+			log.setSrc("Create userRole");
+			log.setContent("1 new userRole added successfully");
+			logService.insert(log);
+			LOGGER.info("create userRole");
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

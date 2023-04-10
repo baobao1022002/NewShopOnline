@@ -4,10 +4,13 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import vn.projectLTW.controller.web.HomeController;
 import vn.projectLTW.model.UserRoles;
 import vn.projectLTW.model.Users;
+import vn.projectLTW.service.ILogService;
 import vn.projectLTW.service.IUserRoleService;
 import vn.projectLTW.service.IUserService;
+import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
 import vn.projectLTW.util.Constant;
@@ -23,7 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+import vn.projectLTW.model.Log;
+import java.util.logging.Logger;
 @MultipartConfig(fileSizeThreshold = 1024*1024*10,//10MB
 					maxFileSize = 1024*1024*50,//50MB
 					maxRequestSize = 1024*1024*50 ) //50MB
@@ -34,6 +38,9 @@ import java.util.List;
 public class UserController extends HttpServlet {
 	IUserRoleService userRoleService = new UserRoleServiceImpl();
 	IUserService userService = new UserServiceImpl();
+	ILogService logService=new LogServiceImpl();
+	Log log = new Log(Log.INFO,"","","",1);
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -117,6 +124,14 @@ public class UserController extends HttpServlet {
 			}
 			userService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa User thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
+
+			log.setLevel(Log.WARNING);
+			log.setStatus(4);
+			log.setSrc("delete user");
+			log.setContent("successfully deleted 1 account from the system");
+			logService.insert(log);
+			LOGGER.warning("delete user");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error: " + e.getMessage());
@@ -132,6 +147,13 @@ public class UserController extends HttpServlet {
 
 			List<UserRoles> roles = userRoleService.findAll();
 			req.setAttribute("roles", roles);
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(3);
+			log.setSrc("edit user");
+			log.setContent("1 user has changed information");
+			logService.insert(log);
+			LOGGER.warning("edit user");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,6 +209,14 @@ public class UserController extends HttpServlet {
 			userService.insert(user);
 			req.setAttribute("user", user);
 			req.setAttribute("message", "Đã thêm thành công");
+
+			log.setLevel(Log.INFO);
+			log.setStatus(1);
+			log.setSrc("create user");
+			log.setContent("successfully added 1 new account to the system");
+			logService.insert(log);
+			LOGGER.info("create user");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error: " + e.getMessage());

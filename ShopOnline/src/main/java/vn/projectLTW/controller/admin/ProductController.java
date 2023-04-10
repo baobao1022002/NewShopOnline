@@ -1,17 +1,22 @@
 package vn.projectLTW.controller.admin;
 
 import org.apache.commons.beanutils.BeanUtils;
+import vn.projectLTW.controller.web.HomeController;
 import vn.projectLTW.model.Category;
 import vn.projectLTW.model.Product;
 import vn.projectLTW.model.Seller;
 import vn.projectLTW.service.ICategoryService;
+import vn.projectLTW.service.ILogService;
 import vn.projectLTW.service.IProductService;
 import vn.projectLTW.service.ISellerService;
 import vn.projectLTW.service.Impl.CategoryServiceImpl;
+import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.service.Impl.ProductServiceImpl;
 import vn.projectLTW.service.Impl.SellerServiceImpl;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.UploadUtils;
+import vn.projectLTW.model.Log;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,6 +40,9 @@ public class ProductController extends HttpServlet {
 	ICategoryService categoryService=new CategoryServiceImpl();
 	ISellerService sellerService=new SellerServiceImpl();
 	IProductService productService=new ProductServiceImpl();
+	ILogService logService=new LogServiceImpl();
+	Log log = new Log(Log.INFO,"","","",1);
+	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -48,8 +56,10 @@ public class ProductController extends HttpServlet {
 			product = new Product();
 			req.setAttribute("product", product);// đẩy dữ liệu lên Views
 
+
 		} else if (url.contains("edit")) {
 			edit(req, resp);
+
 		} else if (url.contains("reset")) {
 			product = new Product();
 			req.setAttribute("product", product);// đẩy dữ liệu lên Views
@@ -119,6 +129,14 @@ public class ProductController extends HttpServlet {
 			}
 			productService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa product thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
+
+			log.setLevel(Log.WARNING);
+			log.setStatus(4);
+			log.setSrc("Delete product");
+			log.setContent("1 product has been removed from the list");
+			logService.insert(log);
+			LOGGER.warning("delete product");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", "Error: " + e.getMessage());
@@ -137,6 +155,13 @@ public class ProductController extends HttpServlet {
 			
 			List<Seller> sellerList=sellerService.findAll();//lấy tất cả seller trogn bảng seller
 			req.setAttribute("sellerList", sellerList);
+
+			log.setLevel(Log.ALERT);
+			log.setStatus(3);
+			log.setSrc("Edit product");
+			log.setContent("1 product has been edited");
+			logService.insert(log);
+			LOGGER.warning("edit product");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -169,6 +194,14 @@ public class ProductController extends HttpServlet {
 			
 			req.setAttribute("product", product);
 			req.setAttribute("message", "Đã thêm thành công");
+
+			log.setLevel(Log.INFO);
+			log.setStatus(1);
+			log.setSrc("Create product");
+			log.setContent("1 new category added successfully");
+			logService.insert(log);
+			LOGGER.info("create product");
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
