@@ -1,6 +1,19 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="vn.projectLTW.util.Language" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+<%
+    Map<String,String> showLanguage = new Language().vietnameseLanguage();
+    String lang = (String) session.getAttribute("lang");
+    if(lang!=null){
+        if(lang.equals("Vietnamese")){
+            showLanguage = new Language().vietnameseLanguage();
+        } else if (lang.equals("English")) {
+            showLanguage = new Language().englishLanguage();
+
+        }
+    }%>
 <c:url value="/template/assets" var="url"></c:url>
 
 <
@@ -89,7 +102,7 @@
                 </div>
                 <div class="col-md-10 col-sm-10">
                     <h2>&nbsp;</h2>
-                    <small class="shop-bg-red badge-results">${countproductAll} Sản phẩm</small>
+                    <small class="shop-bg-red badge-results">${countproductAll} <%=showLanguage.get("products")%></small>
                     <div class="pull-right">
                         <label class="control-label">Show:</label> <select
                             class="form-control input-sm">
@@ -155,7 +168,7 @@
                             </h3>
                             <div class="pi-price">$ ${proList.price}"</div>
                             <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                               class="btn btn-default add2cart" class="btn btn-default add2cart">Add to cart</a>
+                               class="btn btn-default add2cart" class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
                         </div>
                     </div>
                     <!-- PRODUCT ITEM END -->
@@ -188,7 +201,7 @@
                                             <em>$<span>${proList.price/0.8 }</span></em>
                                         </div>
                                         <div class="availability">
-                                            Số lượng tồn: <strong>${proList.stoke}</strong>
+                                            <%=showLanguage.get("inventory")%> <strong>${proList.stoke}</strong>
                                         </div>
                                     </div>
                                     <div class="description">
@@ -196,7 +209,7 @@
                                     </div>
                                     <div class="product-page-options">
                                         <div class="pull-left">
-                                            <label class="control-label">Size:</label> <select
+                                            <label class="control-label"><%=showLanguage.get("size")%></label> <select
                                                 class="form-control input-sm">
                                             <option>L</option>
                                             <option>M</option>
@@ -204,7 +217,7 @@
                                         </select>
                                         </div>
                                         <div class="pull-left">
-                                            <label class="control-label">Color:</label> <select
+                                            <label class="control-label"><%=showLanguage.get("color")%></label> <select
                                                 class="form-control input-sm">
                                             <option>Red</option>
                                             <option>Blue</option>
@@ -246,9 +259,9 @@
                                         </form>
                                         </td>
 
-                                        <button class="btn btn-primary" type="submit">Cho vào giỏ hàng</button>
+                                        <button class="btn btn-primary" type="submit"><%=showLanguage.get("addtocart")%></button>
                                         <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                           class="btn btn-default">Xem chi tiết</a>
+                                           class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                     </div>
                                 </div>
 

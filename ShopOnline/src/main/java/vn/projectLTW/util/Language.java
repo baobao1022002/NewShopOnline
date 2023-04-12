@@ -39,6 +39,21 @@ public class Language {
         map.put("color","Color");
         map.put("seedetails","See details");
 
+        map.put("image","Image");
+        map.put("description","Description");
+        map.put("seller","Seller");
+        map.put("quantity","Quantity");
+        map.put("unitprice","Unit price");
+        map.put("total","Total");
+        map.put("subtotal","Sub total");
+        map.put("shippingcost","Shipping cost");
+        map.put("Total","Total");
+        map.put("continueshopping","Continue shopping");
+        map.put("update","Update");
+        map.put("shoppingcart","Shopping cart");
+
+
+
 
         return map;
 
@@ -78,6 +93,19 @@ public class Language {
         map.put("size","Kích cỡ");
         map.put("color","Màu sắc");
         map.put("seedetails","Xem chi tiết");
+
+        map.put("image","Hình ảnh");
+        map.put("description","Mô tả");
+        map.put("seller","Người bán");
+        map.put("quantity","Số lượng");
+        map.put("unitprice","Giá sản phẩm");
+        map.put("total","Tổng");
+        map.put("subtotal","Tổng tiền");
+        map.put("shippingcost","Phí vận chuyển");
+        map.put("Total","Tổng cộng");
+        map.put("continueshopping","Tiếp tục mua sắm");
+        map.put("update","Cập nhật");
+        map.put("shoppingcart","Giỏ hàng");
 
 
         return map;
