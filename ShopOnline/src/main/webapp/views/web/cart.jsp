@@ -1,6 +1,19 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
 <ul class="list-inline shop-badge badge-lists badge-icons pull-right">
 	<li><a href="#"><i class="fa fa-shopping-cart"></i></a> 
 	<c:set var="count" value="${0}" /> 
@@ -36,11 +49,11 @@
 				<div class="row">
 					<div class="col-xs-6">
 						<a href="${pageContext.request.contextPath}/member/cart"
-							class="btn-u btn-brd btn-brd-hover btn-u-sea-shop btn-block">Xem giỏ hàng</a>
+							class="btn-u btn-brd btn-brd-hover btn-u-sea-shop btn-block"><%=showLanguage.get("viewcart")%></a>
 					</div>
 					<div class="col-xs-6">
 						<a href="${pageContext.request.contextPath}/member/order"
-							class="btn-u btn-u-sea-shop btn-block">Thanh toán</a>
+							class="btn-u btn-u-sea-shop btn-block"><%=showLanguage.get("checkout")%></a>
 					</div>
 				</div>
 			</li>

@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import vn.projectLTW.model.Log;
+import vn.projectLTW.util.PasswordEncryption;
+
 import java.util.logging.Logger;
 
 
@@ -91,6 +93,7 @@ public class HomeController extends HttpServlet {
 		// lấy tham số từ form
 		String userName = req.getParameter("userName");
 		String passWord = req.getParameter("passWord");
+		passWord = PasswordEncryption.toSHA1(passWord);
 		String email = req.getParameter("email");
 		String fullName = req.getParameter("fullName");
 
@@ -219,9 +222,11 @@ public class HomeController extends HttpServlet {
 		Users user= userService.findOne(userName);
 		if (user.getEmail().equals(email)&& user.getUserName().equals(userName)) {
 			String pass = 	Email.getRandom();
+			boolean test = Email.getInstance().sendEmail(user.getEmail(), pass);
+			pass = PasswordEncryption.toSHA1(pass);
 			user.setPassWord(pass);
 			userService.update(user);
-			boolean test = Email.getInstance().sendEmail(user.getEmail(), pass);
+
 			if (test) {
 
 				req.setAttribute("message", "Vui lòng kiểm tra email để nhận mật khẩu mới nhé!");
@@ -260,6 +265,7 @@ public class HomeController extends HttpServlet {
 		// lấy tham số từ form
 		String userName = req.getParameter("userName");
 		String passWord = req.getParameter("passWord");
+		passWord = PasswordEncryption.toSHA1(passWord);
 		boolean isRemeberMe = false;
 		String remember = req.getParameter("remember");
 		if ("on".equals(remember)) {

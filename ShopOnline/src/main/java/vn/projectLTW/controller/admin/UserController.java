@@ -14,6 +14,7 @@ import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.service.Impl.UserRoleServiceImpl;
 import vn.projectLTW.service.Impl.UserServiceImpl;
 import vn.projectLTW.util.Constant;
+import vn.projectLTW.util.PasswordEncryption;
 import vn.projectLTW.util.UploadUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -185,7 +186,9 @@ public class UserController extends HttpServlet {
 				} else if (item.getFieldName().equals("fullName")) {
 					user.setFullName(item.getString("UTF-8"));
 				} else if (item.getFieldName().equals("passWord")) {
-					user.setPassWord(item.getString("UTF-8"));
+					String passWord = item.getString("UTF-8");
+					passWord = PasswordEncryption.toSHA1(passWord);
+					user.setPassWord(passWord);
 				} else if (item.getFieldName().equals("roleId")) {
 					user.setRoles(userRoleService.findOne(Integer.parseInt(item.getString())));
 				} else if (item.getFieldName().equals("status")) {
@@ -231,6 +234,9 @@ public class UserController extends HttpServlet {
 			// Lấy dữ liệu từ JSP bằng BeanUtils
 			Users user=new Users();
 			BeanUtils.populate(user, req.getParameterMap());
+			String passWord = req.getParameter("passWord");
+			passWord = PasswordEncryption.toSHA1(passWord);
+			user.setPassWord(passWord);
 //			System.out.println("full name: "+user.getUserName());
 			// Xử lí hình ảnh
 			//Khởi tạo DAO

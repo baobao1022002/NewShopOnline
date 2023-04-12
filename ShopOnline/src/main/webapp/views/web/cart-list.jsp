@@ -1,6 +1,18 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@include file="/common/taglib.jsp" %>
+<%@include file="/common/taglib.jsp" %><%
+    Map<String,String> showLanguage = new Language().vietnameseLanguage();
+    String lang = (String) session.getAttribute("lang");
+    if(lang!=null){
+        if(lang.equals("Vietnamese")){
+            showLanguage = new Language().vietnameseLanguage();
+        } else if (lang.equals("English")) {
+            showLanguage = new Language().englishLanguage();
+
+        }
+    }%>
 <c:url value="/template/assets" var="url"></c:url>
 <div class="main">
     <div class="container-fluid">
@@ -8,18 +20,18 @@
         <div class="row margin-bottom-40">
             <!-- BEGIN CONTENT -->
             <div class="col-md-12 col-sm-12">
-                <h1>Shopping cart</h1>
+                <h1><%=showLanguage.get("shoppingcart")%></h1>
                 <div class="goods-page">
                     <div class="goods-data clearfix">
                         <div class="table-wrapper-responsive">
                             <table summary="Shopping cart">
                                 <tr>
-                                    <th class="goods-page-image">Image</th>
-                                    <th class="goods-page-description">Description</th>
-                                    <th class="goods-page-ref-no">Ref No</th>
-                                    <th class="goods-page-quantity">Quantity</th>
-                                    <th class="goods-page-price">Unit price</th>
-                                    <th class="goods-page-total" colspan="2">Total</th>
+                                    <th class="goods-page-image"><%=showLanguage.get("image")%></th>
+                                    <th class="goods-page-description"><%=showLanguage.get("desription")%></th>
+                                    <th class="goods-page-ref-no"><%=showLanguage.get("seller")%></th>
+                                    <th class="goods-page-quantity"><%=showLanguage.get("quantity")%></th>
+                                    <th class="goods-page-price"><%=showLanguage.get("unitprice")%></th>
+                                    <th class="goods-page-total" colspan="2"><%=showLanguage.get("total")%></th>
                                 </tr>
                                 <c:forEach items="${sessionScope.cart}" var="map">
                                     <tr>
@@ -68,7 +80,7 @@
                                                         value="+">+
                                                 </button>
                                                 &nbsp;&nbsp
-                                                <button type="submit" class="btn btn-danger">Cập nhật</button>
+                                                <button type="submit" class="btn btn-danger"><%=showLanguage.get("update")%></button>
 
                                             </form>
                                         </td>
@@ -92,7 +104,7 @@
                         <div class="shopping-total">
                             <ul>
                                 <li>
-                                    <em>Sub total</em>
+                                    <em><%=showLanguage.get("subtotal")%></em>
                                     <c:set var="total" value="${0}"/>
                                     <c:forEach items="${sessionScope.cart}" var="map">
                                         <c:set var="total"
@@ -101,20 +113,20 @@
                                     <strong class="price"><span>$</span>${total}</strong>
                                 </li>
                                 <li>
-                                    <em>Shipping cost</em>
+                                    <em><%=showLanguage.get("shippingcost")%></em>
                                     <c:set var="ship" value="${total*0.005 }"></c:set>
                                     <strong class="price"><span>$</span>${ship}</strong>
                                 </li>
                                 <li class="shopping-total-price">
-                                    <em>Total</em>
+                                    <em><%=showLanguage.get("Total")%></em>
                                     <strong class="price"><span>$</span>${total+ship}</strong>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <a href="${pageContext.request.contextPath}/home" class="btn btn-default">Continue shopping <i
+                    <a href="${pageContext.request.contextPath}/home" class="btn btn-default"><%=showLanguage.get("continueshopping")%><i
                             class="fa fa-shopping-cart"></i></a>
-                    <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary">Checkout <i
+                    <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary"><%=showLanguage.get("checkout")%><i
                             class="fa fa-check"></i></a>
                 </div>
             </div>
@@ -122,112 +134,6 @@
         </div>
         <!-- END SIDEBAR & CONTENT -->
 
-        <!-- BEGIN SIMILAR PRODUCTS -->
-        <div class="row margin-bottom-40">
-            <div class="col-md-12 col-sm-12">
-                <h2>Most popular products</h2>
-                <div class="owl-carousel owl-carousel4">
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="${url}/frontend/pages/img/products/k1.jpg" class="img-responsive"
-                                     alt="Berry Lace Dress">
-                                <div>
-                                    <a href="${url}/frontend/pages/img/products/k1.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                            <div class="sticker sticker-new"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="${url}/frontend/pages/img/products/k2.jpg" class="img-responsive"
-                                     alt="Berry Lace Dress">
-                                <div>
-                                    <a href="${url}/frontend/pages/img/products/k2.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="${url}/frontend/pages/img/products/k3.jpg" class="img-responsive"
-                                     alt="Berry Lace Dress">
-                                <div>
-                                    <a href="${url}/frontend/pages/img/products/k3.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="${url}/frontend/pages/img/products/k4.jpg" class="img-responsive"
-                                     alt="Berry Lace Dress">
-                                <div>
-                                    <a href="${url}/frontend/pages/img/products/k4.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                            <div class="sticker sticker-sale"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="${url}/frontend/pages/img/products/k1.jpg" class="img-responsive"
-                                     alt="Berry Lace Dress">
-                                <div>
-                                    <a href="${url}/frontend/pages/img/products/k1.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="${url}/frontend/pages/img/products/k2.jpg" class="img-responsive"
-                                     alt="Berry Lace Dress">
-                                <div>
-                                    <a href="${url}/frontend/pages/img/products/k2.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END SIMILAR PRODUCTS -->
+
     </div>
 </div>
