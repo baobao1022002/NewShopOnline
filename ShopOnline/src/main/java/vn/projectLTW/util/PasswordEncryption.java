@@ -1,6 +1,7 @@
 package vn.projectLTW.util;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import java.util.Base64;
+
 
 import java.security.MessageDigest;
 
@@ -12,7 +13,9 @@ public class PasswordEncryption {
         try{
             byte[] dataBytes = str.getBytes("UTF-8");
             MessageDigest md = MessageDigest.getInstance("SHA-1");
-            result = Base64.encode(md.digest(dataBytes));
+//            result = Base64.encode(md.digest(dataBytes));
+            result = Base64.getEncoder().encodeToString(md.digest(dataBytes));
+
 
         }catch(Exception e){
 
