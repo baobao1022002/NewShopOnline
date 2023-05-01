@@ -50,18 +50,11 @@ public class CategoryController extends HttpServlet {
 			delete(req, resp);
 			category = new Category();
 			req.setAttribute("category", category);// đẩy dữ liệu lên Views
-
-
 		} else if (url.contains("edit")) {
 			edit(req, resp);
-
-
-
 		} else if (url.contains("reset")) {
 			category = new Category();
 			req.setAttribute("category", category);// đẩy dữ liệu lên Views
-
-
 		}
 		req.setAttribute("tag", "cate");
 		findAll(req, resp); // hiện danh sách User trong model

@@ -9,7 +9,7 @@ public interface ICartService {
 	void update(Cart cart);
 	void delete(String id);
 	void updateStatus(String id,int st);
-	Cart findOne(int id);
+	Cart findOne(String id);
 	List<Cart> findAll();
 	List<Cart> findAllByUser(int id);
 	int countByUser(int id);

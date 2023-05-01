@@ -35,9 +35,9 @@ public class CartServiceImpl implements ICartService{
 	}
 
 	@Override
-	public Cart findOne(int id) {
+	public Cart findOne(String id) {
 		// TODO Auto-generated method stub
-		return cartDao.findOne(null);
+		return cartDao.findOne(id);
 	}
 
 	@Override
