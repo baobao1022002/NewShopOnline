@@ -79,8 +79,7 @@ public class CartDaoImpl implements ICartDao{
 	}
 	@Override
 	public Cart findOne(String id) {
-		String sql="\r\n"
-				+ "SELECT cart.cartId,cart.buyDate,cart.status,users.sellerId,users.email,users.userName,users.userId AS user_id\r\n"
+		String sql="SELECT cart.cartId,cart.buyDate,cart.status,users.sellerId,users.email,users.userName,users.userId \r\n"
 				+ "FROM cart INNER JOIN users ON cart.userId=users.userId\r\n"
 				+ "WHERE cart.cartId=?";
 		try {
@@ -89,7 +88,7 @@ public class CartDaoImpl implements ICartDao{
 			ps.setString(1, id);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Users user=userService.findOne(rs.getInt("user_id"));
+				Users user=userService.findOne(rs.getInt("userId"));
 				Cart cart=new Cart();
 				cart.setCartId(rs.getString("cartId"));
 				cart.setBuyDate(rs.getDate("buyDate"));
@@ -105,15 +104,14 @@ public class CartDaoImpl implements ICartDao{
 	@Override
 	public List<Cart> findAll() {
 		List<Cart> cartList=new ArrayList<Cart>();
-		String sql="\r\n"
-				+ "SELECT cart.cartId,cart.buyDate,cart.status,users.sellerId,users.email,users.userName,users.userId AS user_id\r\n"
+		String sql="SELECT cart.cartId,cart.buyDate,cart.status,users.sellerId,users.email,users.userName,users.userId \r\n"
 				+ "FROM cart INNER JOIN users ON cart.userId=users.userId";
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Users user=userService.findOne(rs.getInt("user_id"));
+				Users user=userService.findOne(rs.getInt("userId"));
 				Cart cart=new Cart();
 				cart.setCartId(rs.getString("cartId"));
 				cart.setBuyDate(rs.getDate("buyDate"));
@@ -130,7 +128,7 @@ public class CartDaoImpl implements ICartDao{
 	public List<Cart> findAllByUser(int id) {
 		List<Cart> cartList=new ArrayList<Cart>();
 		String sql="\r\n"
-				+ "SELECT cart.cartId,cart.buyDate,cart.status,users.sellerId,users.email,users.userName,users.userId AS user_id\r\n"
+				+ "SELECT cart.cartId,cart.buyDate,cart.status,users.sellerId,users.email,users.userName,users.userId \r\n"
 				+ "FROM cart INNER JOIN users ON cart.userId=users.userId\r\n"
 				+ "WHERE users.userId=? ORDER BY buyDate,status";
 		try {
@@ -139,7 +137,7 @@ public class CartDaoImpl implements ICartDao{
 			ps.setInt(1, id);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Users user=userService.findOne(rs.getInt("user_id"));
+				Users user=userService.findOne(rs.getInt("userId"));
 				Cart cart=new Cart();
 				cart.setCartId(rs.getString("cartId"));
 				cart.setBuyDate(rs.getDate("buyDate"));

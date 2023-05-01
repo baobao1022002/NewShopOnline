@@ -81,8 +81,6 @@ public class UserRoleController extends HttpServlet {
 		RequestDispatcher dispacher = request.getRequestDispatcher("/views/admin/userRole-List.jsp");
 		dispacher.forward(request, response);
 
-
-
 //		request.setAttribute("tag", "userole");
 //
 //		List<UserRoles> roleList = userRoleService.findAll();//lấy toàn bộ dữ liệu  bản UserRole đưa vào List
@@ -193,7 +191,7 @@ public class UserRoleController extends HttpServlet {
 
 			req.setCharacterEncoding("UTF-8");
 			resp.setCharacterEncoding("UTF-8");
-
+			String roleName=req.getParameter("roleName");
 			UserRoles role=new UserRoles();
 			BeanUtils.populate(role, req.getParameterMap());
 

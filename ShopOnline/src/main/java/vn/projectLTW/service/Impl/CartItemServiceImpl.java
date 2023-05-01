@@ -44,7 +44,7 @@ public class CartItemServiceImpl implements ICartItemService {
 	@Override
 	public List<CartItem> findAllByUser(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return cartItemDao.findAllByUserId(id);
 	}
 
 	@Override

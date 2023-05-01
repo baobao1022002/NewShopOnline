@@ -20,9 +20,9 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/member/orderbuy","/member/orderbuy/cancel","/member/orderbuy/recancel"})
 public class OrderBuyerController extends HttpServlet {
     IUserService userService=new UserServiceImpl();
-    ICartService cartService=new CartServiceImpl();
+    ICategoryService cateService=new CategoryServiceImpl();
     IProductService productService=new ProductServiceImpl();
-
+    ICartService cartService=new CartServiceImpl();
     ICartItemService cartItemService=new CartItemServiceImpl();
     ISellerService sellerService =new SellerServiceImpl();
 
@@ -63,6 +63,7 @@ public class OrderBuyerController extends HttpServlet {
         req.setAttribute("tag",index);
 
         req.setAttribute("all",cartService.countByUser(uid));
+        System.out.println("all: "+cartService.countByUser(uid));
         req.setAttribute("choxacnhan",cartService.countByStatus(uid,0));
         req.setAttribute("cholayhang",cartService.countByStatus(uid,1));
         req.setAttribute("choxacnhanhuy",cartService.countByStatus(uid,5));
@@ -71,22 +72,24 @@ public class OrderBuyerController extends HttpServlet {
         req.setAttribute("huy",cartService.countByStatus(uid,4));
 
         String id=req.getParameter("id");
-        String st=req.getParameter("st");
+        String st=req.getParameter("st");//st
         String url=req.getRequestURL().toString();
 
-        if(url.contains("cancel")){
+        if(url.contains("/member/orderbuy/cancel")){
             cartService.updateStatus(id,Integer.parseInt(st));
-            RequestDispatcher dispatcher=req.getRequestDispatcher("member/orderbuy");
-            dispatcher.forward(req,resp);
-        }else if(url.contains("recancel")){
-            cartService.updateStatus(id,Integer.parseInt(st));
-            RequestDispatcher dispatcher=req.getRequestDispatcher("member/orderbuy");
-            dispatcher.forward(req,resp);
-        }else{
             req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
 
-        }
+//            RequestDispatcher dispatcher=req.getRequestDispatcher("member/orderbuy");
+//            dispatcher.forward(req,resp);
+        }else if(url.contains("recancel")){
+            cartService.updateStatus(id,Integer.parseInt(st));
+            req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
 
+//            RequestDispatcher dispatcher=req.getRequestDispatcher("member/orderbuy");
+//            dispatcher.forward(req,resp);
+        }else{
+            req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
+        }
 
     }
 
