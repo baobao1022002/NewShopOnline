@@ -89,10 +89,11 @@
 								<th scope="row">${i.roleId}</th>
 								<td>${i.roleName}</td>
 								<td>
-									<a href="<c:url value="/admin/userRole/edit?roleId=${i.roleId}"/>">Edit</a>
-									<a href="<c:url value="/admin/userRole/delete?roleId=${i.roleId}"/>">Delete</a>
+										<%--									< <a href="<c:url value="/editRole?id=${i.roleId}"/>">Edit</a> |--%>
+										<%--									<a href="<c:url value="/deleteRole?id=${i.roleId}"/>">Delete</a>--%>
+									<a href="<c:url value="/admin/userRole/edit?roleId=${i.roleId}"/>"><i class="fa fa-pencil" title="edit" style="color: #f1c40f; font-size: 20px"> </i></a>|
+									<a href="<c:url value="/admin/userRole/delete?roleId=${i.roleId}"/>"><i class="fa fa-trash" title="Delete" style="color: red;font-size: 20px"></i></a>
 								</td>
-								
 							</tr>
 						</c:forEach>
 					</tbody>

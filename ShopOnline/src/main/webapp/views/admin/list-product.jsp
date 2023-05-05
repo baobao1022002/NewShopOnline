@@ -176,12 +176,12 @@
 								<td>${i.seller.sellerName}</td>
 								<td>${i.status==1?'Hoạt động':'Khóa'}</td>
 								<td>${i.amount}</td>
-								
+
 
 
 								<td>
-									<a href="<c:url value="/admin/product/edit?productId=${i.productId}"/>">Edit</a> |
-								    <a href="<c:url value="/admin/product/delete?productId=${i.productId}"/>">Delete</a>
+									<a href="<c:url value="/admin/product/edit?productId=${i.productId}"/>"><i class="fa fa-pencil" title="edit" style="color: #f1c40f; font-size: 20px"> </i></a> |
+									<a href="<c:url value="/admin/product/delete?productId=${i.productId}"/>"><i class="fa fa-trash" title="Delete" style="color: red;font-size: 20px"></i></a>
 								</td>
 
 							</tr>

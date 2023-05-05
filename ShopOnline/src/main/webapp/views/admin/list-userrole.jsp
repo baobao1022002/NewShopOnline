@@ -107,10 +107,10 @@
 														<td><fmt:formatDate pattern = "dd-MM-yyyy hh:mm:ss" type = "both" 
          value = "${list.modifiedDate }" /></td>
 														<td><a
-															href="<c:url value='/admin/userRole/edit?roleid=${list.roleid }'/>"
-															class="center">Sửa</a> | <a
-															href="<c:url value='/admin/userRole/delete?roleid=${list.roleid }'/>"
-															class="center">Xóa</a></td>
+																href="<c:url value='/admin/userRole/edit?roleid=${list.roleid }'/>"
+																class="center"><i class="fa fa-pencil" title="edit" style="color: #f1c40f; font-size: 20px"> </i></a> | <a
+																href="<c:url value='/admin/userRole/delete?roleid=${list.roleid }'/>"
+																class="center"><i class="fa fa-trash" title="Delete" style="color: red;font-size: 20px"></i></a></td>
 
 													</tr>
 												</c:forEach>

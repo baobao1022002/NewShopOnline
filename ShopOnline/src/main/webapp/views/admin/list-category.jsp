@@ -125,9 +125,9 @@
 
 
 								<td><a
-									href="<c:url value="/admin/category/edit?categoryId=${i.categoryId}"/>">Edit</a>
+										href="<c:url value="/admin/category/edit?categoryId=${i.categoryId}"/>"><i class="fa fa-pencil" title="edit" style="color: #f1c40f; font-size: 20px"> </i></a>
 									| <a
-									href="<c:url value="/admin/category/delete?categoryId=${i.categoryId}"/>">Delete</a>
+											href="<c:url value="/admin/category/delete?categoryId=${i.categoryId}"/>"><i class="fa fa-trash" title="Delete" style="color: red;font-size: 20px"></i></a>
 								</td>
 
 							</tr>

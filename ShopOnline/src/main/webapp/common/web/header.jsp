@@ -133,16 +133,16 @@
 	         <!-- BEGIN TOP SEARCH -->
 	            <li class="menu-search">
 	              <span class="sep"></span>
-	              <i class="fa fa-search search-btn"></i>
+	              <i class="fa fa-search search-btn" title="<%=showLanguage.get("search")%>"></i>
 	              <div class="search-box">
-	                <form action="#">
-	                  <div class="input-group">
-	                    <input type="text" placeholder="<%=showLanguage.get("search")%>" class="form-control">
-	                    <span class="input-group-btn">
+                      <form method="post" action="SearchServlet">
+                          <div class="input-group">
+                              <input type="text" name="txtSearch" placeholder="<%=showLanguage.get("search")%>" class="form-control">
+                              <span class="input-group-btn">
 	                      <button class="btn btn-primary" type="submit"><%=showLanguage.get("search")%></button>
 	                    </span>
-	                  </div>
-	                </form>
+                          </div>
+                      </form>
 	              </div> 
 	            </li>
 	            <!-- END TOP SEARCH -->

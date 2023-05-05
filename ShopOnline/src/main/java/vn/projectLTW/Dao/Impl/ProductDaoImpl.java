@@ -417,5 +417,40 @@ public class ProductDaoImpl implements IProductDao {
 	}
 
 
+	@Override
+	public List<Product> SearchByName(String txtSearch) {
+
+		List<Product> productList = new ArrayList<Product>();
+		String sql = "SELECT * FROM product WHERE productName LIKE ?";
+		try {
+
+			conn = new DBConnection().getConnection(); // Kết nối CSDL
+			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
+			ps.setString(1,  '%'+ txtSearch +'%');		// đưa tham số vào ?
+			rs = ps.executeQuery(); // Thực thi câu query và trả về ResultSet
+
+			while (rs.next()) {
+//
+				Product product = new Product();
+				product.setProductId(rs.getInt("productId"));
+				product.setProductCode(rs.getLong("productCode"));
+				product.setProductName(rs.getString("productName"));
+				product.setAmount(rs.getInt("amount"));
+				product.setDescription(rs.getString("description"));
+				product.setImages(rs.getString("images"));
+				product.setPrice(rs.getDouble("price"));
+				product.setStoke(rs.getInt("stoke"));
+				product.setWishList(rs.getInt("wishList"));
+				product.setStatus(rs.getInt("status"));
+				product.setCreateDate(rs.getDate("createDate"));
+
+				productList.add(product);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return productList;
+
+	}
 
 }

@@ -52,31 +52,31 @@ ill<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<form action="register" method="post">
 					<div class="mb-3">
 						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
-							class="form-control" id="userName" name="userName">
+							class="form-control" id="userName" name="userName" title="Nhập tên đăng nhập">
 					</div>
 
 					<div class="mb-3">
 						<label for="email">Email</label> <input type="text"
-							class="form-control" id="email" name="email">
+																class="form-control" id="email" name="email" title="Nhập email">
 					</div>
 
 					<div class="mb-3">
 						<label for="fullName"><%=showLanguage.get("fullname")%></label> <input type="text"
-							class="form-control" id="fullName" name="fullName">
+																							   class="form-control" id="fullName" name="fullName" title="Nhập họ tên">
 					</div>
 
 					<div class="mb-3">
 						<label for="passWord"><%=showLanguage.get("password")%></label> <input type="password"
-							class="form-control" id="passWord" name="passWord">
+																							   class="form-control" id="passWord" name="passWord" title="Nhập mật khẩu">
 					</div>
 
 					<div class="mb-3">
 						<label for="passWordConfirm"><%=showLanguage.get("confirmpassword")%></label> <input
 							type="password" class="form-control" id="passWordConfirm"
-							name="passWordConfirm">
+							name="passWordConfirm" title="Nhập lại mật khẩu">
 					</div>
- 					<br>
-					<button type="submit" class="btn btn-primary" style="margin-left: 48%"><%=showLanguage.get("register")%></button>
+					<br>
+					<button type="submit" class="btn btn-primary" style="margin-left: 48%" title="Đăng kí"><%=showLanguage.get("register")%></button>
 				</form>
 
 			</div>

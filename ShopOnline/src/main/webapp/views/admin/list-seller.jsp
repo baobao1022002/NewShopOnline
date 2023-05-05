@@ -125,11 +125,10 @@
 
 
 								<td><a
-									href="<c:url value="/admin/seller/edit?sellerId=${i.sellerId}"/>">Edit</a>
+										href="<c:url value="/admin/seller/edit?sellerId=${i.sellerId}"/>"><i class="fa fa-pencil" title="edit" style="color: #f1c40f; font-size: 20px"> </i></a>
 									| <a
-									href="<c:url value="/admin/seller/delete?sellerId=${i.sellerId}"/>">Delete</a>
+											href="<c:url value="/admin/seller/delete?sellerId=${i.sellerId}"/>"><i class="fa fa-trash" title="Delete" style="color: red;font-size: 20px"></i></a>
 								</td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
