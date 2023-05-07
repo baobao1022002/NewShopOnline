@@ -86,17 +86,17 @@ public class ProductController extends HttpServlet {
 		}
 		
 		if(Integer.parseInt(categoryId)==0&&Integer.parseInt(sellerId)==0) {
-			List<Product> productListNew=productService.findAllByPage(indexp-1);
-			req.setAttribute("productListNew", productListNew);
+			List<Product> productList =productService.findAllByPage(indexp-1);
+			req.setAttribute("productList", productList);
 			req.setAttribute("countproductAll", countP);
 			
 		}else if(Integer.parseInt(categoryId)!=0&&Integer.parseInt(sellerId)==0){
-			List<Product> productListNew=productService.findAllByCID(Integer.parseInt(categoryId),indexp-1);
-			req.setAttribute("productListNew", productListNew);
+			List<Product> productList=productService.findAllByCID(Integer.parseInt(categoryId),indexp-1);
+			req.setAttribute("productList", productList);
 			req.setAttribute("countproductAll", countCid);
 		}else if(Integer.parseInt(categoryId)==0&&Integer.parseInt(sellerId)!=0){
-			List<Product> productListNew=productService.findAllBySeller(Integer.parseInt(sellerId),indexp-1);
-			req.setAttribute("productListNew", productListNew);
+			List<Product> productList=productService.findAllBySeller(Integer.parseInt(sellerId),indexp-1);
+			req.setAttribute("productList", productList);
 			req.setAttribute("countproductAll", countSid);
 
 		}

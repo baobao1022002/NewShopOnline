@@ -52,12 +52,12 @@
 				<form action="forgotPass" method="post">
 					<div class="mb-3">
 						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
-							class="form-control" id="userName" name="userName">
+							class="form-control" id="userName" name="userName" title="Nhập Tên đăng nhập">
 					</div>
 
 					<div class="mb-3">
 						<label for="email">Email:</label> <input type="text"
-							class="form-control" id="email" name="email">
+							class="form-control" id="email" name="email" title="Nhập email">
 					</div>
 					
 				

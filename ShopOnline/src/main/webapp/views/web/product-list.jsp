@@ -16,7 +16,7 @@
     }%>
 <c:url value="/template/assets" var="url"></c:url>
 
-<
+
 <div class="main">
     <div class="container-fluid">
         <!-- BEGIN SIDEBAR -->
@@ -148,8 +148,11 @@
                 </div>
             </div>
             <!-- BEGIN PRODUCT LIST -->
+            <c:if test="${empty productList }">
+                <div class="alert alert-success">không tìm thấy sản phẩm nảo</div>
+            </c:if>
             <div class="row product-list">
-                <c:forEach items="${productListNew}" var="proList">
+                <c:forEach items="${productList}" var="proList">
                     <!-- PRODUCT ITEM START -->
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="product-item">
@@ -158,9 +161,9 @@
                                      class="img-responsive" alt="${proList.productName}">
                                 <div>
                                     <a href="<c:url value="/image?fname=products/${proList.images}"></c:url>"
-                                       class="btn btn-default fancybox-button">Zoom</a>
+                                       class="btn btn-default fancybox-button"><i class="fa fa-search" style="color: white;font-size: 20px" title="<%=showLanguage.get("zoom")%> "></i></a>
                                     <a href="#product-pop-up${proList.productId}"
-                                       class="btn btn-default fancybox-fast-view">View</a>
+                                       class="btn btn-default fancybox-fast-view"><i class="fa fa-eye" style="color: white;font-size: 20px" title="<%=showLanguage.get("view")%> "></i></a>
                                 </div>
                             </div>
                             <h3>
@@ -168,7 +171,9 @@
                             </h3>
                             <div class="pi-price">$ ${proList.price}"</div>
                             <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                               class="btn btn-default add2cart" class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
+                               class="btn btn-default add2cart" class="btn btn-default add2cart">
+                                <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
+                            </a>
                         </div>
                     </div>
                     <!-- PRODUCT ITEM END -->
@@ -239,7 +244,7 @@
                                             <button type="button" class="quantity-button"
                                                     name='subtract${proListproductId}'
                                                     onclick='javascript: subtractQty0(${proList.productId});'
-                                                    value="-">-
+                                                    value="-" title="Giảm số lượng">-
                                             </button>
 
                                             <input readonly type="text" name="quantity"
@@ -251,7 +256,7 @@
                                             <button type="button" class="quantity-button"
                                                     name='add${proList.productId}'
                                                     onclick='javascript: subtractQty9(${proList.productId});'
-                                                    value="+">+
+                                                    value="+" title="Tăng số lượng">+
                                             </button>
                                             &nbsp;&nbsp
 
@@ -259,9 +264,9 @@
                                         </form>
                                         </td>
 
-                                        <button class="btn btn-primary" type="submit"><%=showLanguage.get("addtocart")%></button>
+                                        <button class="btn btn-primary" type="submit" title="<%=showLanguage.get("addtocart")%>"><%=showLanguage.get("addtocart")%></button>
                                         <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                           class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
+                                           class="btn btn-default" title="<%=showLanguage.get("seedetails")%>"><%=showLanguage.get("seedetails")%></a>
                                     </div>
                                 </div>
 

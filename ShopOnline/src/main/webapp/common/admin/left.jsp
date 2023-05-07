@@ -25,7 +25,7 @@
 					</li>
 					<li class="${tag=='cate'?'active open':''}">
 						<a href="<c:url value="/admin/category"></c:url>">
-						<i class="icon-basket"></i>
+						<i class="fa fa-bars"></i>
 						<span class="title">Category</span>
 						<span class="${tag=='cate'?'selected':''}"></span>
 						<span class="arrow ${tag=='cate'?'open':''}"></span>
@@ -33,7 +33,7 @@
 					</li>
 					<li class="${tag=='use'?'active open':''}">
 						<a href="<c:url value="/admin/user"></c:url>">
-						<i class="icon-basket"></i>
+						<i class="fa fa-user"></i>
 						<span class="title">User</span>
 						<span class="${tag=='use'?'selected':''}"></span>
 						<span class="arrow ${tag=='use'?'open':''}"></span>
@@ -49,7 +49,7 @@
 					</li>		
 					<li class="${tag=='rol'?'active open':''}">
 						<a href="<c:url value="/admin/userRole"></c:url>">
-						<i class="icon-basket"></i>
+						<i class="fa fa-users"></i>
 						<span class="title">User Role</span>
 						<span class="${tag=='rol'?'selected':''}"></span>
 						<span class="arrow ${tag=='rol'?'open':''}"></span>
@@ -57,7 +57,7 @@
 					</li>		
 					<li class="${tag=='sell'?'active open':''}">
 						<a href="<c:url value="/admin/seller"></c:url>">
-						<i class="icon-basket"></i>
+						<i class="fa fa-user"></i>
 						<span class="title">Seller</span>
 						<span class="${tag=='sell'?'selected':''}"></span>
 						<span class="arrow ${tag=='sell'?'open':''}"></span>

@@ -24,9 +24,8 @@ public interface IProductService {
 	List<Product> findAllBySeller(int id,int index);
 	
 	List<Product> findAllByPage(int id);
-	
 
-
+	List<Product> SearchByName(String txtSearch);
 	
 	int countAll();
 	

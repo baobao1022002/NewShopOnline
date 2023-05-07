@@ -124,10 +124,10 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="${pageContext.request.contextPath}/home" class="btn btn-default"><%=showLanguage.get("continueshopping")%><i
-                            class="fa fa-shopping-cart"></i></a>
-                    <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary"><%=showLanguage.get("checkout")%><i
-                            class="fa fa-check"></i></a>
+                    <a href="${pageContext.request.contextPath}/home" class="btn btn-default"><i
+                            class="fa fa-shopping-cart" style="font-size: 20px;color: white" title="<%=showLanguage.get("continueshopping")%>"></i></a>
+                    <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary"><i
+                            class="fa fa-check" style="font-size: 20px;color: white" title="<%=showLanguage.get("checkout")%>"></i></a>
                 </div>
             </div>
             <!-- END CONTENT -->

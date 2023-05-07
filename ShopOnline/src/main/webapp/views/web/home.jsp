@@ -235,9 +235,9 @@
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                           class="btn btn-default fancybox-button"><%=showLanguage.get("zoom")%></a>
+                                           class="btn btn-default fancybox-button"><i class="fa fa-search" style="color: white;font-size: 20px" title="<%=showLanguage.get("zoom")%> "></i></a>
                                         <a href="#product-pop-up${proList.productId}"
-                                           class="btn btn-default fancybox-fast-view"><%=showLanguage.get("view")%></a>
+                                           class="btn btn-default fancybox-fast-view"> <i class="fa fa-eye" style="color: white;font-size: 20px" title="<%=showLanguage.get("view")%> "></i></a>
                                     </div>
                                 </div>
                                 <h3>
@@ -245,7 +245,9 @@
                                 </h3>
                                 <div class="pi-price">${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                   class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
+                                   class="btn btn-default add2cart" class="btn btn-default add2cart">
+                                    <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
+                                </a>
 
                                 <div class="sticker sticker-sale"></div>
                             </div>
@@ -351,12 +353,12 @@
                                                 </button>
                                                 &nbsp;
                                                 &nbsp;
-                                                <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
+                                                <button type="submit" class="btn btn-primary" title="<%=showLanguage.get("addtocart")%>"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
                                             <hr>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
+                                               class="btn btn-default" title="<%=showLanguage.get("seedetails")%>"><%=showLanguage.get("seedetails")%></a>
                                         </div>
                                     </div>
 
@@ -602,9 +604,9 @@
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                           class="btn btn-default fancybox-button"><%=showLanguage.get("zoom")%></a> <a
-                                            href="#product-pop-upp${proList.productId}"
-                                            class="btn btn-default fancybox-fast-view"><%=showLanguage.get("view")%></a>
+                                           class="btn btn-default fancybox-button"><i class="fa fa-search" style="color: white;font-size: 20px" title="<%=showLanguage.get("zoom")%> "></i></a>
+                                        <a href="#product-pop-up${proList.productId}"
+                                           class="btn btn-default fancybox-fast-view"> <i class="fa fa-eye" style="color: white;font-size: 20px" title="<%=showLanguage.get("view")%> "></i></a>
                                     </div>
                                 </div>
                                 <h3>
@@ -612,8 +614,9 @@
                                 </h3>
                                 <div class="pi-price">$${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                   class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
-
+                                   class="btn btn-default add2cart" class="btn btn-default add2cart">
+                                    <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
+                                </a>
                                 <div class="sticker sticker-new"></div>
                             </div>
                         </div>
@@ -752,12 +755,10 @@
                                             src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
                                             class="img-responsive" alt="Berry Lace Dress">
                                     <div>
-                                        <a
-                                                href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                                class="btn btn-default fancybox-button"><%=showLanguage.get("zoom")%></a>
-                                        <a
-                                                href="#product-pop-up${proList.productId}"
-                                                class="btn btn-default fancybox-fast-view"><%=showLanguage.get("view")%></a>
+                                        <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                           class="btn btn-default fancybox-button"><i class="fa fa-search" style="color: white;font-size: 20px" title="<%=showLanguage.get("zoom")%> "></i></a>
+                                        <a href="#product-pop-up${proList.productId}"
+                                           class="btn btn-default fancybox-fast-view"> <i class="fa fa-eye" style="color: white;font-size: 20px" title="<%=showLanguage.get("view")%> "></i></a>
                                     </div>
                                 </div>
                                 <h3>
@@ -766,7 +767,9 @@
                                 </h3>
                                 <div class="pi-price">$ ${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                   class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
+                                   class="btn btn-default add2cart" class="btn btn-default add2cart">
+                                    <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
+                                </a>
                             </div>
                         </div>
 

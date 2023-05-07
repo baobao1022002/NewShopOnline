@@ -165,8 +165,8 @@
 
 
 								<td>
-									<a href="<c:url value="/admin/user/edit?userId=${i.userId}"/>">Edit</a> |
-								    <a href="<c:url value="/admin/user/delete?userId=${i.userId}"/>">Delete</a>
+									<a href="<c:url value="/admin/user/edit?userId=${i.userId}"/>"><i class="fa fa-pencil" title="edit" style="color: #f1c40f; font-size: 20px"> </i></a> |
+									<a href="<c:url value="/admin/user/delete?userId=${i.userId}"/>"><i class="fa fa-trash" title="Delete" style="color: red;font-size: 20px"></i></a>
 								</td>
 
 							</tr>

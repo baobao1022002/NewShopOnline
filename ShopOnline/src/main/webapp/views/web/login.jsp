@@ -52,34 +52,33 @@
 				<form action="login" method="post">
 					<div class="mb-3">
 						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
-							class="form-control" id="userName" name="userName">
+							class="form-control" id="userName" name="userName" title="Nhập tên đăng nhập">
 					</div>
 
 					<div class="mb-3">
 						<label for="passWord"><%=showLanguage.get("password")%></label> <input type="password"
-							class="form-control" id="passWord" name="passWord">
+							class="form-control" id="passWord" name="passWord" title="Nhập mật khẩu">
 					</div>
 					
 					<div class="col-xs-6">
 						<label class="checkbox">
 							<input type="checkbox" name="remember"/><i></i><%=showLanguage.get("remember")%>
 						</label>
+
 					</div>
 					<div class="col-xs-6 text-right">
-						<a href="${pageContext.request.contextPath}/forgotPass"><%=showLanguage.get("forgotpassword")%>?</a>
+						<a href="${pageContext.request.contextPath}/forgotPass" title="<%=showLanguage.get("forgotpassword")%>"><%=showLanguage.get("forgotpassword")%>?</a>
 					</div>
 					<div class="col-xs-6 text-right">
-						<a href="${pageContext.request.contextPath}/register"><%=showLanguage.get("register")%></a>
+						<a href="${pageContext.request.contextPath}/register" title="<%=showLanguage.get("register")%>"><%=showLanguage.get("register")%></a>
 					</div>
 
 
-
-
-
-					<button type="submit" class="btn btn-primary"><%=showLanguage.get("login")%></button>
-
+					<button type="submit" class="btn btn-primary" title="<%=showLanguage.get("login")%>"><%=showLanguage.get("login")%></button>
 					<a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/ShopOnline_war/login-google&response_type=code
     &client_id=40797728958-hb54ffp98q2v5brfbduqv6togf6h2kf7.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
+
+
 
 
 

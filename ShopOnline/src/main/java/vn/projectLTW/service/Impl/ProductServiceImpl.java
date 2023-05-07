@@ -95,6 +95,12 @@ public class ProductServiceImpl implements IProductService {
 		return productDao.countSell(id);
 	}
 
+	@Override
+	public List<Product> SearchByName(String txtSearch) {
 
+
+		return productDao.SearchByName(txtSearch);
+
+	}
 
 }
