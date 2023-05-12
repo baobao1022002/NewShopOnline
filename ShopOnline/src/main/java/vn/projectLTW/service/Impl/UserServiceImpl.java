@@ -6,6 +6,7 @@ import vn.projectLTW.model.UserGG;
 import vn.projectLTW.model.Users;
 import vn.projectLTW.service.IUserService;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserServiceImpl implements IUserService {
@@ -117,5 +118,30 @@ public class UserServiceImpl implements IUserService {
 	}
 
 
+	@Override
+	public void changePassword(int Id, String newPass){
+		 userDao.changePassword(Id,newPass);
+	}
 
+	@Override
+	public boolean checkOldPassword(int Id, String oldPass) {
+		return userDao.checkOldPassword(Id,oldPass);
+	}
+	@Override
+	public int getLoginAttempts(String userName) {
+		return userDao.getLoginAttempts(userName);
+
+	}
+	@Override
+		public void updateLoginAttempts(String userName, int loginAttempts) {
+		userDao.updateLoginAttempts(userName,loginAttempts);
+		}
+	@Override
+	public Date getAccountLockedUntil(String userName) {
+		return userDao.getAccountLockedUntil(userName);
+	}
+	@Override
+	public void setAccountLockedUntil(String userName, Date unlockTime) {
+		userDao.setAccountLockedUntil(userName, unlockTime);
+	}
 }

@@ -3,6 +3,7 @@ package vn.projectLTW.Dao;
 import vn.projectLTW.model.UserGG;
 import vn.projectLTW.model.Users;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IUserDao {
@@ -31,5 +32,14 @@ public interface IUserDao {
 	boolean checkExistEmail(String email);
 	
 	boolean checkExistUserName(String userName);
+	void changePassword(int Id, String newPass);
+	boolean checkOldPassword(int userId, String oldPass);
 
+    int getLoginAttempts(String userName);
+
+	void updateLoginAttempts(String userName, int loginAttempts);
+
+	Date getAccountLockedUntil(String userName);
+
+	void setAccountLockedUntil(String userName, Date unlockTime);
 }

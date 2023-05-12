@@ -43,7 +43,7 @@
           <!-- END BOTTOM CONTACTS -->
           <!-- BEGIN TWITTER BLOCK --> 
           <div class="col-md-3 col-sm-6 pre-footer-col">
-            <div class="pre-footer-subscribe-box pull-right">
+
               <h2>Newsletter</h2>
               <form action="#">
                 <div class="input-group">
@@ -53,7 +53,7 @@
                   </span>
                 </div>
               </form>
-            </div>
+
           </div>
           <!-- END TWITTER BLOCK -->
 

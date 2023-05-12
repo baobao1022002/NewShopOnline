@@ -52,12 +52,12 @@
 				<form action="login" method="post">
 					<div class="mb-3">
 						<label for="userName"><%=showLanguage.get("username")%></label> <input type="text"
-							class="form-control" id="userName" name="userName" title="Nhập tên đăng nhập">
+							class="form-control" id="userName" name="userName" title="Nhập tên đăng nhập" required>
 					</div>
 
 					<div class="mb-3">
 						<label for="passWord"><%=showLanguage.get("password")%></label> <input type="password"
-							class="form-control" id="passWord" name="passWord" title="Nhập mật khẩu">
+							class="form-control" id="passWord" name="passWord" title="Nhập mật khẩu" required>
 					</div>
 					
 					<div class="col-xs-6">
@@ -77,11 +77,6 @@
 					<button type="submit" class="btn btn-primary" title="<%=showLanguage.get("login")%>"><%=showLanguage.get("login")%></button>
 					<a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/ShopOnline_war/login-google&response_type=code
     &client_id=40797728958-hb54ffp98q2v5brfbduqv6togf6h2kf7.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
-
-
-
-
-
 
 
 

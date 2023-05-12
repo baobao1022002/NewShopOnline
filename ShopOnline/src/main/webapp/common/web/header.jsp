@@ -52,7 +52,7 @@
 
 		                        <li><a href="shop-account.html"><%=showLanguage.get("account")%></a></li>
 <%--		                        <li><a href="shop-checkout.html"><%=showLanguage.get("Change password")%></a></li>--%>
-                                <li><a href="shop-checkout.html">Đổi mật khẩu</a></li>
+                                <li><a href="<c:url value="/ChangePassword"></c:url>">Đổi mật khẩu</a></li>
 <%--                                <li><a href="<c:url value="/member/orderbuy"></c:url>"><%=showLanguage.get("Order management")%></a></li>--%>
                             <li><a href="<c:url value="/member/orderbuy"></c:url>">Đơn mua</a></li>
 		                        <li><a href="<c:url value="/logout"></c:url>"><%=showLanguage.get("logout")%></a></li>
