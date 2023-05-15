@@ -13,6 +13,11 @@ public class Product implements Serializable{
 	private int amount;
 	private int  stoke;
 	private String images;
+	private String image2;
+	private String image3;
+	private String image4;
+	private String image5;
+
 	private int  wishList;
 	private int  status;
 	private Date createDate;
@@ -25,7 +30,7 @@ public class Product implements Serializable{
 	}
 
 	public Product(int productId, String productName, long productCode, int categoryId, String description,
-			Double price, int amount, int stoke, String images, int wishList, int status, Date createDate, int sellerId,
+			Double price, int amount, int stoke, String images, int wishList, int status, Date createDate, int sellerId,String image2,String image3,String image4,String image5,
 			Category category, Seller seller) {
 		super();
 		this.productId = productId;
@@ -37,10 +42,15 @@ public class Product implements Serializable{
 		this.amount = amount;
 		this.stoke = stoke;
 		this.images = images;
+
 		this.wishList = wishList;
 		this.status = status;
 		this.createDate = createDate;
 		this.sellerId = sellerId;
+		this.image2=image2;
+		this.image3=image3;
+		this.image4=image4;
+		this.image5=image5;
 		this.category = category;
 		this.seller = seller;
 	}
@@ -165,5 +175,35 @@ public class Product implements Serializable{
 		this.seller = seller;
 	}
 
-	
+	public String getImage2() {
+		return image2;
+	}
+
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
+
+	public String getImage3() {
+		return image3;
+	}
+
+	public void setImage3(String image3) {
+		this.image3 = image3;
+	}
+
+	public String getImage4() {
+		return image4;
+	}
+
+	public void setImage4(String image4) {
+		this.image4 = image4;
+	}
+
+	public String getImage5() {
+		return image5;
+	}
+
+	public void setImage5(String image5) {
+		this.image5 = image5;
+	}
 }

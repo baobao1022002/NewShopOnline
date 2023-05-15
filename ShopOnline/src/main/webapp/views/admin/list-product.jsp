@@ -63,9 +63,44 @@
 						function chooseFile(fileInput) {
 							if(fileInput.files && fileInput.files[0]){
 								var reader=new FileReader();
-								
 								reader.onload=function(e){
 									$('#images').attr('src',e.target.result);
+								}
+								reader.readAsDataURL(fileInput.file[0]);
+							}
+						}
+						function chooseFile2(fileInput) {
+							if(fileInput.files && fileInput.files[0]){
+								var reader=new FileReader();
+								reader.onload=function(e){
+									$('#image2').attr('src',e.target.result);
+								}
+								reader.readAsDataURL(fileInput.file[0]);
+							}
+						}
+						function chooseFile3(fileInput) {
+							if(fileInput.files && fileInput.files[0]){
+								var reader=new FileReader();
+								reader.onload=function(e){
+									$('#image3').attr('src',e.target.result);
+								}
+								reader.readAsDataURL(fileInput.file[0]);
+							}
+						}
+						function chooseFile4(fileInput) {
+							if(fileInput.files && fileInput.files[0]){
+								var reader=new FileReader();
+								reader.onload=function(e){
+									$('#image4').attr('src',e.target.result);
+								}
+								reader.readAsDataURL(fileInput.file[0]);
+							}
+						}
+						function chooseFile5(fileInput) {
+							if(fileInput.files && fileInput.files[0]){
+								var reader=new FileReader();
+								reader.onload=function(e){
+									$('#image5').attr('src',e.target.result);
 								}
 								reader.readAsDataURL(fileInput.file[0]);
 							}
@@ -73,7 +108,7 @@
 					</script>
 
 					<div class="mb-3">
-						<label for="Images">Images:</label>
+						<label for="Images">Main Images:</label>
 						<c:if test="${product.images==null }">
 							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
 						</c:if>
@@ -84,6 +119,55 @@
 						<img alt="images" src="${imgURL}" width="80px" height="80px" id="images" class="rounded-circle">
 						<input type="file" class="form-control" onchange="chooseFile(this)"  name="images" value="${product.images}">
 					</div>
+
+					<div class="mb-3">
+						<label for="Images">Images 1</label>
+						<c:if test="${product.image2==null }">
+							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
+						</c:if>
+						<c:if test="${product.image2!=null }">
+							<c:url value="/image?fname=products/${product.image2}" var="imgURL"></c:url>
+						</c:if>
+						<img alt="image2" src="${imgURL}" width="80px" height="80px" id="image2" class="rounded-circle">
+						<input type="file" class="form-control" onchange="chooseFile2(this)"  name="image2" value="${product.image2}">
+					</div>
+
+					<div class="mb-3">
+						<label for="Images">Images 2</label>
+						<c:if test="${product.image3==null }">
+							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
+						</c:if>
+						<c:if test="${product.image3!=null }">
+							<c:url value="/image?fname=products/${product.image3}" var="imgURL"></c:url>
+						</c:if>
+						<img alt="image3" src="${imgURL}" width="80px" height="80px" id="image3" class="rounded-circle">
+						<input type="file" class="form-control" onchange="chooseFile3(this)"  name="image3" value="${product.image3}">
+					</div>
+
+					<div class="mb-3">
+						<label for="Images">Images 3</label>
+						<c:if test="${product.image4==null }">
+							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
+						</c:if>
+						<c:if test="${product.image4!=null }">
+							<c:url value="/image?fname=products/${product.image4}" var="imgURL"></c:url>
+						</c:if>
+						<img alt="image4" src="${imgURL}" width="80px" height="80px" id="image4" class="rounded-circle">
+						<input type="file" class="form-control" onchange="chooseFile4(this)"  name="image4" value="${product.image4}">
+					</div>
+
+					<div class="mb-3">
+						<label for="Images">Images 4</label>
+						<c:if test="${product.image5==null }">
+							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
+						</c:if>
+						<c:if test="${product.image5!=null }">
+							<c:url value="/image?fname=products/${product.image5}" var="imgURL"></c:url>
+						</c:if>
+						<img alt="image5" src="${imgURL}" width="80px" height="80px" id="image5" class="rounded-circle">
+						<input type="file" class="form-control" onchange="chooseFile5(this)"  name="image5" value="${product.image5}">
+					</div>
+
 					
 					<div class="mb-3">
 						<label for="category">Category:</label> 
@@ -148,6 +232,10 @@
 							<th scope="col">product ID</th>
 							<th scope="col">product Code</th>
 							<th scope="col">Images</th>
+							<th scope="col">Image2</th>
+							<th scope="col">Image3</th>
+							<th scope="col">Image4</th>
+							<th scope="col">Image5</th>
 							<th scope="col">Product Name</th>
 							<th scope="col">Price</th>							
 							<th scope="col">Description</th>
@@ -166,6 +254,22 @@
 								<td>${i.productCode}</td>
 								<td>
 									<c:url value="/image?fname=products/${i.images}" var="imgURL"></c:url>
+									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
+								</td>
+								<td>
+									<c:url value="/image?fname=products/${i.image2}" var="imgURL"></c:url>
+									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
+								</td>
+								<td>
+									<c:url value="/image?fname=products/${i.image3}" var="imgURL"></c:url>
+									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
+								</td>
+								<td>
+									<c:url value="/image?fname=products/${i.image4}" var="imgURL"></c:url>
+									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
+								</td>
+								<td>
+									<c:url value="/image?fname=products/${i.image5}" var="imgURL"></c:url>
 									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
 								</td>
 								<td>${i.productName}</td>

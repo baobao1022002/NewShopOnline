@@ -39,24 +39,13 @@
 
                 <div class="sidebar-products clearfix">
                     <h2>Bestsellers</h2>
-                    <div class="item">
-                        <a href="shop-item.html"><img src="../../assets/frontend/pages/img/products/k1.jpg"
-                                                      alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-                        <div class="price">$31.00</div>
-                    </div>
-
-                    <a href="shop-item.html"><img src="../../assets/frontend/pages/img/products/k3.jpg"
-                                                  alt="Some Shoes in Animal with Cut Out"></a>
-                    <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-                    <div class="price">$86.00</div>
                 </div>
             </div>
         </div>
         <!-- END SIDEBAR -->
 
         <!-- BEGIN CONTENT -->
-        <div class="col-md-9 col-sm-7" style="margin: -670px 0 0 290px">
+        <div class="col-md-9 col-sm-7" style="margin: -480px 0 0 290px">
             <div class="product-page">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -66,21 +55,19 @@
                                  data-BigImgsrc="<c:url value="/image?fname=products/${product.images}"></c:url>">
                         </div>
                         <div class="product-other-images">
-                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                            <a href="<c:url value="/image?fname=products/${product.image2}"></c:url>"
                                rel="photos-lib"><img alt="Berry Lace Dress"
-                                                     src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
-                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                                                     src="<c:url value="/image?fname=products/${product.image2}"></c:url>"></a>
+                            <a href="<c:url value="/image?fname=products/${product.image3}"></c:url>"
                                class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                             src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
-                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                                                                             src="<c:url value="/image?fname=products/${product.image3}"></c:url>"></a>
+                            <a href="<c:url value="/image?fname=products/${product.image4}"></c:url>"
                                class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                             src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
-                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                                                                             src="<c:url value="/image?fname=products/${product.image4}"></c:url>"></a>
+                            <a href="<c:url value="/image?fname=products/${product.image5}"></c:url>"
                                class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                             src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
-                            <a href="<c:url value="/image?fname=products/${product.images}"></c:url>"
-                               class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                             src="<c:url value="/image?fname=products/${product.images}"></c:url>"></a>
+                                                                             src="<c:url value="/image?fname=products/${product.image5}"></c:url>"></a>
+
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
