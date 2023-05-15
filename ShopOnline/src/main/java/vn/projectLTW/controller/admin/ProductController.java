@@ -183,6 +183,31 @@ public class ProductController extends HttpServlet {
 				product.setImages(
 						UploadUtils.processUpload("images", req, Constant.DIR + "\\products\\", fileName));
 			}
+			if(req.getPart("image2").getSize()!=0) {
+				//xử lí hình ảnh
+				String fileName=""+System.currentTimeMillis();
+				product.setImage2(
+						UploadUtils.processUpload("image2", req, Constant.DIR + "\\products\\", fileName));
+			}
+			if(req.getPart("image3").getSize()!=0) {
+				//xử lí hình ảnh
+				String fileName=""+System.currentTimeMillis();
+				product.setImage3(
+						UploadUtils.processUpload("image3", req, Constant.DIR + "\\products\\", fileName));
+			}
+			if(req.getPart("image4").getSize()!=0) {
+				//xử lí hình ảnh
+				String fileName=""+System.currentTimeMillis();
+				product.setImage4(
+						UploadUtils.processUpload("image4", req, Constant.DIR + "\\products\\", fileName));
+			}
+
+			if(req.getPart("image5").getSize()!=0) {
+				//xử lí hình ảnh
+				String fileName=""+System.currentTimeMillis();
+				product.setImage5(
+						UploadUtils.processUpload("image5", req, Constant.DIR + "\\products\\", fileName));
+			}
 			product.setCreateDate(new Date(System.currentTimeMillis()));
 
 			

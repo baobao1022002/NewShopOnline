@@ -24,8 +24,8 @@ public class ProductDaoImpl implements IProductDao {
 	ICategoryService categoryService= new CategoryServiceImpl();
 	@Override
 	public void insert(Product product) {
-		String sql = "INSERT INTO product(productName,productCode,categoryId,description,price,stoke,images,status,createDate,sellerId)\r\n"
-				+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO product(productName,productCode,categoryId,description,price,stoke,images,image2,image3,image4,image5,status,createDate,sellerId)\r\n"
+				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -36,9 +36,13 @@ public class ProductDaoImpl implements IProductDao {
 			ps.setDouble(5, product.getPrice());
 			ps.setInt(6, product.getStoke());
 			ps.setString(7, product.getImages());
-			ps.setInt(8, product.getStatus());
-			ps.setDate(9, product.getCreateDate());
-			ps.setInt(10, product.getSeller().getSellerId());
+			ps.setString(8, product.getImage2());
+			ps.setString(9, product.getImage3());
+			ps.setString(10, product.getImage4());
+			ps.setString(11, product.getImage5());
+			ps.setInt(12, product.getStatus());
+			ps.setDate(13, product.getCreateDate());
+			ps.setInt(14, product.getSeller().getSellerId());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,7 +52,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public void update(Product product) {
-		String sql = "UPDATE product SET productName=?,productCode=?,categoryId=?,description=?,price=?,stoke=?,images=?,status=?,createDate=?,sellerId=? WHERE productId=?";
+		String sql = "UPDATE product SET productName=?,productCode=?,categoryId=?,description=?,price=?,stoke=?,images=?,image2=?,image3=?,image4=?,image5=?,status=?,createDate=?,sellerId=? WHERE productId=?";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -59,10 +63,14 @@ public class ProductDaoImpl implements IProductDao {
 			ps.setDouble(5, product.getPrice());
 			ps.setInt(6, product.getStoke());
 			ps.setString(7, product.getImages());
-			ps.setInt(8, product.getStatus());
-			ps.setDate(9, product.getCreateDate());
-			ps.setInt(10, product.getSeller().getSellerId());
-			ps.setInt(11, product.getProductId());
+			ps.setString(8, product.getImage2());
+			ps.setString(9, product.getImage3());
+			ps.setString(10, product.getImage4());
+			ps.setString(11, product.getImage5());
+			ps.setInt(12, product.getStatus());
+			ps.setDate(13, product.getCreateDate());
+			ps.setInt(14, product.getSeller().getSellerId());
+			ps.setInt(15, product.getProductId());
 			ps.executeUpdate();
 
 		} catch (Exception e) {
@@ -86,8 +94,8 @@ public class ProductDaoImpl implements IProductDao {
 	}
 	@Override
 	public Product findOne(int id) {
-		String sql="  SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
-				+ "		product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\r\n"
+		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
+				+ "		product.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\r\n"
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "	FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "				 INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
@@ -107,6 +115,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -125,10 +137,10 @@ public class ProductDaoImpl implements IProductDao {
 	public List<Product> findAll() {
 		List<Product> productList=new ArrayList<Product>();
 		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\n" +
-				"product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\n" +
-				"category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\n" +
-				"FROM product INNER JOIN category ON product.categoryId=category.categoryId\n" +
-				"INNER JOIN seller ON product.sellerId=seller.sellerId;";
+				"\t\t\t\tproduct.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\n" +
+				"\t\t\t\tcategory.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\n" +
+				"\t\t\t\tFROM product INNER JOIN category ON product.categoryId=category.categoryId\n" +
+				"\t\t\t\tINNER JOIN seller ON product.sellerId=seller.sellerId";
 		try {
 			conn = new DBConnection().getConnection(); // Kết nối CSDL
 			ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
@@ -143,6 +155,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -163,7 +179,7 @@ public class ProductDaoImpl implements IProductDao {
 	public List<Product> findAllNews() {
 		List<Product> productList=new ArrayList<Product>();
 		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
-				+ "		product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\r\n"
+				+ "		product.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\r\n"
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
@@ -182,6 +198,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -203,7 +223,7 @@ public class ProductDaoImpl implements IProductDao {
 		// TODO Auto-generated method stub
 		List<Product> productList=new ArrayList<Product>();
 		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
-				+ "		product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\r\n"
+				+ "		product.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\r\n"
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
@@ -222,6 +242,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -242,7 +266,7 @@ public class ProductDaoImpl implements IProductDao {
 	public List<Product> findAllByCID(int id,int index) {
 		List<Product> productList=new ArrayList<Product>();
 		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
-				+ "		product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\r\n"
+				+ "		product.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\r\n"
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
@@ -263,6 +287,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -284,7 +312,7 @@ public class ProductDaoImpl implements IProductDao {
 		// TODO Auto-generated method stub
 		List<Product> productList=new ArrayList<Product>();
 		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
-				+ "		product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\r\n"
+				+ "		product.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\r\n"
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
@@ -305,6 +333,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -326,7 +358,7 @@ public class ProductDaoImpl implements IProductDao {
 		// TODO Auto-generated method stub
 		List<Product> productList=new ArrayList<Product>();
 		String sql="SELECT product.productId,product.productName,product.productCode,product.description,product.amount,\r\n"
-				+ "		product.price,product.images,product.createDate,product.stoke,product.wishList,product.status,\r\n"
+				+ "		product.price,product.images,product.image2,product.image3,product.image4,product.image5,product.createDate,product.stoke,product.wishList,product.status,\r\n"
 				+ "		category.categoryId,category.categoryName,seller.sellerId,seller.images AS sellerAvatar,seller.sellerName\r\n"
 				+ "FROM product INNER JOIN category ON product.categoryId=category.categoryId\r\n"
 				+ "			INNER JOIN seller ON product.sellerId=seller.sellerId\r\n"
@@ -347,6 +379,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));
@@ -438,6 +474,10 @@ public class ProductDaoImpl implements IProductDao {
 				product.setAmount(rs.getInt("amount"));
 				product.setDescription(rs.getString("description"));
 				product.setImages(rs.getString("images"));
+				product.setImage2(rs.getString("image2"));
+				product.setImage3(rs.getString("image3"));
+				product.setImage4(rs.getString("image4"));
+				product.setImage5(rs.getString("image5"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStoke(rs.getInt("stoke"));
 				product.setWishList(rs.getInt("wishList"));

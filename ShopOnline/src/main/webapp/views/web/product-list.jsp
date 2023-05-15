@@ -188,14 +188,14 @@
                                              alt="Cool green dress with red bell 45" class="img-responsive">
                                     </div>
                                     <div class="product-other-images">
-                                        <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                           class="active"><img alt="Berry Lace Dress"
-                                                               src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
-                                        <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
-                                           src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
-                                        <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"><img
-                                                alt="Berry Lace Dress"
-                                                src="<c:url value="/image?fname=products/${proList.images }"></c:url>"></a>
+                                        <a href="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"
+                                           src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
+                                        <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"
+                                           src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                        <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"
+                                           src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
+                                        <a href="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"
+                                           src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-9">
