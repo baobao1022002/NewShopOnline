@@ -32,7 +32,7 @@
 							type="button" class="close">×</button></a>
 					<div class="overflow-h">
 						<span>${map.value.product.name }</span> <small>${map.value.quantity }
-							* ${map.value.product.price }.0 $ </small>
+							* ${map.value.product.price } </small>
 					</div></li>
 			</c:forEach>
 
@@ -43,7 +43,7 @@
 					<c:forEach items="${sessionScope.cart}" var="map">
 						<c:set var="total" value="${total + map.value.quantity * map.value.product.price}" />
 					</c:forEach>
-					<span class="pull-right subtotal-cost">$ ${total }</span>
+					<span class="pull-right subtotal-cost"> ${total }</span>
 					
 				</div>
 				<div class="row">

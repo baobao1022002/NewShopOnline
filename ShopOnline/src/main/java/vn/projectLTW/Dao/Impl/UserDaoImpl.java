@@ -467,5 +467,24 @@ public class UserDaoImpl implements IUserDao {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void changeProfile(int Id, String fullname, String email, String phone) {
+        String sql = "UPDATE users SET fullName=?, email=?, phone=? WHERE userId=?";
+        try {
+            conn = new DBConnection().getConnection(); // Kết nối CSDL
+            ps = conn.prepareStatement(sql); // Ném câu lệnh SQL bằng phát biểu prepareStatement
+            ps.setString(1,fullname);
+            ps.setString(2, email);
+            ps.setString(3,phone);
+//            ps.setString(4,province);
+//            ps.setString(5,district);
+//            ps.setString(6,address);
+            ps.setInt(4,Id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
