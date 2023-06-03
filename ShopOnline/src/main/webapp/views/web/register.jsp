@@ -78,7 +78,7 @@ ill<%@ page language="java" contentType="text/html; charset=UTF-8"
 					<br>
 					<button type="submit" class="btn btn-primary" style="margin-left: 48%" title="Đăng kí"><%=showLanguage.get("register")%></button>
 				</form>
-
+				<br>
 			</div>
 			
 		</div>

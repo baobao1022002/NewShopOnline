@@ -85,10 +85,10 @@
                                             </form>
                                         </td>
                                         <td class="goods-page-price">
-                                            <strong><span>$</span>${map.value.product.price}</strong>
+                                            <strong><span></span>${map.value.product.price}</strong>
                                         </td>
                                         <td class="goods-page-total">
-                                            <strong><span>$</span>${map.value.product.price * map.value.quantity}
+                                            <strong><span></span>${map.value.product.price * map.value.quantity}
                                             </strong>
                                         </td>
                                         <td class="del-goods-col">
@@ -110,16 +110,16 @@
                                         <c:set var="total"
                                                value="${total+map.value.quantity * map.value.product.price}"/>
                                     </c:forEach>
-                                    <strong class="price"><span>$</span>${total}</strong>
+                                    <strong class="price"><span></span>${total}</strong>
                                 </li>
                                 <li>
                                     <em><%=showLanguage.get("shippingcost")%></em>
                                     <c:set var="ship" value="${total*0.005 }"></c:set>
-                                    <strong class="price"><span>$</span>${ship}</strong>
+                                    <strong class="price"><span></span>${ship}</strong>
                                 </li>
                                 <li class="shopping-total-price">
                                     <em><%=showLanguage.get("Total")%></em>
-                                    <strong class="price"><span>$</span>${total+ship}</strong>
+                                    <strong class="price"><span></span>${total+ship}</strong>
                                 </li>
                             </ul>
                         </div>

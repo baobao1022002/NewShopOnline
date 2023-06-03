@@ -64,32 +64,32 @@ public class ProductController extends HttpServlet {
 	protected void productPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String categoryId=req.getParameter("categoryId");
 		String sellerId=req.getParameter("sellerId");
-		
+
 		String indexPage=req.getParameter("index");
-		
+
 		//phân trang
 		if(indexPage==null) {
 			indexPage="1";
 		}
 
 		int indexp=Integer.parseInt(indexPage);
-		
+
 		//Get Data từ DAO
 		int countP=productService.countAll();
 		int countCid=productService.countCID(Integer.parseInt(categoryId));
 		int countSid=productService.countSell(Integer.parseInt(sellerId));
-		
+
 		//chia trang cho count
 		int endPage=countP/3;
 		if(countP%3!=0) {
 			endPage++;
 		}
-		
+
 		if(Integer.parseInt(categoryId)==0&&Integer.parseInt(sellerId)==0) {
 			List<Product> productList =productService.findAllByPage(indexp-1);
 			req.setAttribute("productList", productList);
 			req.setAttribute("countproductAll", countP);
-			
+
 		}else if(Integer.parseInt(categoryId)!=0&&Integer.parseInt(sellerId)==0){
 			List<Product> productList=productService.findAllByCID(Integer.parseInt(categoryId),indexp-1);
 			req.setAttribute("productList", productList);
@@ -100,24 +100,24 @@ public class ProductController extends HttpServlet {
 			req.setAttribute("countproductAll", countSid);
 
 		}
-		
-		
+
+
 		//Lấy dữ liệu và đẩy lên view
 		List<Category> categoryList=categoryService.findAll();
 		req.setAttribute("categoryList", categoryList);
-		
+
 		List<Seller> sellerList=sellerService.findAll();
 		req.setAttribute("sellerList", sellerList);
-		
+
 		//truyền lên JSP
 		req.setAttribute("endP", endPage);
 		req.setAttribute("tag", indexp);
 		req.setAttribute("categoryId", categoryId);
 		req.setAttribute("sellerId", sellerId);
-		
-		
+
+
 		req.getRequestDispatcher("/views/web/product-list.jsp").forward(req, resp);
-		
+
 	}
 
 
