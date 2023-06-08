@@ -232,10 +232,6 @@
 							<th scope="col">product ID</th>
 							<th scope="col">product Code</th>
 							<th scope="col">Images</th>
-							<th scope="col">Image2</th>
-							<th scope="col">Image3</th>
-							<th scope="col">Image4</th>
-							<th scope="col">Image5</th>
 							<th scope="col">Product Name</th>
 							<th scope="col">Price</th>							
 							<th scope="col">Description</th>
@@ -254,22 +250,6 @@
 								<td>${i.productCode}</td>
 								<td>
 									<c:url value="/image?fname=products/${i.images}" var="imgURL"></c:url>
-									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
-								</td>
-								<td>
-									<c:url value="/image?fname=products/${i.image2}" var="imgURL"></c:url>
-									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
-								</td>
-								<td>
-									<c:url value="/image?fname=products/${i.image3}" var="imgURL"></c:url>
-									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
-								</td>
-								<td>
-									<c:url value="/image?fname=products/${i.image4}" var="imgURL"></c:url>
-									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
-								</td>
-								<td>
-									<c:url value="/image?fname=products/${i.image5}" var="imgURL"></c:url>
 									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
 								</td>
 								<td>${i.productName}</td>

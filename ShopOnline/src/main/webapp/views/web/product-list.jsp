@@ -30,7 +30,6 @@
 							<i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>
                     </li>
                 </c:forEach>
-
             </ul>
 
             <ul class="list-group margin-bottom-25 sidebar-menu">
@@ -61,36 +60,7 @@
                 <div id="slider-range"></div>
             </div>
 
-            <div class="sidebar-products clearfix">
-                <h2>Bestsellers</h2>
-                <div class="item">
-                    <a href="shop-item.html"><img
-                            src="../../assets/frontend/pages/img/products/k1.jpg"
-                            alt="Some Shoes in Animal with Cut Out"></a>
-                    <h3>
-                        <a href="shop-item.html">Some Shoes in Animal with Cut Out</a>
-                    </h3>
-                    <div class="price">$31.00</div>
-                </div>
-                <div class="item">
-                    <a href="shop-item.html"><img
-                            src="../../assets/frontend/pages/img/products/k4.jpg"
-                            alt="Some Shoes in Animal with Cut Out"></a>
-                    <h3>
-                        <a href="shop-item.html">Some Shoes in Animal with Cut Out</a>
-                    </h3>
-                    <div class="price">$23.00</div>
-                </div>
-                <div class="item">
-                    <a href="shop-item.html"><img
-                            src="../../assets/frontend/pages/img/products/k3.jpg"
-                            alt="Some Shoes in Animal with Cut Out"></a>
-                    <h3>
-                        <a href="shop-item.html">Some Shoes in Animal with Cut Out</a>
-                    </h3>
-                    <div class="price">$86.00</div>
-                </div>
-            </div>
+
         </div>
         <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->

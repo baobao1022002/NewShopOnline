@@ -75,7 +75,7 @@
 
 
 					<button type="submit" class="btn btn-primary" title="<%=showLanguage.get("login")%>"><%=showLanguage.get("login")%></button>
-					<a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/ShopOnline_war/login-google&response_type=code
+					<a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/Gradle___vn_projectltw___ShopOnline_1_0_war/login-google&response_type=code
     &client_id=40797728958-hb54ffp98q2v5brfbduqv6togf6h2kf7.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
 
 

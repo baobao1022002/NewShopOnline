@@ -7,12 +7,12 @@ import java.sql.SQLException;
 
 
 public class DBConnection {
-	private final static String serverName="localhost";//., 127.0.0.1
+	private final static String serverName="localhost";//., 192.168.190.129
 	private final static String dbName="shoponline" ;
 	private final static String  portNumber="3306";//8391  ,1433
 	private final static String  instance="";//SQL2019,MSQLSERVER
 	private final String  user="root";
-	private final String  password="Quamon@10diem";
+	private final String  password="Quamon@10diem"; // 12345 Quamon@10diem
 
 
 	public Connection getConnection() throws Exception{
