@@ -27,7 +27,7 @@
                         <li><i class="fa fa-phone"></i>0987 654 321</li>
                         <!-- BEGIN CURRENCIES -->
                         <li class="shop-currencies">
-
+                            <a href="javascript:void(0);">€</a>
                             <a href="javascript:void(0);">$</a>
                             <a href="javascript:void(0);" class="current">VND</a>
                         </li>
@@ -49,11 +49,8 @@
                     <ul class="list-unstyled list-inline pull-right">
                     	<c:choose>
                     		<c:when test="${sessionScope.account!=null}">
-                                <c:if test="${sessionScope.account.roleId ==2}">
-                                    <li><a href="${pageContext.request.contextPath }/admin/home">Trang quản trị</a></li>
-                                </c:if>
 
-		                        <li><a href="<c:url value="/ChangeProfile"></c:url>"><%=showLanguage.get("account")%></a></li>
+		                        <li><a href="shop-account.html"><%=showLanguage.get("account")%></a></li>
 <%--		                        <li><a href="shop-checkout.html"><%=showLanguage.get("Change password")%></a></li>--%>
                                 <li><a href="<c:url value="/ChangePassword"></c:url>">Đổi mật khẩu</a></li>
 <%--                                <li><a href="<c:url value="/member/orderbuy"></c:url>"><%=showLanguage.get("Order management")%></a></li>--%>
