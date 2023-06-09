@@ -1,6 +1,19 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="GradlePackageUpdate" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="excludeList">
+        <list>
+          <option value="com.google.code.gson:gson" />
+          <option value="com.google.code.gson:gson" />
+          <option value="com.google.code.gson:gson" />
+          <option value="org.apache.httpcomponents:fluent-hc" />
+          <option value="org.springframework:spring-context-support" />
+          <option value="org.apache.httpcomponents:httpcore" />
+          <option value="org.apache.httpcomponents:httpclient" />
+        </list>
+      </option>
+    </inspection_tool>
     <inspection_tool class="JSHint" enabled="true" level="ERROR" enabled_by_default="true" />
   </profile>
 </component>

@@ -30,7 +30,6 @@
 							<i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>
                     </li>
                 </c:forEach>
-
             </ul>
 
             <ul class="list-group margin-bottom-25 sidebar-menu">
@@ -44,6 +43,22 @@
                 </c:forEach>
 
             </ul>
+
+            <div class="sidebar-filter margin-bottom-25">
+                <h2>Filter</h2>
+                <h3>Availability</h3>
+                <div class="checkbox-list">
+                    <label><input type="checkbox"> Not Available (3)</label> <label><input
+                        type="checkbox"> In Stock (26)</label>
+                </div>
+
+                <h3>Price</h3>
+                <p>
+                    <label for="amount">Range:</label> <input type="text" id="amount"
+                                                              style="border: 0; color: #f6931f; font-weight: bold;">
+                </p>
+                <div id="slider-range"></div>
+            </div>
 
 
         </div>
@@ -104,7 +119,7 @@
             </div>
             <!-- BEGIN PRODUCT LIST -->
             <c:if test="${empty productList }">
-                <div class="alert alert-success">không tìm thấy sản phẩm nào</div>
+                <div class="alert alert-success">không tìm thấy sản phẩm nảo</div>
             </c:if>
             <div class="row product-list">
                 <c:forEach items="${productList}" var="proList">
@@ -122,9 +137,9 @@
                                 </div>
                             </div>
                             <h3>
-                                <a href="<c:url value="/product/detail?productId=${proList.productId}"></c:url>">${proList.productName}</a>
+                                <a href="<c:url value="/product/detail?productId=${proList.productId}"></c:url>">${proList.productName}"</a>
                             </h3>
-                            <div class="pi-price">${proList.price}"</div>
+                            <div class="pi-price">$ ${proList.price}"</div>
                             <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
                                class="btn btn-default add2cart" class="btn btn-default add2cart">
                                 <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
@@ -157,8 +172,8 @@
                                     <h2>${proList.productName}</h2>
                                     <div class="price-availability-block clearfix">
                                         <div class="price">
-                                            <strong><span></span>${proList.price }</strong>
-                                            <em><span>${proList.price/0.8 }</span></em>
+                                            <strong><span>$</span>${proList.price }</strong>
+                                            <em>$<span>${proList.price/0.8 }</span></em>
                                         </div>
                                         <div class="availability">
                                             <%=showLanguage.get("inventory")%> <strong>${proList.stoke}</strong>
@@ -217,7 +232,6 @@
 
 
                                         </form>
-                                        <br><hr><br>
                                         </td>
 
                                         <button class="btn btn-primary" type="submit" title="<%=showLanguage.get("addtocart")%>"><%=showLanguage.get("addtocart")%></button>
@@ -239,9 +253,9 @@
             <!-- BEGIN PAGINATOR -->
             <c:if test="${categoryId==0&&sellerId==0 }">
                 <div class="row">
-<%--                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10--%>
-<%--                        total--%>
-<%--                    </div>--%>
+                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
+                        total
+                    </div>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
                             <c:if test="${tag>1 }">
@@ -268,9 +282,9 @@
 
             <c:if test="${categoryId!=0&&sellerId==0 }">
                 <div class="row">
-<%--                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10--%>
-<%--                        total--%>
-<%--                    </div>--%>
+                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
+                        total
+                    </div>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
                             <c:if test="${tag>1 }">
@@ -297,9 +311,9 @@
 
             <c:if test="${categoryId==0&&sellerId!=0 }">
                 <div class="row">
-<%--                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10--%>
-<%--                        total--%>
-<%--                    </div>--%>
+                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
+                        total
+                    </div>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
                             <c:if test="${tag>1 }">

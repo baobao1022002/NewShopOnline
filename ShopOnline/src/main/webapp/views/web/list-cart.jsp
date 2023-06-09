@@ -54,9 +54,9 @@
 														<h3>${map.value.product.name }</h3>
 														<span>${map.value.product.des }</span>
 													</div></td>
-												<td>${map.value.product.price }</td>
+												<td>$ ${map.value.product.price }</td>
 												<td>${map.value.quantity }</td>
-												<td class="shop-red">${map.value.product.price * map.value.quantity }</td>
+												<td class="shop-red">$ ${map.value.product.price * map.value.quantity }</td>
 												<td><a
 													href="${pageContext.request.contextPath}/member/cart-remove?pId=${map.value.product.id}">
 													<button
@@ -291,7 +291,7 @@
 													value="${total + map.value.quantity * map.value.product.price}" />
 											</c:forEach>
 											<div class="total-result-in">
-												<span>${total }</span>
+												<span>$ ${total }</span>
 
 											</div>
 										</li>
@@ -305,7 +305,7 @@
 										<li class="total-price">
 											<h4>Total:</h4>
 											<div class="total-result-in">
-												<span> ${total }</span>
+												<span>$ ${total }</span>
 
 											</div>
 										</li>

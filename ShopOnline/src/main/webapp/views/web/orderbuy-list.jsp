@@ -4,33 +4,40 @@
 
 <br/>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-3">
-			<!--left col-->
-			<input name="id" value="${sessionScope.account.userId}" hidden="">
-			<div class="text-center">
-				<c:url value="${sessionScope.account.images }"
-					   var="imgUrl"></c:url>
-				<img src="${imgUrl }" width="60px" height="60px"
-					 class="avatar img-circle img-thumbnail" alt="avatar">
+    <div class="row">
+        <div class="col-md-3">
+            <!--left col-->
+            <input name="id" value="${sessionScope.account.userId}" hidden="">
+            <div class="text-center">
+                <c:if test="${sessionScope.account.images!=null}">
+                    <c:url value="/image?fname=users/${sessionScope.account.images }"
+                           var="imgUrl"></c:url>
+                    <img src="${imgUrl }" width="60px" height="60px"
+                         class="avatar img-circle img-thumbnail" alt="avatar">
+                </c:if>
+                ${sessionScope.account.userName }
 
-				<p>Tên đăng nhập:<span style="color: red"> ${sessionScope.account.userName}</span></p>
+<%--                <h5>--%>
+<%--                    <a href="<c:url value='/member/myaccount'/>"> <i--%>
+<%--                            class="fa fa-edit"></i> Sửa hồ sơ--%>
+<%--                    </a>--%>
+<%--                </h5>--%>
 
+            </div>
 
-			</div>
-			<hr>
-			<div class="list-group">
-
-				<a href="<c:url value='/member/orderbuy'/>"class="list-group-item list-group-item-action">
-					Đơn mua
-				</a>
-				<a href="<c:url value='/ChangeProfile'/>"
-				   class="list-group-item list-group-item-action">Tài khoản</a>
-				<a href="<c:url value='/ChangePassword'/>"
-				   class="list-group-item list-group-item-action">Đổi mật khẩu</a>
-			</div>
-		</div>
-
+            <hr>
+            <div class="list-group">
+<%--                <a href="<c:url value='/member/myaccount'/>"--%>
+<%--                   class="list-group-item list-group-item-action"> Tài khoản của--%>
+<%--                    tôi </a>--%>
+				<a href="<c:url value='/member/orderbuy'/>"
+                                class="list-group-item list-group-item-action">Đơn mua
+                <c:if test="${all!=0}">
+                    <span class="badge badge-success badge-pill">${all}</span>
+                </c:if>
+            </a>
+            </div>
+        </div>
         <div class="col-md-9">
             <ul class="nav nav-tabs flex-column font-weight-bold">
                 <li class="nav-item"><a class="nav-link active btn-primary"
@@ -134,14 +141,14 @@
                                             </li>
                                         </ul>
                                         <div class="margin-bottom-10">
-                                            <span class="compare-in">Đơn giá: ${list.product.price}</span>
+                                            <span class="compare-in">Đơn giá: $ ${list.product.price}</span>
                                         </div>
                                         <ul class="list-inline add-to-wishlist margin-bottom-20">
                                             <li class="compare-in">Số lượng: ${list.quantity}</li>
                                         </ul>
                                         <br>
                                         <span class="pull-right title-price">Tổng tiền thanh toán:
-												<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
+												<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 											</span>
                                     </div>
                                 </div>
@@ -231,14 +238,14 @@
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: ${list.product.price}</span>
+												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in">Số lượng: ${list.quantity}</li>
 											</ul>
 											<br>
 											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
+													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -258,6 +265,7 @@
 						</c:if>
 					</c:forEach>
 
+					<%-- 		end pagination			--%>
 					<br/>
 				</div>
 
@@ -311,14 +319,14 @@
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: ${list.product.price}</span>
+												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in">Số lượng: ${list.quantity}</li>
 											</ul>
 											<br>
 											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill">${list.quantity * list.product.price}</span>
+													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -392,14 +400,14 @@
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá:  ${list.product.price}</span>
+												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in">Số lượng: ${list.quantity}</li>
 											</ul>
 											<br>
 											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
+													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -473,14 +481,14 @@
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: ${list.product.price}</span>
+												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in">Số lượng: ${list.quantity}</li>
 											</ul>
 											<br>
 											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
+													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -562,14 +570,14 @@
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: ${list.product.price}</span>
+												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in">Số lượng: ${list.quantity}</li>
 											</ul>
 											<br>
 											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
+													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
