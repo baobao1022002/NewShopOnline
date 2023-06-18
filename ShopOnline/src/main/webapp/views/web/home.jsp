@@ -282,10 +282,6 @@
                                                         alt="Berry Lace Dress"
                                                         src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
                                             <br>
-
-
-
-
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">

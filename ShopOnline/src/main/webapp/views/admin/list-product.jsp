@@ -50,15 +50,27 @@
 							value="${product.price}">
 
 					</div>
-				</div>
-				<div class="col-sm-6">
 
 					<div class="mb-3">
 						<label for="description">Description:</label> <textarea type="text"
-							class="form-control" id="description" name="description">
-							${product.description}</textarea>
+																				class="form-control" id="description" name="description">
+						${product.description}</textarea>
 					</div>
-					
+
+					<div class="mb-3">
+						<label for="Images">Main Images:</label>
+						<c:if test="${product.images==null }">
+							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
+						</c:if>
+						<c:if test="${product.images!=null }">
+							<c:url value="/image?fname=products/${product.images}" var="imgURL"></c:url>
+						</c:if>
+
+						<img alt="images" src="${imgURL}" width="80px" height="80px" id="images" class="rounded-circle">
+						<input type="file" class="form-control" onchange="chooseFile(this)"  name="images" value="${product.images}">
+					</div>
+
+
 					<script>
 						function chooseFile(fileInput) {
 							if(fileInput.files && fileInput.files[0]){
@@ -69,6 +81,10 @@
 								reader.readAsDataURL(fileInput.file[0]);
 							}
 						}
+					</script>
+				</div>
+				<div class="col-sm-6">
+					<script>
 						function chooseFile2(fileInput) {
 							if(fileInput.files && fileInput.files[0]){
 								var reader=new FileReader();
@@ -108,19 +124,6 @@
 					</script>
 
 					<div class="mb-3">
-						<label for="Images">Main Images:</label>
-						<c:if test="${product.images==null }">
-							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
-						</c:if>
-						<c:if test="${product.images!=null }">
-							<c:url value="/image?fname=products/${product.images}" var="imgURL"></c:url>
-						</c:if>
-						
-						<img alt="images" src="${imgURL}" width="80px" height="80px" id="images" class="rounded-circle">
-						<input type="file" class="form-control" onchange="chooseFile(this)"  name="images" value="${product.images}">
-					</div>
-
-					<div class="mb-3">
 						<label for="Images">Images 1</label>
 						<c:if test="${product.image2==null }">
 							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
@@ -143,6 +146,7 @@
 						<img alt="image3" src="${imgURL}" width="80px" height="80px" id="image3" class="rounded-circle">
 						<input type="file" class="form-control" onchange="chooseFile3(this)"  name="image3" value="${product.image3}">
 					</div>
+
 
 					<div class="mb-3">
 						<label for="Images">Images 3</label>
@@ -170,7 +174,7 @@
 
 					
 					<div class="mb-3">
-						<label for="category">Category:</label> 
+						<label>Category:</label>
 						<select name="categoryId">
 							<c:forEach items="${categoryList}" var="item">
 								<option value="${item.categoryId}" ${product.categoryId==item.categoryId?'selected':''}>${item.categoryName}</option>		
@@ -179,7 +183,7 @@
 					</div>
 					
 					<div class="mb-3">
-						<label for="seller">Seller:</label> 
+						<label>Seller:</label>
 						<select name="sellerId">
 							<c:forEach items="${sellerList}" var="item">
 								<option value="${item.sellerId}" ${product.sellerId==item.sellerId?'selected':''}>${item.sellerName}</option>		
@@ -187,7 +191,7 @@
 						</select>
 					</div>
 
-					<label for="status">Status:</label>
+					<label >Status:</label>
 					<div class="form-check form-check-inline">
 						<input type="radio" class="form-check-input" id="statusOn"
 							name="status" value="1" ${product.status==1?'checked':'' }> <label class="form-check-label">Hoạt

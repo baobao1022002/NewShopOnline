@@ -105,7 +105,7 @@ public class UserRoleDaoImpl implements IUserRoleDao {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 
-String sql="DELETE user_roles WHERE roleId=?";
+		String sql="DELETE FROM user_roles WHERE roleId=?";
 		
 		try {
 			conn = new DBConnection().getConnection();
