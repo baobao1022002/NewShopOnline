@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+
 <c:url value="/template/assets" var="url"></c:url>
-
-
-
 <div class="main">
+
+    <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="container-fluid">
-        <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SIDEBAR -->
             <div class="sidebar col-md-3 col-sm-5">
@@ -102,10 +101,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="product-page-cart" >
+                        <div class="product-page-cart">
                             <form name="f1" method="get"
                                   action="<c:url value="/member/cart/updateQuantity"></c:url>">
-
 
                                 <input type="text" name="pId" id="pid"
                                        value="${product.productId}" hidden="">
@@ -124,15 +122,14 @@
                                        style="width: 40px"/>
 
 
-
-
                                 <button type="button" class="quantity-button"
                                         name='add${product.productId}'
                                         onclick='javascript: subtractQty9(${product.productId});'
                                         value="+">+
                                 </button>
-                                &nbsp;&nbsp
-                                <button type="submit" class="btn btn-danger">Cập nhật</button>
+
+                                <nbsp></nbsp>
+<%--                                <button type="submit" class="btn btn-danger">Thêm vào giỏ hàng</button>--%>
 
                             </form>
                             </td>
@@ -273,6 +270,6 @@
     </div>
     <!-- END SIDEBAR & CONTENT -->
 </div>
-</div>
+
 
 		

@@ -161,8 +161,6 @@ public class SellerController extends HttpServlet {
 		DiskFileItemFactory disFileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload servletFileUpload = new ServletFileUpload(disFileItemFactory);
 		try {
-
-		
 				List<FileItem> items = servletFileUpload.parseRequest(req);
 				for (FileItem item : items) {
 					if (item.getFieldName().equals("sellerName")) {

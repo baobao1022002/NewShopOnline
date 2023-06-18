@@ -1,7 +1,11 @@
 package vn.projectLTW.controller.admin;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import vn.projectLTW.controller.web.HomeController;
+import vn.projectLTW.model.Seller;
 import vn.projectLTW.model.UserRoles;
 import vn.projectLTW.service.ILogService;
 import vn.projectLTW.service.IUserRoleService;
@@ -14,9 +18,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import vn.projectLTW.model.Log;
+import vn.projectLTW.util.Constant;
+
 import java.util.logging.Logger;
 @WebServlet(urlPatterns = { "/admin/userRole", "/admin/userRole/create", "/admin/userRole/update", "/admin/userRole/edit",
 		"/admin/userRole/delete", "/admin/userRole/reset" })
@@ -157,7 +164,7 @@ public class UserRoleController extends HttpServlet {
 
 	protected void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String id = req.getParameter("userId");// lấy tham số từ Views có name = id
+			String id = req.getParameter("roleId");// lấy tham số từ Views có name = id
 			UserRoles role = userRoleService.findOne(Integer.parseInt(id)); // gọi hàm findOne trong service để lấy 1 User thông													// qua id
 																// seller thông
 			// qua id
@@ -187,33 +194,43 @@ public class UserRoleController extends HttpServlet {
 
 	protected void create(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		try {
+			UserRoles role = new UserRoles();
+			DiskFileItemFactory disFileItemFactory = new DiskFileItemFactory();
+			ServletFileUpload servletFileUpload = new ServletFileUpload(disFileItemFactory);
+			try {
+				List<FileItem> items = servletFileUpload.parseRequest(req);
+				for (FileItem item : items) {
+					if (item.getFieldName().equals("roleName")) {
+						role.setRoleName(item.getString());
+					}
+				}
+				userRoleService.insert(role);
+//			req.setCharacterEncoding("UTF-8");
+//			resp.setCharacterEncoding("UTF-8");
+//			String roleName=req.getParameter("roleName");
+//			UserRoles role=new UserRoles();
+//			BeanUtils.populate(role, req.getParameterMap());
+//
+//			userRoleService.insert(role);
+//			System.out.println("role id: "+role.getRoleId()+" roleName: "+role.getRoleName());
 
-			req.setCharacterEncoding("UTF-8");
-			resp.setCharacterEncoding("UTF-8");
-			String roleName=req.getParameter("roleName");
-			UserRoles role=new UserRoles();
-			BeanUtils.populate(role, req.getParameterMap());
+				req.setAttribute("role", role);
+				req.setAttribute("message", "Đã thêm thành công");
 
-			userRoleService.insert(role);
-			System.out.println("role id: "+role.getRoleId()+" roleName: "+role.getRoleName());
+				log.setLevel(Log.INFO);
+				log.setStatus(1);
+				log.setSrc("Create userRole");
+				log.setContent("1 new userRole added successfully");
+				logService.insert(log);
+				LOGGER.info("create userRole");
 
-			req.setAttribute("role", role);
-			req.setAttribute("message", "Đã thêm thành công");
-
-			log.setLevel(Log.INFO);
-			log.setStatus(1);
-			log.setSrc("Create userRole");
-			log.setContent("1 new userRole added successfully");
-			logService.insert(log);
-			LOGGER.info("create userRole");
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			req.setAttribute("error", "Error"+e.getMessage());
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				req.setAttribute("error", "Error" + e.getMessage());
+			}
 		}
-	}
+
 
 	protected void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -223,7 +240,6 @@ public class UserRoleController extends HttpServlet {
 			// Lấy dữ liệu từ JSP bằng BeanUtils
 			UserRoles role=new UserRoles();
 			BeanUtils.populate(role, req.getParameterMap());
-
 
 			userRoleService.update(role);
 
