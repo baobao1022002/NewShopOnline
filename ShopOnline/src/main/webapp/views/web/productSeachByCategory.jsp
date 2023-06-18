@@ -105,8 +105,8 @@
 											</li>
 										</ul>
 										<div class="margin-bottom-10">
-											<span class="title-price margin-right-10">$ ${p.price }.0</span> <span
-												class="title-price line-through">$ ${p.price *1.25 }</span>
+											<span class="title-price margin-right-10"> ${p.price }.0</span> <span
+												class="title-price line-through"> ${p.price *1.25 }</span>
 											
 										</div>
 										<p class="margin-bottom-20">${p.des }</p>

@@ -27,17 +27,17 @@
                         <li><i class="fa fa-phone"></i>0987 654 321</li>
                         <!-- BEGIN CURRENCIES -->
                         <li class="shop-currencies">
-                            <a href="javascript:void(0);">€</a>
+
                             <a href="javascript:void(0);">$</a>
                             <a href="javascript:void(0);" class="current">VND</a>
                         </li>
                         <!-- END CURRENCIES -->
                         <!-- BEGIN LANGS -->
                         <li class="langs-block">
-                            <a href="LanguageServlet?lang=English" class="current"><%=showLanguage.get("english")%></a>
+                            <a href="${pageContext.request.contextPath}/LanguageServlet?lang=English" class="current"><%=showLanguage.get("english")%></a>
                         </li>
                         <li>
-                            <a href="LanguageServlet?lang=Vietnamese"><%=showLanguage.get("vietnamese")%></a>
+                            <a href="${pageContext.request.contextPath}/LanguageServlet?lang=Vietnamese"><%=showLanguage.get("vietnamese")%></a>
 
                         </li>
                         <!-- END LANGS -->
@@ -49,22 +49,16 @@
                     <ul class="list-unstyled list-inline pull-right">
                     	<c:choose>
                     		<c:when test="${sessionScope.account!=null}">
+                                <c:if test="${sessionScope.account.roleId ==2}">
+                                    <li><a href="${pageContext.request.contextPath }/admin/home"><%=showLanguage.get("Admin page")%></a></li>
+                                </c:if>
 
-		                        <li><a href="shop-account.html"><%=showLanguage.get("account")%></a></li>
-<%--		                        <li><a href="shop-checkout.html"><%=showLanguage.get("Change password")%></a></li>--%>
-                                <li><a href="<c:url value="/ChangePassword"></c:url>">Đổi mật khẩu</a></li>
-<%--                                <li><a href="<c:url value="/member/orderbuy"></c:url>"><%=showLanguage.get("Order management")%></a></li>--%>
-                            <li><a href="<c:url value="/member/orderbuy"></c:url>">Đơn mua</a></li>
+		                        <li><a href="<c:url value="/ChangeProfile"></c:url>"><%=showLanguage.get("account")%></a></li>
+                                <li><a href="<c:url value="/ChangePassword"></c:url>"><%=showLanguage.get("change password")%></a></li>
+                            <li><a href="<c:url value="/member/orderbuy"></c:url>"><%=showLanguage.get("purchase order")%></a></li>
 		                        <li><a href="<c:url value="/logout"></c:url>"><%=showLanguage.get("logout")%></a></li>
 
 
-
-
-
-<%--		                        <li>--%>
-<%--		                        	 <img alt="" width="26px" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>--%>
-<%--		                        	 ${sessionScope.account.fullName}--%>
-<%--		                        </li>--%>
 	                        </c:when>
 	                        <c:otherwise>
 	                        		<li><a href="<c:url value="/login"></c:url>"><%=showLanguage.get("login")%></a></li>
@@ -118,7 +112,7 @@
                </ul>
               <div class="text-right">
                 <a href="${pageContext.request.contextPath}/member/cart" class="btn btn-default"><%=showLanguage.get("viewcart")%></a>
-                <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary"><%=showLanguage.get("checkout")%></a>
+                <a href="${pageContext.request.contextPath}/checkout-cart" class="btn btn-primary"><%=showLanguage.get("checkout")%></a>
               </div>
             </div>
           </div>            

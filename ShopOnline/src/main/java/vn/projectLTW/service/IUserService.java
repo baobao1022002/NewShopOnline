@@ -51,4 +51,6 @@ public interface IUserService {
 	Date getAccountLockedUntil(String userName);
 
 	void setAccountLockedUntil(String userName, Date unlockTime);
+
+    void changeProfile(int id, String fullname, String email, String phone);
 }

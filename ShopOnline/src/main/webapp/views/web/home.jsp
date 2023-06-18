@@ -294,8 +294,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
@@ -418,8 +418,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.amount}</strong>
@@ -490,8 +490,8 @@
                                         <h2>${proList.productName}</h2>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 Số lượng tồn: <strong>${proList.amount}</strong>
@@ -603,7 +603,7 @@
                                 <h3>
                                     <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>">${proList.productName}</a>
                                 </h3>
-                                <div class="pi-price">$${proList.price}</div>
+                                <div class="pi-price">${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
                                    class="btn btn-default add2cart" class="btn btn-default add2cart">
                                     <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
@@ -646,8 +646,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
@@ -752,7 +752,7 @@
                                     <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>">${proList.productName}</a>
 
                                 </h3>
-                                <div class="pi-price">$ ${proList.price}</div>
+                                <div class="pi-price"> ${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
                                    class="btn btn-default add2cart" class="btn btn-default add2cart">
                                     <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
@@ -792,8 +792,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>

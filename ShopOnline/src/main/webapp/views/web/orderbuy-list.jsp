@@ -1,4 +1,18 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@include file="/common/taglib.jsp" %>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -6,72 +20,60 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-            <!--left col-->
-            <input name="id" value="${sessionScope.account.userId}" hidden="">
-            <div class="text-center">
-                <c:if test="${sessionScope.account.images!=null}">
-                    <c:url value="/image?fname=users/${sessionScope.account.images }"
-                           var="imgUrl"></c:url>
-                    <img src="${imgUrl }" width="60px" height="60px"
-                         class="avatar img-circle img-thumbnail" alt="avatar">
-                </c:if>
-                ${sessionScope.account.userName }
+			<!--left col-->
+			<input name="id" value="${sessionScope.account.userId}" hidden="">
+			<div class="text-center">
+				<c:url value="${sessionScope.account.images }"
+					   var="imgUrl"></c:url>
+				<img src="${imgUrl }" width="60px" height="60px"
+					 class="avatar img-circle img-thumbnail" alt="avatar">
 
-<%--                <h5>--%>
-<%--                    <a href="<c:url value='/member/myaccount'/>"> <i--%>
-<%--                            class="fa fa-edit"></i> Sửa hồ sơ--%>
-<%--                    </a>--%>
-<%--                </h5>--%>
+				<p><%=showLanguage.get("username")%>:<span style="color: red"> ${sessionScope.account.userName}</span></p>
 
-            </div>
 
-            <hr>
-            <div class="list-group">
-<%--                <a href="<c:url value='/member/myaccount'/>"--%>
-<%--                   class="list-group-item list-group-item-action"> Tài khoản của--%>
-<%--                    tôi </a>--%>
-				<a href="<c:url value='/member/orderbuy'/>"
-                                class="list-group-item list-group-item-action">Đơn mua
-                <c:if test="${all!=0}">
-                    <span class="badge badge-success badge-pill">${all}</span>
-                </c:if>
-            </a>
-            </div>
-        </div>
+			</div>
+			<hr>
+			<div class="list-group">
+
+
+				<a href="<c:url value='/ChangeProfile'/>"
+				   class="list-group-item list-group-item-action"><%=showLanguage.get("account")%></a>
+				<a href="<c:url value='/ChangePassword'/>"
+				   class="list-group-item list-group-item-action"><%=showLanguage.get("change password")%></a>
+				<a href="<c:url value='/member/orderbuy'/>"class="list-group-item list-group-item-action">
+					<%=showLanguage.get("purchase order")%>
+				</a>
+			</div>
+		</div>
         <div class="col-md-9">
             <ul class="nav nav-tabs flex-column font-weight-bold">
                 <li class="nav-item"><a class="nav-link active btn-primary"
-                                        href="#all" data-toggle="tab">Tất cả</a></li>
+                                        href="#all" data-toggle="tab"><%=showLanguage.get("all")%></a></li>
                 <li class="nav-item"><a class="nav-link" href="#choxacnhan"
-                                        data-toggle="tab">Chờ xác nhận
+                                        data-toggle="tab"><%=showLanguage.get("wait for confirmation")%>
                     <c:if test="${choxacnhan!=0}">
                         <span class="badge badge-danger badge-pill">${choxacnhan}</span>
                     </c:if>
                 </a></li>
                 <li class="nav-item"><a class="nav-link" href="#cholayhang"
-                                        data-toggle="tab">Chờ lấy hàng
+                                        data-toggle="tab"><%=showLanguage.get("waiting for the goods")%>
                     <c:if test="${cholayhang!=0}">
                         <span class="badge badge-danger badge-pill">${cholayhang}</span>
                     </c:if>
                 </a></li>
 
-<%--                <li class="nav-item"><a class="nav-link" href="#choxacnhanhuy"--%>
-<%--                                        data-toggle="tab">Chờ xác nhận hủy--%>
-<%--                    <c:if test="${choxacnhanhuy!=0}">--%>
-<%--                        <span class="badge badge-danger badge-pill">${choxacnhanhuy}</span>--%>
-<%--                    </c:if>--%>
-<%--                </a></li>--%>
+
                 <li class="nav-item"><a class="nav-link" href="#danggiao"
-                                        data-toggle="tab">Đang giao
+                                        data-toggle="tab"><%=showLanguage.get("delivery")%>
                     <c:if test="${danggiao!=0}">
                         <span class="badge badge-danger badge-pill">${danggiao}</span>
                     </c:if>
                     <span
                             class="badge badge-danger badge-pill">14</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="#dagiao"
-                                        data-toggle="tab">Đã giao</a></li>
+                                        data-toggle="tab"><%=showLanguage.get("delivered")%></a></li>
                 <li class="nav-item"><a class="nav-link" href="#dahuy"
-                                        data-toggle="tab">Đã hủy</a></li>
+                                        data-toggle="tab"><%=showLanguage.get("cancelled")%></a></li>
             </ul>
             <br/>
             <div class="tab-content">
@@ -86,7 +88,7 @@
                     <br/>
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="badge badge-danger badge-pill pull-right">Tổng đơn hàng: ${all}</span>
+                            <span class="badge badge-danger badge-pill pull-right"><%=showLanguage.get("Total order")%>: ${all}</span>
                         </div>
                     </div>
 
@@ -97,7 +99,7 @@
                                     <c:url value="/image?fname=seller/${list.product.seller.images }"
                                            var="imgURL"></c:url>
                                     <img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
-                                        ${list.product.seller.sellerName } - Mã đơn hàng: ${list.cartId}
+                                        ${list.product.seller.sellerName } - <%=showLanguage.get("Code orders")%>: ${list.cartId}
                                     <hr>
                                 </div>
                             </div>
@@ -118,20 +120,20 @@
                                             <li><span class="gender text-uppercase"></span></li>
                                             <li class="pull-right">
                                                 <c:if test="${list.cart.status==0}">
-                                                    <button type="button" class="btn btn-warning">Chờ xác nhận</button>
+                                                    <button type="button" class="btn btn-warning">c</button>
                                                 </c:if>
                                                 <c:if test="${list.cart.status==1}">
-                                                    <button type="button" class="btn-u btn-u-sea-shop">Chờ lấy hàng
+                                                    <button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
                                                     </button>
                                                 </c:if>
                                                 <c:if test="${list.cart.status==2}">
-                                                    <button type="button" class="btn btn-warning">Đang giao</button>
+                                                    <button type="button" class="btn btn-warning"><%=showLanguage.get("delivery")%></button>
                                                 </c:if>
                                                 <c:if test="${list.cart.status==3}">
-                                                    <button type="button" class="btn btn-success">Đã giao</button>
+                                                    <button type="button" class="btn btn-success"><%=showLanguage.get("delivered")%></button>
                                                 </c:if>
                                                 <c:if test="${list.cart.status==4}">
-                                                    <button type="button" class="btn btn-success">Đã hủy</button>
+                                                    <button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
                                                 </c:if>
                                                 <c:if test="${list.cart.status==5}">
                                                     <button type="button" class="btn-u btn-u-sea-shop">Chờ người bán xác
@@ -141,14 +143,14 @@
                                             </li>
                                         </ul>
                                         <div class="margin-bottom-10">
-                                            <span class="compare-in">Đơn giá: $ ${list.product.price}</span>
+                                            <span class="compare-in"><%=showLanguage.get("unitprice")%>:  ${list.product.price}</span>
                                         </div>
                                         <ul class="list-inline add-to-wishlist margin-bottom-20">
-                                            <li class="compare-in">Số lượng: ${list.quantity}</li>
+                                            <li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
                                         </ul>
                                         <br>
-                                        <span class="pull-right title-price">Tổng tiền thanh toán:
-												<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
+                                        <span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
+												<span class="badge badge-success badge-pill">${list.quantity * list.product.price}</span>
 											</span>
                                     </div>
                                 </div>
@@ -156,13 +158,13 @@
                             <c:if test="${list.cart.status==0}">
                                 <a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
                                    class="center">
-                                    <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                                    <button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
                                 </a>
                             </c:if>
                             <c:if test="${list.cart.status==1}">
                             <a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
                                class="center">
-                                <button type="button" class="btn btn-danger">Yêu cầu hủy</button>
+                                <button type="button" class="btn btn-danger"><%=showLanguage.get("cancelled")%></button>
                                 </c:if>
                         </div>
                     </c:forEach>
@@ -198,7 +200,7 @@
 										<c:url value="/image?fname=seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
-											${list.product.seller.sellerName } - Mã đơn hàng: ${list.cartId}
+											${list.product.seller.sellerName } - <%=showLanguage.get("Code orders")%>: ${list.cartId}
 										<hr>
 									</div>
 								</div>
@@ -219,32 +221,32 @@
 												<li><span class="gender text-uppercase"></span></li>
 												<li class="pull-right">
 													<c:if test="${list.cart.status==0}">
-														<button type="button" class="btn btn-warning">Chờ xác nhận</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop">Chờ lấy hàng
+														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
-														<button type="button" class="btn btn-warning">Đang giao</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("delivery")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==3}">
-														<button type="button" class="btn btn-success">Đã giao</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("delivered")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==4}">
-														<button type="button" class="btn btn-success">Đã hủy</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
 													</c:if>
 
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
+												<span class="compare-in"><%=showLanguage.get("unitprice")%>: ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
-												<li class="compare-in">Số lượng: ${list.quantity}</li>
+												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
 											</ul>
 											<br>
-											<span class="pull-right title-price">Tổng tiền thanh toán:
+											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
 													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
@@ -253,13 +255,13 @@
 								<c:if test="${list.cart.status==0}">
 									<a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
 									   class="center">
-										<button type="button" class="btn btn-danger">Yêu cầu hủy</button>
+										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
 								<c:if test="${list.cart.status==1}">
 								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
 								   class="center">
-									<button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 									</c:if>
 							</div>
 						</c:if>
@@ -279,7 +281,7 @@
 										<c:url value="/image?fname=seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
-											${list.product.seller.sellerName } - Mã đơn hàng: ${list.cartId}
+											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
 										<hr>
 									</div>
 								</div>
@@ -300,33 +302,33 @@
 												<li><span class="gender text-uppercase"></span></li>
 												<li class="pull-right">
 													<c:if test="${list.cart.status==0}">
-														<button type="button" class="btn btn-warning">Chờ xác nhận</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop">Chờ lấy hàng
+														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
-														<button type="button" class="btn btn-warning">Đang giao</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("delivery")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==3}">
-														<button type="button" class="btn btn-success">Đã giao</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("delivered")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==4}">
-														<button type="button" class="btn btn-success">Đã hủy</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
 													</c:if>
 
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
+												<span class="compare-in"><%=showLanguage.get("unitprice")%>: ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
-												<li class="compare-in">Số lượng: ${list.quantity}</li>
+												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
 											</ul>
 											<br>
-											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
+											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
+													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -334,13 +336,13 @@
 								<c:if test="${list.cart.status==0}">
 									<a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
 									   class="center">
-										<button type="button" class="btn btn-danger">Yêu cầu hủy</button>
+										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
 								<c:if test="${list.cart.status==1}">
 								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
 								   class="center">
-									<button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 									</c:if>
 							</div>
 						</c:if>
@@ -360,7 +362,7 @@
 										<c:url value="/image?fname=seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
-											${list.product.seller.sellerName } - Mã đơn hàng: ${list.cartId}
+											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
 										<hr>
 									</div>
 								</div>
@@ -381,33 +383,33 @@
 												<li><span class="gender text-uppercase"></span></li>
 												<li class="pull-right">
 													<c:if test="${list.cart.status==0}">
-														<button type="button" class="btn btn-warning">Chờ xác nhận</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop">Chờ lấy hàng
+														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
-														<button type="button" class="btn btn-warning">Đang giao</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("delivery")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==3}">
-														<button type="button" class="btn btn-success">Đã giao</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("delivered")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==4}">
-														<button type="button" class="btn btn-success">Đã hủy</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
 													</c:if>
 
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
+												<span class="compare-in"><%=showLanguage.get("unitprice")%>:  ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
-												<li class="compare-in">Số lượng: ${list.quantity}</li>
+												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
 											</ul>
 											<br>
-											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
+											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
+													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -415,13 +417,13 @@
 								<c:if test="${list.cart.status==0}">
 									<a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
 									   class="center">
-										<button type="button" class="btn btn-danger">Yêu cầu hủy</button>
+										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
 								<c:if test="${list.cart.status==1}">
 								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
 								   class="center">
-									<button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 									</c:if>
 							</div>
 						</c:if>
@@ -441,7 +443,7 @@
 										<c:url value="/image?fname=seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
-											${list.product.seller.sellerName } - Mã đơn hàng: ${list.cartId}
+											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
 										<hr>
 									</div>
 								</div>
@@ -462,33 +464,33 @@
 												<li><span class="gender text-uppercase"></span></li>
 												<li class="pull-right">
 													<c:if test="${list.cart.status==0}">
-														<button type="button" class="btn btn-warning">Chờ xác nhận</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop">Chờ lấy hàng
+														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
-														<button type="button" class="btn btn-warning">Đang giao</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("delivery")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==3}">
-														<button type="button" class="btn btn-success">Đã giao</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("delivered")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==4}">
-														<button type="button" class="btn btn-success">Đã hủy</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
 													</c:if>
 
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
+												<span class="compare-in"><%=showLanguage.get("unitprice")%>:  ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
-												<li class="compare-in">Số lượng: ${list.quantity}</li>
+												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
 											</ul>
 											<br>
-											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
+											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
+													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -496,13 +498,13 @@
 								<c:if test="${list.cart.status==0}">
 									<a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
 									   class="center">
-										<button type="button" class="btn btn-danger">Yêu cầu hủy</button>
+										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
 								<c:if test="list.cart.status==1">
 								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
 								   class="center">
-									<button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 									</c:if>
 							</div>
 						</c:if>
@@ -517,7 +519,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<c:if test="${huy!=0}">
-								<span class="badge badge-danger badge-pill pull-right">Tổng đơn hàng: ${huy}</span>
+								<span class="badge badge-danger badge-pill pull-right"><%=showLanguage.get("Total order")%>: ${huy}</span>
 							</c:if>
 						</div>
 					</div>
@@ -530,7 +532,7 @@
 										<c:url value="/image?fname=seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
-											${list.product.seller.sellerName } - Mã đơn hàng: ${list.cartId}
+											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
 										<hr>
 									</div>
 								</div>
@@ -551,33 +553,33 @@
 												<li><span class="gender text-uppercase"></span></li>
 												<li class="pull-right">
 													<c:if test="${list.cart.status==0}">
-														<button type="button" class="btn btn-warning">Chờ xác nhận</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop">Chờ lấy hàng
+														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
-														<button type="button" class="btn btn-warning">Đang giao</button>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("delivery")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==3}">
-														<button type="button" class="btn btn-success">Đã giao</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("delivered")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==4}">
-														<button type="button" class="btn btn-success">Đã hủy</button>
+														<button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
 													</c:if>
 
 												</li>
 											</ul>
 											<div class="margin-bottom-10">
-												<span class="compare-in">Đơn giá: $ ${list.product.price}</span>
+												<span class="compare-in"><%=showLanguage.get("unitprice")%>:  ${list.product.price}</span>
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
-												<li class="compare-in">Số lượng: ${list.quantity}</li>
+												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
 											</ul>
 											<br>
-											<span class="pull-right title-price">Tổng tiền thanh toán:
-													<span class="badge badge-success badge-pill">$ ${list.quantity * list.product.price}</span>
+											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
+													<span class="badge badge-success badge-pill"> ${list.quantity * list.product.price}</span>
 												</span>
 										</div>
 									</div>
@@ -585,13 +587,13 @@
 								<c:if test="${list.cart.status==0}">
 									<a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
 									   class="center">
-										<button type="button" class="btn btn-danger">Yêu cầu hủy</button>
+										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
 								<c:if test="${list.cart.status==1}">
 								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
 								   class="center">
-									<button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 									</c:if>
 							</div>
 						</c:if>

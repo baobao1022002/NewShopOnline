@@ -12,9 +12,9 @@ public class CartServiceImpl implements ICartService{
 
 	@Override
 	public void insert(Cart cart) {
-		cartDao.insert(cart);
-		
+		cartDao.insert( cart);
 	}
+
 
 	@Override
 	public void update(Cart cart) {

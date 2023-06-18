@@ -73,11 +73,11 @@
 					<c:forEach items="${productSeachByName }" var="p" >
 
 					<div class="filter-results">
-					
+
 						<div
 							class="list-product-description product-description-brd margin-bottom-30">
 							<div class="row">
-							
+
 								<div class="col-sm-4">
 								<c:url value="/image?fname=${p.image }" var="imgUrl"></c:url>
 									<a href="${pageContext.request.contextPath }/product/detail?id=${p.id}"><img
@@ -85,13 +85,13 @@
 										src="${imgUrl}" alt=""></a>
 								</div>
 								<div class="col-sm-8 product-description">
-									
-									
+
+
 									<div class="overflow-h margin-bottom-5">
 										<ul class="list-inline overflow-h">
 											<li><h4 class="title-price">
 													<a href="${pageContext.request.contextPath }/product/detail?id=${p.id}">${p.name }</a>
-													
+
 												</h4></li>
 											<li><span class="gender text-uppercase">${p.category.name }</span></li>
 											<li class="pull-right">
@@ -105,12 +105,12 @@
 											</li>
 										</ul>
 										<div class="margin-bottom-10">
-											<span class="title-price margin-right-10">$ ${p.price }.0</span> <span
-												class="title-price line-through">$ ${p.price *1.25 }</span>
-											
+											<span class="title-price margin-right-10">${p.price }.0</span> <span
+												class="title-price line-through"> ${p.price *1.25 }</span>
+
 										</div>
 										<p class="margin-bottom-20">${p.des }</p>
-										
+
 										<ul class="list-inline add-to-wishlist margin-bottom-20">
 											<li class="wishlist-in"><i class="fa fa-heart"></i> <a
 												href="${pageContext.request.contextPath }/product/detail?id=${p.id}">Add to Wishlist</a></li>
@@ -120,12 +120,12 @@
 										<a href="${pageContext.request.contextPath }/product/detail?id=${p.id}" ><button type="button" class="btn-u btn-u-sea-shop">Add
 											to Cart</button></a>
 									</div>
-									
-									
-									
-								</div>								
+
+
+
+								</div>
 							</div>
-							
+
 						</div>
 
 					</div>

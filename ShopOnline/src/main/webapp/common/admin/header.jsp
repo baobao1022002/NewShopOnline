@@ -1,6 +1,19 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url value="/template/assets" var="url"></c:url>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
 
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
@@ -414,23 +427,18 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="${pageContext.request.contextPath }/member-myaccount">
-								<i class="icon-user"></i> My Profile </a>
+								<a href="<c:url value="/ChangeProfile"></c:url>">
+								<i class="icon-user"></i><%=showLanguage.get("account")%></a>
 							</li>
 							
-							<li>
-								<a href="inbox.html">
-								<i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
-								3 </span>
-								</a>
-							</li>
+
 							
 							<li class="divider">
 							</li>
 							
 							<li>
 								<a href="<c:url value="/logout"></c:url>">
-								<i class="icon-key"></i> Log Out </a>
+								<i class="icon-key"></i><%=showLanguage.get("logout")%></a>
 							</li>
 						</ul>
 					</li>

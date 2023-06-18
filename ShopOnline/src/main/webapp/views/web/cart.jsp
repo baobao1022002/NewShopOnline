@@ -32,7 +32,7 @@
 							type="button" class="close">×</button></a>
 					<div class="overflow-h">
 						<span>${map.value.product.name }</span> <small>${map.value.quantity }
-							* ${map.value.product.price }.0 $ </small>
+							* ${map.value.product.price }.0  </small>
 					</div></li>
 			</c:forEach>
 
@@ -43,7 +43,7 @@
 					<c:forEach items="${sessionScope.cart}" var="map">
 						<c:set var="total" value="${total + map.value.quantity * map.value.product.price}" />
 					</c:forEach>
-					<span class="pull-right subtotal-cost">$ ${total }</span>
+					<span class="pull-right subtotal-cost">${total }</span>
 					
 				</div>
 				<div class="row">
@@ -52,7 +52,7 @@
 							class="btn-u btn-brd btn-brd-hover btn-u-sea-shop btn-block"><%=showLanguage.get("viewcart")%></a>
 					</div>
 					<div class="col-xs-6">
-						<a href="${pageContext.request.contextPath}/member/order"
+						<a href="${pageContext.request.contextPath}/checkout-cart"
 							class="btn-u btn-u-sea-shop btn-block"><%=showLanguage.get("checkout")%></a>
 					</div>
 				</div>

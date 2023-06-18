@@ -2,7 +2,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@include file="/common/taglib.jsp" %><%
+<%@include file="/common/taglib.jsp" %>
+<%
     Map<String,String> showLanguage = new Language().vietnameseLanguage();
     String lang = (String) session.getAttribute("lang");
     if(lang!=null){
@@ -27,7 +28,7 @@
                             <table summary="Shopping cart">
                                 <tr>
                                     <th class="goods-page-image"><%=showLanguage.get("image")%></th>
-                                    <th class="goods-page-description"><%=showLanguage.get("desription")%></th>
+                                    <th class="goods-page-description"><%=showLanguage.get("description")%></th>
                                     <th class="goods-page-ref-no"><%=showLanguage.get("seller")%></th>
                                     <th class="goods-page-quantity"><%=showLanguage.get("quantity")%></th>
                                     <th class="goods-page-price"><%=showLanguage.get("unitprice")%></th>
@@ -85,10 +86,10 @@
                                             </form>
                                         </td>
                                         <td class="goods-page-price">
-                                            <strong><span>$</span>${map.value.product.price}</strong>
+                                            <strong>${map.value.product.price}</strong>
                                         </td>
                                         <td class="goods-page-total">
-                                            <strong><span>$</span>${map.value.product.price * map.value.quantity}
+                                            <strong>${map.value.product.price * map.value.quantity}
                                             </strong>
                                         </td>
                                         <td class="del-goods-col">
@@ -110,23 +111,23 @@
                                         <c:set var="total"
                                                value="${total+map.value.quantity * map.value.product.price}"/>
                                     </c:forEach>
-                                    <strong class="price"><span>$</span>${total}</strong>
+                                    <strong class="price">${total}</strong>
                                 </li>
                                 <li>
                                     <em><%=showLanguage.get("shippingcost")%></em>
                                     <c:set var="ship" value="${total*0.005 }"></c:set>
-                                    <strong class="price"><span>$</span>${ship}</strong>
+                                    <strong class="price">${ship}</strong>
                                 </li>
                                 <li class="shopping-total-price">
                                     <em><%=showLanguage.get("Total")%></em>
-                                    <strong class="price"><span>$</span>${total+ship}</strong>
+                                    <strong class="price">${total+ship}</strong>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <a href="${pageContext.request.contextPath}/home" class="btn btn-default"><i
                             class="fa fa-shopping-cart" style="font-size: 20px;color: white" title="<%=showLanguage.get("continueshopping")%>"></i></a>
-                    <a href="${pageContext.request.contextPath}/member/order" class="btn btn-primary"><i
+                    <a href="${pageContext.request.contextPath}/checkout-cart" class="btn btn-primary"><i
                             class="fa fa-check" style="font-size: 20px;color: white" title="<%=showLanguage.get("checkout")%>"></i></a>
                 </div>
             </div>

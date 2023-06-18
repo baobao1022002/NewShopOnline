@@ -106,8 +106,8 @@
 											
 														
 											<span class="gender text-uppercase">${p.category.name } - ${p.isseller.sell_name}</span> 
-													<span class="title-price">$${p.price }.0</span> <span
-												class="line-through"><small>$${p.price *1.25 }</small></span>
+													<span class="title-price">${p.price }.0</span> <span
+												class="line-through"><small>${p.price *1.25 }</small></span>
 
 										</div>
 										

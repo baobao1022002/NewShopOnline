@@ -5,7 +5,10 @@ import vn.projectLTW.model.Cart;
 import java.util.List;
 
 public interface ICartService {
+//	void insert(Cart cart, String buyerName,String buyerEmail, String buyerPhone, String address, String province, String district, String payment);
+
 	void insert(Cart cart);
+
 	void update(Cart cart);
 	void delete(String id);
 	void updateStatus(String id,int st);

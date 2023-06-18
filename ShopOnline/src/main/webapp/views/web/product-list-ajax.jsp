@@ -25,17 +25,17 @@
 					<li class="list-group-item clearfix">
 						<a href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>"><img style="width:22px; margin-right:10px" src="<c:url value="/image?fname=category/${cateList.images }" ></c:url>"><i class="fa fa-angle-right width="22px"></i>${cateList.categoryName}</a>
 					</li>
-				</c:forEach>			
-			
+				</c:forEach>
+
 			</ul>
-			
+
 			<ul class="list-group margin-bottom-25 sidebar-menu">
 				<c:forEach items="${sellerList}" var="sellerList">
 					<li class="list-group-item clearfix">
 						<a href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img style="width:22px" alt="" src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>"> <i class="fa fa-angle-right width="22px""></i>${sellerList.sellerName}</a>
 					</li>
-				</c:forEach>			
-			
+				</c:forEach>
+
 			</ul>
 
 			<div class="sidebar-filter margin-bottom-25">
@@ -63,7 +63,7 @@
 					<h3>
 						<a href="shop-item.html">Some Shoes in Animal with Cut Out</a>
 					</h3>
-					<div class="price">$31.00</div>
+					<div class="price">31.00</div>
 				</div>
 				<div class="item">
 					<a href="shop-item.html"><img
@@ -72,7 +72,7 @@
 					<h3>
 						<a href="shop-item.html">Some Shoes in Animal with Cut Out</a>
 					</h3>
-					<div class="price">$23.00</div>
+					<div class="price">23.00</div>
 				</div>
 				<div class="item">
 					<a href="shop-item.html"><img
@@ -81,7 +81,7 @@
 					<h3>
 						<a href="shop-item.html">Some Shoes in Animal with Cut Out</a>
 					</h3>
-					<div class="price">$86.00</div>
+					<div class="price">86.00</div>
 				</div>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 		<div class="col-md-9 col-sm-7">
 			<div class="row list-view-sorting clearfix">
 				<div class="col-md-2 col-sm-2 list-view">
-					<a href="#"><i class="fa fa-th-large"></i></a> 
+					<a href="#"><i class="fa fa-th-large"></i></a>
 					<a href="#"><i class="fa fa-th-list"></i></a>
 				</div>
 				<div class="col-md-10 col-sm-10">
@@ -149,12 +149,12 @@
 						<h3>
 							<a href="<c:url value="/product/detail?productId=${proList.productId}"></c:url>">${proList.productName}"</a>
 						</h3>
-						<div class="pi-price">$ ${proList.price}"</div>
+						<div class="pi-price">${proList.price}"</div>
 						<a href="#" class="btn btn-default add2cart"><%=showLanguage.get("addtocart")%></a>
 					</div>
-				</div> 
+				</div>
 				<!-- PRODUCT ITEM END -->
-				
+
 				   	<!-- BEGIN fast view of a product -->
 						<div id="product-pop-up${proList.productId}" style="display: none; width: 700px;">
 							<div class="product-page product-pop-up${proList.productId}">
@@ -177,7 +177,7 @@
 										<h2>${proList.productName}</h2>
 										<div class="price-availability-block clearfix">
 											<div class="price">
-												<strong><span>$</span>${proList.price }</strong> <em>$<span>${proList.price/0.8 }</span></em>
+												<strong>${proList.price }</strong> <em>$<span>${proList.price/0.8 }</span></em>
 											</div>
 												<div class="availability">
 													<%=showLanguage.get("inventory")%> <strong>${proList.stoke}</strong>
@@ -248,10 +248,10 @@
 						<!-- END fast view of a product -->
 			</c:forEach>
 			</div>
-	
+
 			<!-- END PRODUCT LIST -->
-	
-		
+
+
 		</div>
 		<!-- END CONTENT -->
 
@@ -261,12 +261,12 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 		$(window).scroll (function(){
-			if($(window).scrollTop() + $(window).height() >= $(document).height()){ 
+			if($(window).scrollTop() + $(window).height() >= $(document).height()){
 				loadAjax();
 			}
 		});
-	
-	
+
+
 		function loadAjax(){
 			var amount = document.getElementsByClassName("product").length;
 			$.ajax({
@@ -279,7 +279,7 @@
 					$("#content").append(data);
 				},
 					error: function(xhr){
-						
+
 					}
 		});
 		};

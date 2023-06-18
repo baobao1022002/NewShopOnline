@@ -144,4 +144,8 @@ public class UserServiceImpl implements IUserService {
 	public void setAccountLockedUntil(String userName, Date unlockTime) {
 		userDao.setAccountLockedUntil(userName, unlockTime);
 	}
+	@Override
+	public void changeProfile(int Id, String fullname, String email, String phone){
+		userDao.changeProfile(Id,fullname,email,phone);
+	}
 }
