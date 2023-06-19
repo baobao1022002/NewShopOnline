@@ -25,9 +25,9 @@
                 <c:forEach items="${categoryList}" var="cateList">
                     <li class="list-group-item clearfix">
                         <a href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>">
-							<img style="width:22px; margin-right:10px"
-                                src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">
-							<i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>
+                            <img style="width:22px; margin-right:10px"
+                                 src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">
+                            <i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>
                     </li>
                 </c:forEach>
             </ul>
@@ -44,21 +44,21 @@
 
             </ul>
 
-            <div class="sidebar-filter margin-bottom-25">
-                <h2>Filter</h2>
-                <h3>Availability</h3>
-                <div class="checkbox-list">
-                    <label><input type="checkbox"> Not Available (3)</label> <label><input
-                        type="checkbox"> In Stock (26)</label>
-                </div>
+            <%--            <div class="sidebar-filter margin-bottom-25">--%>
+            <%--                <h2>Filter</h2>--%>
+            <%--                <h3>Availability</h3>--%>
+            <%--                <div class="checkbox-list">--%>
+            <%--                    <label><input type="checkbox"> Not Available (3)</label> <label><input--%>
+            <%--                        type="checkbox"> In Stock (26)</label>--%>
+            <%--                </div>--%>
 
-                <h3>Price</h3>
-                <p>
-                    <label for="amount">Range:</label> <input type="text" id="amount"
-                                                              style="border: 0; color: #f6931f; font-weight: bold;">
-                </p>
-                <div id="slider-range"></div>
-            </div>
+            <%--                <h3>Price</h3>--%>
+            <%--                <p>--%>
+            <%--                    <label for="amount">Range:</label> <input type="text" id="amount"--%>
+            <%--                                                              style="border: 0; color: #f6931f; font-weight: bold;">--%>
+            <%--                </p>--%>
+            <%--                <div id="slider-range"></div>--%>
+            <%--            </div>--%>
 
 
         </div>
@@ -119,7 +119,7 @@
             </div>
             <!-- BEGIN PRODUCT LIST -->
             <c:if test="${empty productList }">
-                <div class="alert alert-success">không tìm thấy sản phẩm nảo</div>
+                <div class="alert alert-success">không tìm thấy sản phẩm nàox</div>
             </c:if>
             <div class="row product-list">
                 <c:forEach items="${productList}" var="proList">
@@ -139,9 +139,10 @@
                             <h3>
                                 <a href="<c:url value="/product/detail?productId=${proList.productId}"></c:url>">${proList.productName}"</a>
                             </h3>
-                            <div class="pi-price">$ ${proList.price}"</div>
+                            <div class="pi-price">${proList.price}</div>
                             <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
                                class="btn btn-default add2cart" class="btn btn-default add2cart">
+
                                 <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
                             </a>
                         </div>
@@ -172,8 +173,8 @@
                                     <h2>${proList.productName}</h2>
                                     <div class="price-availability-block clearfix">
                                         <div class="price">
-                                            <strong><span>$</span>${proList.price }</strong>
-                                            <em>$<span>${proList.price/0.8 }</span></em>
+                                            <strong>${proList.price }</strong>
+                                            <em><span>${proList.price/0.8 }</span></em>
                                         </div>
                                         <div class="availability">
                                             <%=showLanguage.get("inventory")%> <strong>${proList.stoke}</strong>
@@ -233,7 +234,7 @@
 
                                         </form>
                                         </td>
-
+                                        <br>
                                         <button class="btn btn-primary" type="submit" title="<%=showLanguage.get("addtocart")%>"><%=showLanguage.get("addtocart")%></button>
                                         <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
                                            class="btn btn-default" title="<%=showLanguage.get("seedetails")%>"><%=showLanguage.get("seedetails")%></a>
@@ -253,9 +254,9 @@
             <!-- BEGIN PAGINATOR -->
             <c:if test="${categoryId==0&&sellerId==0 }">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
-                        total
-                    </div>
+                        <%--                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10--%>
+                        <%--                        total--%>
+                        <%--                    </div>--%>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
                             <c:if test="${tag>1 }">
@@ -282,9 +283,9 @@
 
             <c:if test="${categoryId!=0&&sellerId==0 }">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
-                        total
-                    </div>
+                        <%--                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10--%>
+                        <%--                        total--%>
+                        <%--                    </div>--%>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
                             <c:if test="${tag>1 }">
@@ -311,9 +312,9 @@
 
             <c:if test="${categoryId==0&&sellerId!=0 }">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
-                        total
-                    </div>
+                        <%--                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10--%>
+                        <%--                        total--%>
+                        <%--                    </div>--%>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
                             <c:if test="${tag>1 }">

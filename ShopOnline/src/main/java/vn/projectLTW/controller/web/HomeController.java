@@ -388,8 +388,7 @@ public class HomeController extends HttpServlet {
 
                 userService.updateStatus(user);
 
-                out.println("div class=\"container\"><br/>\r\n" + "    <br/>\r\n"
-                        + "    <br/>Kích hoạt tài khoản thành công!<br/>\r\n" + "    <br/>\r\n" + "    <br/></div>");
+                out.println( "    <br/>Kích hoạt tài khoản thành công!<br/>\r\n" + "    <br/>\r\n" + "    <br/></div>");
 
                 log.setLevel(Log.ALERT);
                 log.setStatus(2);
@@ -398,8 +397,7 @@ public class HomeController extends HttpServlet {
                 logService.insert(log);
                 LOGGER.info("register successfull");
             } else {
-                out.println("div class=\"container\"><br/>\r\n" + "    <br/>\r\n"
-                        + "    <br/>Sai mã kích hoạt, vui lòng kiểm tra lại!<br/>\r\n" + "    <br/>\r\n"
+                out.println( "    <br/>Sai mã kích hoạt, vui lòng kiểm tra lại!<br/>\r\n" + "    <br/>\r\n"
                         + "    <br/></div>");
             }
         } catch (Exception e) {
