@@ -1,5 +1,18 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
+<%
+	Map<String,String> showLanguage = new Language().vietnameseLanguage();
+	String lang = (String) session.getAttribute("lang");
+	if(lang!=null){
+		if(lang.equals("Vietnamese")){
+			showLanguage = new Language().vietnameseLanguage();
+		} else if (lang.equals("English")) {
+			showLanguage = new Language().englishLanguage();
+
+		}
+	}%>
 <c:url value="/template/assets" var="url"></c:url>
 
 <!-- BEGIN HEADER -->
@@ -405,32 +418,27 @@
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 					<li class="dropdown dropdown-user">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-			<%-- <img alt="" class="img-circle" src="<c:url value="/image?fname=${sessionScope.account.avatar }"/>"/>  --%>						
- 						<img alt="" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>
-						
-						<span class="username username-hide-on-mobile">
-						${sessionScope.account.fullName} </span>
-						<i class="fa fa-angle-down"></i>
+							<%-- <img alt="" class="img-circle" src="<c:url value="/image?fname=${sessionScope.account.avatar }"/>"/>  --%>
+							<img alt="" class="img-circle" src="<c:url value="/image?fname=users/${sessionScope.account.images}"/>"/>
+
+							<span class="username username-hide-on-mobile">
+								${sessionScope.account.fullName} </span>
+							<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="${pageContext.request.contextPath }/member-myaccount">
-								<i class="icon-user"></i> My Profile </a>
+								<a href="<c:url value="/ChangeProfile"></c:url>">
+									<i class="icon-user"></i><%=showLanguage.get("account")%></a>
 							</li>
-							
-							<li>
-								<a href="inbox.html">
-								<i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
-								3 </span>
-								</a>
-							</li>
-							
+
+
+
 							<li class="divider">
 							</li>
-							
+
 							<li>
 								<a href="<c:url value="/logout"></c:url>">
-								<i class="icon-key"></i> Log Out </a>
+									<i class="icon-key"></i><%=showLanguage.get("logout")%></a>
 							</li>
 						</ul>
 					</li>

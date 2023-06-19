@@ -23,7 +23,7 @@ public class CartDaoImpl implements ICartDao{
 
 	@Override
 	public void insert(Cart cart) {
-		String sql="Insert into cart(cartId,userId,buyDate,status) values(?,?,?,?)";
+		String sql="INSERT INTO cart (cartId, userId, buyDate, status, buyerName, buyerEmail, buyerPhone, buyerAddress, buyerProvince, buyerDistrict, payment) values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
@@ -31,6 +31,13 @@ public class CartDaoImpl implements ICartDao{
 			ps.setInt(2, cart.getBuyer().getUserId());
 			ps.setDate(3, new Date(cart.getBuyDate().getTime()));
 			ps.setInt(4, cart.getStatus());
+			ps.setString(5,cart.getBuyerName());
+			ps.setString(6,cart.getBuyerEmail());
+			ps.setString(7,cart.getBuyerPhone());
+			ps.setString(8,cart.getAddress());
+			ps.setString(9,cart.getProvince());
+			ps.setString(10,cart.getDistrict());
+			ps.setString(11,cart.getPayment());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

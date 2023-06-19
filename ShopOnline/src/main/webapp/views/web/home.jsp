@@ -212,14 +212,14 @@
 
 <div class="main">
     <div class="container-fluid">
-<%--        <%--%>
-<%--            String id = request.getAttribute("id").toString();--%>
-<%--            String name = request.getAttribute("name").toString();--%>
-<%--            String email = request.getAttribute("email").toString();--%>
-<%--            out.print("Id: " + id);--%>
-<%--            out.print("<br/>Name: " + name);--%>
-<%--            out.print("<br/>Email: " + email);--%>
-<%--        %>--%>
+        <%--        <%--%>
+        <%--            String id = request.getAttribute("id").toString();--%>
+        <%--            String name = request.getAttribute("name").toString();--%>
+        <%--            String email = request.getAttribute("email").toString();--%>
+        <%--            out.print("Id: " + id);--%>
+        <%--            out.print("<br/>Name: " + name);--%>
+        <%--            out.print("<br/>Email: " + email);--%>
+        <%--        %>--%>
         <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SALE PRODUCT -->
@@ -270,18 +270,22 @@
                                                                    src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
 
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
-                                            <img alt="Berry Lace Dress"
-                                               src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                <img alt="Berry Lace Dress"
+                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
 
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>">
                                                 <img
-                                                    alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
+                                                        alt="Berry Lace Dress"
+                                                        src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image5 }"></c:url>">
                                                 <img
                                                         alt="Berry Lace Dress"
                                                         src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
                                             <br>
+
+
+
+
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
@@ -290,8 +294,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
@@ -396,8 +400,8 @@
                                                class="active"><img alt="Berry Lace Dress"
                                                                    src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
-                                            <img alt="Berry Lace Dress"
-                                               src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                <img alt="Berry Lace Dress"
+                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
                                                     src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
@@ -407,87 +411,87 @@
                                                     alt="Berry Lace Dress"
                                                     src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
 
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <h2>${proList.productName}</h2>
+                                            <h4><%=showLanguage.get("category")%>: ${proList.category.categoryName} -
+                                                <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
+                                            <div class="price-availability-block clearfix">
+                                                <div class="price">
+                                                    <strong>${proList.price }</strong>
+                                                    <em><span>${proList.price/0.8 }</span></em>
+                                                </div>
+                                                <div class="availability">
+                                                    <%=showLanguage.get("inventory")%>: <strong>${proList.amount}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="description">
+                                                <p>${proList.description }</p>
+                                            </div>
+                                            <div class="product-page-options">
+                                                <div class="pull-left">
+                                                    <label class="control-label"><%=showLanguage.get("size")%>:</label> <select
+                                                        class="form-control input-sm">
+                                                    <option>L</option>
+                                                    <option>M</option>
+                                                    <option>XL</option>
+                                                </select>
+                                                </div>
+                                                <div class="pull-left">
+                                                    <label class="control-label"><%=showLanguage.get("color")%>:</label> <select
+                                                        class="form-control input-sm">
+                                                    <option>Red</option>
+                                                    <option>Blue</option>
+                                                    <option>Black</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="product-page-cart">
+                                                <form name="f1" method="get"
+                                                      action="<c:url value="/member/cart/add"></c:url>">
+                                                    <input type="text" name="pId" id="pid2"
+                                                           value="${proList.productId}" hidden="">
+                                                    <input type="text" id="stock2${proList.productId}" value="${proList.stoke}"
+                                                           hidden="">
+
+                                                    <button type="button" class="quantity-button"
+                                                            name='subtract${proList.productId}'
+                                                            onclick='javascript: subtractQty3(${proList.productId});'
+                                                            value="-">-
+                                                    </button>
+
+                                                    <input readonly type="text" name="quantity"
+                                                           value="1"
+                                                           id="product-quantity2${proList.productId}"
+                                                           style="width: 50px"/>
+                                                    <button type="button" class="quantity-button"
+                                                            name='add${proList.productId}'
+                                                            onclick='javascript: subtractQty4(${proList.productId});'
+                                                            value="+">+
+                                                    </button>
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
+
+                                                </form>
+                                                <div class="product-quantity">
+                                                    <input id="product-quantity2" type="text" value="1" readonly
+                                                           name="product-quantity2" class="form-control input-sm">
+                                                </div>
+                                                <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
+                                                   class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>
+                                                <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
+                                                   class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-9">
                                         <h2>${proList.productName}</h2>
-                                        <h4><%=showLanguage.get("category")%>: ${proList.category.categoryName} -
-                                            <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
-                                            </div>
-                                            <div class="availability">
-                                                <%=showLanguage.get("inventory")%>: <strong>${proList.amount}</strong>
-                                            </div>
-                                        </div>
-                                        <div class="description">
-                                            <p>${proList.description }</p>
-                                        </div>
-                                        <div class="product-page-options">
-                                            <div class="pull-left">
-                                                <label class="control-label"><%=showLanguage.get("size")%>:</label> <select
-                                                    class="form-control input-sm">
-                                                <option>L</option>
-                                                <option>M</option>
-                                                <option>XL</option>
-                                            </select>
-                                            </div>
-                                            <div class="pull-left">
-                                                <label class="control-label"><%=showLanguage.get("color")%>:</label> <select
-                                                    class="form-control input-sm">
-                                                <option>Red</option>
-                                                <option>Blue</option>
-                                                <option>Black</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="product-page-cart">
-                                            <form name="f1" method="get"
-                                                  action="<c:url value="/member/cart/add"></c:url>">
-                                                <input type="text" name="pId" id="pid2"
-                                                       value="${proList.productId}" hidden="">
-                                                <input type="text" id="stock2${proList.productId}" value="${proList.stoke}"
-                                                       hidden="">
-
-                                                <button type="button" class="quantity-button"
-                                                        name='subtract${proList.productId}'
-                                                        onclick='javascript: subtractQty3(${proList.productId});'
-                                                        value="-">-
-                                                </button>
-
-                                                <input readonly type="text" name="quantity"
-                                                       value="1"
-                                                       id="product-quantity2${proList.productId}"
-                                                       style="width: 50px"/>
-                                                <button type="button" class="quantity-button"
-                                                        name='add${proList.productId}'
-                                                        onclick='javascript: subtractQty4(${proList.productId});'
-                                                        value="+">+
-                                                </button>
-                                                &nbsp;
-                                                &nbsp;
-                                                <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
-
-                                            </form>
-                                            <div class="product-quantity">
-                                                <input id="product-quantity2" type="text" value="1" readonly
-                                                       name="product-quantity2" class="form-control input-sm">
-                                            </div>
-                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
-                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>
-                                            <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
-                                               class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
-                                        </div>
-                                    </div>
-
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-9">
-                                        <h2>${proList.productName}</h2>
-                                        <div class="price-availability-block clearfix">
-                                            <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 Số lượng tồn: <strong>${proList.amount}</strong>
@@ -543,12 +547,12 @@
                                                 <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
 
                                             </form>
-<%--                                            <div class="product-quantity">--%>
-<%--                                                <input id="product-quantity2" type="text" value="1" readonly--%>
-<%--                                                       name="product-quantity2" class="form-control input-sm">--%>
-<%--                                            </div>--%>
-<%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
-<%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
+                                                <%--                                            <div class="product-quantity">--%>
+                                                <%--                                                <input id="product-quantity2" type="text" value="1" readonly--%>
+                                                <%--                                                       name="product-quantity2" class="form-control input-sm">--%>
+                                                <%--                                            </div>--%>
+                                                <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
+                                                <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
                                                class="btn btn-default">Xem chi tiết</a>
                                         </div>
@@ -599,7 +603,7 @@
                                 <h3>
                                     <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>">${proList.productName}</a>
                                 </h3>
-                                <div class="pi-price">$${proList.price}</div>
+                                <div class="pi-price">${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
                                    class="btn btn-default add2cart" class="btn btn-default add2cart">
                                     <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
@@ -623,8 +627,8 @@
                                                class="active"><img alt="Berry Lace Dress"
                                                                    src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
-                                            <img alt="Berry Lace Dress"
-                                               src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                <img alt="Berry Lace Dress"
+                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
                                                     src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
@@ -642,8 +646,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
@@ -699,13 +703,13 @@
 
                                             </form>
 
-                                        <%--                                            <div class="product-quantity">--%>
-<%--                                                <input id="product-quantity3" type="text" value="1" readonly--%>
-<%--                                                       name="product-quantity3" class="form-control input-sm">--%>
-<%--                                            </div>--%>
+                                                <%--                                            <div class="product-quantity">--%>
+                                                <%--                                                <input id="product-quantity3" type="text" value="1" readonly--%>
+                                                <%--                                                       name="product-quantity3" class="form-control input-sm">--%>
+                                                <%--                                            </div>--%>
 
-<%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
-<%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
+                                                <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
+                                                <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
                                                class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                         </div>
@@ -748,7 +752,7 @@
                                     <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>">${proList.productName}</a>
 
                                 </h3>
-                                <div class="pi-price">$ ${proList.price}</div>
+                                <div class="pi-price"> ${proList.price}</div>
                                 <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
                                    class="btn btn-default add2cart" class="btn btn-default add2cart">
                                     <i class="fa fa-shopping-cart" title="  <%=showLanguage.get("addtocart")%>" style="font-size: 20px"></i>
@@ -772,7 +776,7 @@
                                                                    src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
                                                 <img alt="Berry Lace Dress"
-                                               src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
                                                     src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
@@ -788,8 +792,8 @@
                                             <%=showLanguage.get("shop")%>: ${proList.seller.sellerName }</h4>
                                         <div class="price-availability-block clearfix">
                                             <div class="price">
-                                                <strong><span>$</span>${proList.price }</strong>
-                                                <em>$<span>${proList.price/0.8 }</span></em>
+                                                <strong>${proList.price }</strong>
+                                                <em><span>${proList.price/0.8 }</span></em>
                                             </div>
                                             <div class="availability">
                                                 <%=showLanguage.get("inventory")%>: <strong>${proList.stoke}</strong>
@@ -844,12 +848,12 @@
                                                 <button type="submit" class="btn btn-primary"><%=showLanguage.get("addtocart")%></button>
 
                                             </form>
-<%--                                            <div class="product-quantity">--%>
-<%--                                                <input id="product-quantity" type="text" value="1" readonly--%>
-<%--                                                       name="product-quantity" class="form-control input-sm">--%>
-<%--                                            </div>--%>
-<%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
-<%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
+                                                <%--                                            <div class="product-quantity">--%>
+                                                <%--                                                <input id="product-quantity" type="text" value="1" readonly--%>
+                                                <%--                                                       name="product-quantity" class="form-control input-sm">--%>
+                                                <%--                                            </div>--%>
+                                                <%--                                            <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"--%>
+                                                <%--                                               class="btn btn-primary add2cart" type="submit">Cho vào giỏ hàng</a>--%>
                                             <a href="<c:url value="/product/detail?productId=${proList.productId }"></c:url>"
                                                class="btn btn-default"><%=showLanguage.get("seedetails")%></a>
                                         </div>

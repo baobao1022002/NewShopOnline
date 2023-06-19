@@ -29,13 +29,40 @@
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
           crossorigin="anonymous">
 
-    <title>changePassword</title>
+    <title>change Password</title>
 </head>
 <body>
 <div class="container">
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-3">
+            <!--left col-->
+            <input name="id" value="${sessionScope.account.userId}" hidden="">
+            <div class="text-center">
+                <c:url value="${sessionScope.account.images }"
+                       var="imgUrl"></c:url>
+                <img src="${imgUrl }" width="60px" height="60px"
+                     class="avatar img-circle img-thumbnail" alt="avatar">
+
+
+                <p><%=showLanguage.get("username")%>:<span style="color: red"> ${sessionScope.account.userName}</span></p>
+
+            </div>
+            <hr>
+            <div class="list-group">
+
+
+                <a href="<c:url value='/ChangeProfile'/>"
+                   class="list-group-item list-group-item-action"><%=showLanguage.get("account")%></a>
+                <a href="<c:url value='/ChangePassword'/>"
+                   class="list-group-item list-group-item-action"><%=showLanguage.get("change password")%></a>
+                <a href="<c:url value='/member/orderbuy'/>"class="list-group-item list-group-item-action">
+                    <%=showLanguage.get("purchase order")%>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
             <c:if test="${not empty error}">
                 <div class="alert alert-danger" role="alert">
                         ${error}
@@ -51,21 +78,21 @@
                 <input type="hidden" class="form-control" id="Id" name="Id"
                        value="${sessionScope.account.userId}">
                 <div class="mb-3">
-                    <label>Mật khẩu cũ</label> <input type="password" required
-                         class="form-control" id="oldPass" name="oldPass" title="Nhập mật khẩu cũ" >
+                    <label>  <%=showLanguage.get("old password")%></label> <input type="password" required
+                                                                                  class="form-control" id="oldPass" name="oldPass" title="Nhập mật khẩu cũ" >
                 </div>
 
                 <div class="mb-3">
-                    <label>Mật khẩu mới</label> <input type="password" required
-                        class="form-control" id="newPass" name="newPass" title="Nhập mật khẩu mới">
+                    <label>  <%=showLanguage.get("new password")%></label> <input type="password" required
+                                                                                  class="form-control" id="newPass" name="newPass" title="Nhập mật khẩu mới">
                 </div>
 
                 <div class="mb-3">
-                    <label>Nhập lại mật khẩu</label> <input type="password" required
-                       class="form-control" id="confirmPass" name="confirmPass" title="Nhập lại mật khẩu">
+                    <label>  <%=showLanguage.get("confirmpassword")%></label> <input type="password" required
+                                                                                     class="form-control" id="confirmPass" name="confirmPass" title="Nhập lại mật khẩu">
                 </div>
                 <br>
-                <button  class="btn btn-primary" type="submit" style="margin-left: 47%" title="Thay đổi mật khẩu>">Thay đổi mật khẩu</button>
+                <button  class="btn btn-primary" type="submit" style="margin-left: 47%" title="Thay đổi mật khẩu>">  <%=showLanguage.get("Change the password")%></button>
 
             </form>
             <br>
