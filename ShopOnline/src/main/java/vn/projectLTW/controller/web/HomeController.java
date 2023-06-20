@@ -3,6 +3,7 @@ package vn.projectLTW.controller.web;
 import vn.projectLTW.model.*;
 import vn.projectLTW.service.*;
 import vn.projectLTW.service.Impl.*;
+import vn.projectLTW.util.CaptchaGenerator;
 import vn.projectLTW.util.Constant;
 import vn.projectLTW.util.Email;
 
@@ -268,6 +269,7 @@ public class HomeController extends HttpServlet {
         String userName = req.getParameter("userName");
         String passWord = req.getParameter("passWord");
         passWord = PasswordEncryption.toSHA1(passWord);
+        String captcha = req.getParameter("captcha");
         boolean isRemeberMe = false;
         String remember = req.getParameter("remember");
         if ("on".equals(remember)) {
@@ -281,24 +283,14 @@ public class HomeController extends HttpServlet {
         }
 
         String alertMsg = "";
-
-//        if (userName.isEmpty() || passWord.isEmpty()) {
-//            alertMsg = "Tài khoản hoặc mật khẩu không đúng";
-//            req.setAttribute("error", alertMsg);
-//
-//            log.setLevel(Log.ALERT);
-//            log.setStatus(2);
-//            log.setSrc("login false");
-//            log.setContent("Incorrect account or password");
-//            logService.insert(log);
-//            LOGGER.info("login false");
-//
-//            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
-//            return;
-//        }
-
-
-
+        // Lấy số ngẫu nhiên trên image
+        String captchaText = CaptchaGenerator.getCaptchaText();
+        // Thực hiện xác minh captcha
+        if (!captcha.equals(captchaText)) {
+            // Captcha không hợp lệ, hiển thị thông báo lỗi
+            req.setAttribute("error", "Nhập sai captcha");
+            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+        } else {
         Users user = userService.login(userName, passWord);
 
         if (user != null) {
@@ -367,7 +359,7 @@ public class HomeController extends HttpServlet {
 
             req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
 
-
+        }
         }
     }
 
