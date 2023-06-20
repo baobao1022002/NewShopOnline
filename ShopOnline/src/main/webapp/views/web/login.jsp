@@ -59,7 +59,11 @@
 						<label for="passWord"><%=showLanguage.get("password")%></label> <input type="password"
 							class="form-control" id="passWord" name="passWord" title="Nhập mật khẩu" required>
 					</div>
-					
+					<div>
+						<label for="captcha">Captcha:</label>
+						<input type="text" id="captcha" name="captcha" required>
+						<img src="captchaImage" alt="Captcha Image"><br><br>
+					</div>
 					<div class="col-xs-6">
 						<label class="checkbox">
 							<input type="checkbox" name="remember"/><i></i><%=showLanguage.get("remember")%>
