@@ -1,6 +1,19 @@
+<%@ page import="vn.projectLTW.util.Language" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+<%
+    Map<String,String> showLanguage = new Language().vietnameseLanguage();
+    String lang = (String) session.getAttribute("lang");
+    if(lang!=null){
+        if(lang.equals("Vietnamese")){
+            showLanguage = new Language().vietnameseLanguage();
+        } else if (lang.equals("English")) {
+            showLanguage = new Language().englishLanguage();
+
+        }
+    }%>
 <c:url value="/template/assets" var="url"></c:url>
 
 <div class="main">
@@ -29,26 +42,7 @@
                                     class="fa fa-angle-right" style="width:22px"></i>${sellerList.sellerName}</a>
                         </li>
                     </c:forEach>
-
                 </ul>
-
-                <%--            <div class="sidebar-filter margin-bottom-25">--%>
-                <%--                <h2>Filter</h2>--%>
-                <%--                <h3>Availability</h3>--%>
-                <%--                <div class="checkbox-list">--%>
-                <%--                    <label><input type="checkbox"> Not Available (3)</label> <label><input--%>
-                <%--                        type="checkbox"> In Stock (26)</label>--%>
-                <%--                </div>--%>
-
-                <%--                <h3>Price</h3>--%>
-                <%--                <p>--%>
-                <%--                    <label for="amount">Range:</label> <input type="text" id="amount"--%>
-                <%--                                                              style="border: 0; color: #f6931f; font-weight: bold;">--%>
-                <%--                </p>--%>
-                <%--                <div id="slider-range"></div>--%>
-                <%--            </div>--%>
-
-
             </div>
             <!-- END SIDEBAR -->
 
@@ -86,7 +80,7 @@
                                     <em><span>${product.price/0.25}</span></em>
                                 </div>
                                 <div class="availability">
-                                    Availability: <strong>${product.stoke}</strong>
+                                    <%=showLanguage.get("inventory")%>: <strong>${product.stoke}</strong>
                                 </div>
                             </div>
                             <div class="description">
@@ -94,7 +88,7 @@
                             </div>
                             <div class="product-page-options">
                                 <div class="pull-left">
-                                    <label class="control-label">Size:</label>
+                                    <label class="control-label"><%=showLanguage.get("size")%>:</label>
                                     <select class="form-control input-sm">
                                         <option>L</option>
                                         <option>M</option>
@@ -102,7 +96,7 @@
                                     </select>
                                 </div>
                                 <div class="pull-left">
-                                    <label class="control-label">Color:</label>
+                                    <label class="control-label"><%=showLanguage.get("color")%>:</label>
                                     <select class="form-control input-sm">
                                         <option>Red</option>
                                         <option>Blue</option>
@@ -147,14 +141,14 @@
                                 </br>
                                 </br>
                                 <a href="<c:url value="/member/cart/add?pId=${product.productId}&quantity=1"/>"
-                                   class="btn btn-primary add2cart">Thêm vào giỏ hàng</a>
+                                   class="btn btn-primary add2cart"><%=showLanguage.get("addtocart")%></a>
                             </div>
                             <div class="review">
                                 <input type="range" value="4" step="0.25" id="backing4">
                                 <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"
                                      data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
                                 </div>
-                                <a href="#">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Write a review</a>
+                               &nbsp;<a href="#">Viết đánh giá</a>
                             </div>
                             <ul class="social-icons">
                                 <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
@@ -167,8 +161,8 @@
 
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
-                                <li><a href="#Description" data-toggle="tab">Description</a></li>
-                                <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li>
+                                <li><a href="#Description" data-toggle="tab">Mô tả</a></li>
+                                <li class="active"><a href="#Reviews" data-toggle="tab">Đánh giá</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade" id="Description">
@@ -179,40 +173,32 @@
                                     <!--<p>There are no reviews for this product.</p>-->
                                     <div class="review-item clearfix">
                                         <div class="review-item-submitted">
-                                            <strong>Bob</strong>
-                                            <em>30/12/2013 - 07:37</em>
+                                            <strong>Hà</strong>
+                                            <em>01/02/2023 - 07:37</em>
                                             <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true"
                                                  data-rateit-readonly="true"></div>
                                         </div>
                                         <div class="review-item-content">
-                                            <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque
-                                                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel
-                                                arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec
-                                                luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales
-                                                lectus purus ut lorem.</p>
+                                            <p>Tôi rất hài lòng với chất lượng của sản phẩm quần áo của shop này. Đường may chắc chắn, không bị xù lông và màu sắc vẫn giữ nguyên sau một thời gian sử dụng.</p>
                                         </div>
                                     </div>
                                     <div class="review-item clearfix">
                                         <div class="review-item-submitted">
-                                            <strong>Mary</strong>
-                                            <em>13/12/2013 - 17:49</em>
+                                            <strong>Minh</strong>
+                                            <em>22/11/2022 - 17:49</em>
                                             <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true"
                                                  data-rateit-readonly="true"></div>
                                         </div>
                                         <div class="review-item-content">
-                                            <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque
-                                                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel
-                                                arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec
-                                                luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales
-                                                lectus purus ut lorem.</p>
+                                            <p>Sản phẩm quần áo của shop này thực sự tuyệt vời với chất lượng vượt trội. Chất liệu cao cấp và thiết kế tỉ mỉ tạo nên một sản phẩm vừa vặn, thoải mái và bền bỉ.</p>
                                         </div>
                                     </div>
 
                                     <!-- BEGIN FORM-->
                                     <form action="#" class="reviews-form" role="form">
-                                        <h2>Write a review</h2>
+                                        <h2>Viết đánh giá</h2>
                                         <div class="form-group">
-                                            <label for="name">Name <span class="require">*</span></label>
+                                            <label for="name">Họ tên<span class="require">*</span></label>
                                             <input type="text" class="form-control" id="name">
                                         </div>
                                         <div class="form-group">
@@ -220,11 +206,11 @@
                                             <input type="text" class="form-control" id="email">
                                         </div>
                                         <div class="form-group">
-                                            <label for="review">Review <span class="require">*</span></label>
+                                            <label for="review">Đánh giá <span class="require">*</span></label>
                                             <textarea class="form-control" rows="8" id="review"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="email">Rating</label>
+                                            <label for="email">Xếp hạng</label>
                                             <input type="range" value="4" step="0.25" id="backing5">
                                             <div class="rateit" data-rateit-backingfld="#backing5"
                                                  data-rateit-resetable="false" data-rateit-ispreset="true"
@@ -232,7 +218,7 @@
                                             </div>
                                         </div>
                                         <div class="padding-top-20">
-                                            <button type="submit" class="btn btn-primary">Send</button>
+                                            <button type="submit" class="btn btn-primary">Gửi</button>
                                         </div>
                                     </form>
                                     <!-- END FORM-->
