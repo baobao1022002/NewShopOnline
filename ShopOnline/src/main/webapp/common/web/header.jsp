@@ -129,7 +129,7 @@
                     <span class="sep"></span>
                     <i class="fa fa-search search-btn" title="<%=showLanguage.get("search")%>"></i>
                     <div class="search-box">
-                        <form method="post" action="SearchServlet">
+                        <form method="post" action="${pageContext.request.contextPath}/SearchServlet">
                             <div class="input-group">
                                 <input type="text" name="txtSearch" placeholder="<%=showLanguage.get("search")%>" class="form-control">
                                 <span class="input-group-btn">
