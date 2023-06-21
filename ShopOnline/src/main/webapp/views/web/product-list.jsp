@@ -119,7 +119,7 @@
             </div>
             <!-- BEGIN PRODUCT LIST -->
             <c:if test="${empty productList }">
-                <div class="alert alert-success">không tìm thấy sản phẩm nàox</div>
+                <div class="alert alert-success">không tìm thấy sản phẩm nào</div>
             </c:if>
             <div class="row product-list">
                 <c:forEach items="${productList}" var="proList">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <h3>
-                                <a href="<c:url value="/product/detail?productId=${proList.productId}"></c:url>">${proList.productName}"</a>
+                                <a href="<c:url value="/product/detail?productId=${proList.productId}"></c:url>">${proList.productName}</a>
                             </h3>
                             <div class="pi-price">${proList.price}</div>
                             <a href="<c:url value="/member/cart/add?pId=${proList.productId}&quantity=1"/>"
