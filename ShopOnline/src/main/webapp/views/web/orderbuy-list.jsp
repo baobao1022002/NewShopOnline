@@ -23,7 +23,7 @@
 			<!--left col-->
 			<input name="id" value="${sessionScope.account.userId}" hidden="">
 			<div class="text-center">
-				<c:url value="${sessionScope.account.images }"
+				<c:url value="/uploads/users/${sessionScope.account.images }"
 					   var="imgUrl"></c:url>
 				<img src="${imgUrl }" width="60px" height="60px"
 					 class="avatar img-circle img-thumbnail" alt="avatar">
@@ -96,7 +96,7 @@
 						<div class="list-product-description product-description-brd margin-bottom-30">
 							<div class="row">
 								<div class="col-sm-12">
-									<c:url value="/image?fname=seller/${list.product.seller.images }"
+									<c:url value="/uploads/seller/${list.product.seller.images }"
 										   var="imgURL"></c:url>
 									<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
 										${list.product.seller.sellerName } - <%=showLanguage.get("Code orders")%>: ${list.cartId}
@@ -105,7 +105,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-4">
-									<c:url value="/image?fname=products/${list.product.images}" var="imgURL"></c:url>
+									<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
 									<a href="${pageContext.request.contextPath}/product/detail?productId=${list.product.productId}"></a>
 									<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
 								</div>
@@ -197,7 +197,7 @@
 							<div class="list-product-description product-description-brd margin-bottom-30">
 								<div class="row">
 									<div class="col-sm-12">
-										<c:url value="/image?fname=seller/${list.product.seller.images}"
+										<c:url value="/uploads/seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
 											${list.product.seller.sellerName } - <%=showLanguage.get("Code orders")%>: ${list.cartId}
@@ -206,7 +206,7 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-4">
-										<c:url value="/image?fname=products/${list.product.images}" var="imgURL"></c:url>
+										<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
 										<a href="${pageContext.request.contextPath}/product/detail?productId=${list.productId}"></a>
 										<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
 									</div>
@@ -278,7 +278,7 @@
 							<div class="list-product-description product-description-brd margin-bottom-30">
 								<div class="row">
 									<div class="col-sm-12">
-										<c:url value="/image?fname=seller/${list.product.seller.images}"
+										<c:url value="/uploads/seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
 											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
@@ -287,7 +287,7 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-4">
-										<c:url value="/image?fname=products/${list.product.images}" var="imgURL"></c:url>
+										<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
 										<a href="${pageContext.request.contextPath}/product/detail?productId=${list.productId}"></a>
 										<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
 									</div>
@@ -359,7 +359,7 @@
 							<div class="list-product-description product-description-brd margin-bottom-30">
 								<div class="row">
 									<div class="col-sm-12">
-										<c:url value="/image?fname=seller/${list.product.seller.images}"
+										<c:url value="/uploads/seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
 											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
@@ -368,7 +368,7 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-4">
-										<c:url value="/image?fname=products/${list.product.images}" var="imgURL"></c:url>
+										<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
 										<a href="${pageContext.request.contextPath}/product/detail?productId=${list.productId}"></a>
 										<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
 									</div>
@@ -440,7 +440,7 @@
 							<div class="list-product-description product-description-brd margin-bottom-30">
 								<div class="row">
 									<div class="col-sm-12">
-										<c:url value="/image?fname=seller/${list.product.seller.images}"
+										<c:url value="/uploads/seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
 											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
@@ -449,7 +449,7 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-4">
-										<c:url value="/image?fname=products/${list.product.images}" var="imgURL"></c:url>
+										<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
 										<a href="${pageContext.request.contextPath}/product/detail?productId=${list.productId}"></a>
 										<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
 									</div>
@@ -529,7 +529,7 @@
 							<div class="list-product-description product-description-brd margin-bottom-30">
 								<div class="row">
 									<div class="col-sm-12">
-										<c:url value="/image?fname=seller/${list.product.seller.images}"
+										<c:url value="/uploads/seller/${list.product.seller.images}"
 											   var="imgURL"></c:url>
 										<img width="50px" class="img-circle img-thumbnail" src="${imgURL}" alt="">
 											${list.product.seller.sellerName } -  <%=showLanguage.get("Code orders")%>: ${list.cartId}
@@ -538,7 +538,7 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-4">
-										<c:url value="/image?fname=products/${list.product.images}" var="imgURL"></c:url>
+										<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
 										<a href="${pageContext.request.contextPath}/product/detail?productId=${list.productId}"></a>
 										<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
 									</div>

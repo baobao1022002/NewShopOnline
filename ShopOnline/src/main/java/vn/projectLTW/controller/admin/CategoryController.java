@@ -114,7 +114,7 @@ public class CategoryController extends HttpServlet {
 			Category oldCategory = categoryService.findOne(Integer.parseInt(id));
 			if (oldCategory.getImages() != null) {
 				String fileName = oldCategory.getImages();
-				UploadUtils.deleteFile(fileName, "\\category\\");
+				UploadUtils.deleteFile(fileName, "/category/");
 			}
 			categoryService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa Category thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
@@ -167,7 +167,7 @@ public class CategoryController extends HttpServlet {
 				//xử lí hình ảnh
 				String fileName=""+System.currentTimeMillis();
 				category.setImages(
-						UploadUtils.processUpload("images", req, Constant.DIR + "\\category\\", fileName));
+						UploadUtils.processUpload("images", req, Constant.DIR + "/category/", fileName));
 			}
 			//gọi pt update  trong service
 			categoryService.insert(category);
@@ -210,11 +210,11 @@ public class CategoryController extends HttpServlet {
 				if (oldCategory.getImages() != null) {
 					// xóa ảnh cũ đi
 					String fileName = oldCategory.getImages();
-					UploadUtils.deleteFile(fileName, "\\category\\");
+					UploadUtils.deleteFile(fileName, "/category/");
 					// xử lí hình ảnh
 					fileName = "" + System.currentTimeMillis();
 					category.setImages(
-							UploadUtils.processUpload("images", req, Constant.DIR + "\\category\\", fileName));
+							UploadUtils.processUpload("images", req, Constant.DIR + "/category/", fileName));
 
 				}
 			}

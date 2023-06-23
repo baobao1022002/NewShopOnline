@@ -27,7 +27,7 @@
                         <li class="list-group-item clearfix">
                             <a href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>">
                                 <img style="width:22px; margin-right:10px"
-                                     src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">
+                                     src="<c:url value="/uploads/category/${cateList.images }"></c:url>">
                                 <i class="fa fa-angle-right" style="width:22px"></i>${cateList.categoryName}</a>
                         </li>
                     </c:forEach>
@@ -38,7 +38,7 @@
                         <li class="list-group-item clearfix">
                             <a href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img
                                     style="width:22px" alt=""
-                                    src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>"> <i
+                                    src="<c:url value="/uploads/seller/${sellerList.images }"></c:url>"> <i
                                     class="fa fa-angle-right" style="width:22px"></i>${sellerList.sellerName}</a>
                         </li>
                     </c:forEach>
@@ -52,23 +52,23 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="product-main-image">
-                                <img src="<c:url value="/image?fname=products/${product.images}"></c:url>"
+                                <img src="<c:url value="/uploads/products/${product.images}"></c:url>"
                                      alt="Cool green dress with red bell" class="img-responsive"
-                                     data-BigImgsrc="<c:url value="/image?fname=products/${product.images}"></c:url>">
+                                     data-BigImgsrc="<c:url value="/uploads/products/${product.images}"></c:url>">
                             </div>
                             <div class="product-other-images">
                                 <a href="<c:url value="/image?fname=products/${product.image2}"></c:url>"
                                    rel="photos-lib"><img alt="Berry Lace Dress"
-                                                         src="<c:url value="/image?fname=products/${product.image2}"></c:url>"></a>
+                                                         src="<c:url value="/uploads/products/${product.image2}"></c:url>"></a>
                                 <a href="<c:url value="/image?fname=products/${product.image3}"></c:url>"
                                    class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                                 src="<c:url value="/image?fname=products/${product.image3}"></c:url>"></a>
+                                                                                 src="<c:url value="/uploads/products/${product.image3}"></c:url>"></a>
                                 <a href="<c:url value="/image?fname=products/${product.image4}"></c:url>"
                                    class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                                 src="<c:url value="/image?fname=products/${product.image4}"></c:url>"></a>
+                                                                                 src="<c:url value="/uploads/products/${product.image4}"></c:url>"></a>
                                 <a href="<c:url value="/image?fname=products/${product.image5}"></c:url>"
                                    class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress"
-                                                                                 src="<c:url value="/image?fname=products/${product.image5}"></c:url>"></a>
+                                                                                 src="<c:url value="/uploads/products/${product.image5}"></c:url>"></a>
 
                             </div>
                         </div>

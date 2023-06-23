@@ -125,7 +125,7 @@ public class ProductController extends HttpServlet {
 			Product oldProduct = productService.findOne(Integer.parseInt(id));
 			if (oldProduct.getImages() != null) {
 				String fileName = oldProduct.getImages();
-				UploadUtils.deleteFile(fileName, "\\products\\");
+				UploadUtils.deleteFile(fileName, "/products/");
 			}
 			productService.delete(Integer.parseInt(id)); // gọi hàm delete trong service để xóa product thông qua id
 			req.setAttribute("message", "Đã xóa thành công");
@@ -181,32 +181,32 @@ public class ProductController extends HttpServlet {
 				//xử lí hình ảnh
 				String fileName=""+System.currentTimeMillis();
 				product.setImages(
-						UploadUtils.processUpload("images", req, Constant.DIR + "\\products\\", fileName));
+						UploadUtils.processUpload("images", req, Constant.DIR + "/products/", fileName));
 			}
 			if(req.getPart("image2").getSize()!=0) {
 				//xử lí hình ảnh
 				String fileName=""+System.currentTimeMillis();
 				product.setImage2(
-						UploadUtils.processUpload("image2", req, Constant.DIR + "\\products\\", fileName));
+						UploadUtils.processUpload("image2", req, Constant.DIR + "/products/", fileName));
 			}
 			if(req.getPart("image3").getSize()!=0) {
 				//xử lí hình ảnh
 				String fileName=""+System.currentTimeMillis();
 				product.setImage3(
-						UploadUtils.processUpload("image3", req, Constant.DIR + "\\products\\", fileName));
+						UploadUtils.processUpload("image3", req, Constant.DIR + "/products/", fileName));
 			}
 			if(req.getPart("image4").getSize()!=0) {
 				//xử lí hình ảnh
 				String fileName=""+System.currentTimeMillis();
 				product.setImage4(
-						UploadUtils.processUpload("image4", req, Constant.DIR + "\\products\\", fileName));
+						UploadUtils.processUpload("image4", req, Constant.DIR + "/products/", fileName));
 			}
 
 			if(req.getPart("image5").getSize()!=0) {
 				//xử lí hình ảnh
 				String fileName=""+System.currentTimeMillis();
 				product.setImage5(
-						UploadUtils.processUpload("image5", req, Constant.DIR + "\\products\\", fileName));
+						UploadUtils.processUpload("image5", req, Constant.DIR + "/products/", fileName));
 			}
 			product.setCreateDate(new Date(System.currentTimeMillis()));
 
@@ -254,10 +254,10 @@ public class ProductController extends HttpServlet {
 				if(oldproduct.getImages()!=null) {
 					//xóa ảnh cũ đi
 					String fileName=oldproduct.getImages();
-					UploadUtils.deleteFile(fileName, "\\product\\");
+					UploadUtils.deleteFile(fileName, "/product/");
 					//xử lí hình ảnh
 					fileName=""+System.currentTimeMillis();
-					product.setImages(UploadUtils.processUpload("images", req, Constant.DIR+"\\products\\", fileName));
+					product.setImages(UploadUtils.processUpload("images", req, Constant.DIR+"/products/", fileName));
 				
 				}
 			}
