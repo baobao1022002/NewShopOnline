@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <c:url value="/template/assets" var="url"></c:url>
 <%
     Map<String,String> showLanguage = new Language().vietnameseLanguage();
@@ -231,7 +232,7 @@
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                    <img src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
@@ -259,7 +260,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-3">
                                         <div class="product-main-image">
-                                            <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                            <img src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                                  alt="Cool green dress with red bell 45" class="img-responsive">
                                         </div>
 
@@ -267,20 +268,20 @@
                                         <div class="product-other-images">
                                             <a href="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"
                                                class="active"><img alt="Berry Lace Dress"
-                                                                   src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
+                                                                   src="<c:url value="/uploads/products/${proList.image2 }"></c:url>"></a>
 
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
                                                 <img alt="Berry Lace Dress"
-                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                     src="<c:url value="/uploads/products/${proList.image3 }"></c:url>"></a>
 
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>">
                                                 <img
                                                         alt="Berry Lace Dress"
-                                                        src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
+                                                        src="<c:url value="/uploads/products/${proList.image4 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image5 }"></c:url>">
                                                 <img
                                                         alt="Berry Lace Dress"
-                                                        src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
+                                                        src="<c:url value="/uploads/products/${proList.image5 }"></c:url>"></a>
                                             <br>
 
 
@@ -377,11 +378,14 @@
                 <ul class="list-group margin-bottom-25 sidebar-menu">
 
                     <c:forEach items="${categoryList}" var="cateList">
+
                         <li class="list-group-item clearfix"><a
                                 href="<c:url value="/product/list?categoryId=${cateList.categoryId}&sellerId=0"></c:url>">
                             <img
                                     style="width: 22px; margin-right: 10px"
-                                    src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">
+<%--                            src="${context}/category/${cateList.images }" alt="#"/>--%>
+                                        src="<c:url value="/uploads/category/${cateList.images }"></c:url>">
+<%--                                    src="<c:url value="/image?fname=category/${cateList.images }"></c:url>">--%>
                             <i
                                     class="fa fa-angle-right"></i>${cateList.categoryName}</a></li>
 
@@ -391,25 +395,26 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-3">
                                         <div class="product-main-image">
-                                            <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+
+                                                <img src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                                  alt="Cool green dress with red bell 12" class="img-responsive">
                                         </div>
                                         <div class="product-other-images">
 
                                             <a href="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"
                                                class="active"><img alt="Berry Lace Dress"
-                                                                   src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
+                                                                   src="<c:url value="/uploads/products/${proList.image2 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
                                                 <img alt="Berry Lace Dress"
-                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                     src="<c:url value="/uploads/products/${proList.image3 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
+                                                    src="<c:url value="/uploads/products/${proList.image4 }"></c:url>"></a>
                                             <br>
 
                                             <a href="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
+                                                    src="<c:url value="/uploads/products/${proList.image5 }"></c:url>"></a>
 
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-9">
@@ -572,7 +577,7 @@
                         <li class="list-group-item clearfix"><a
                                 href="<c:url value="/product/list?sellerId=${sellerList.sellerId}&categoryId=0"></c:url>"><img
                                 style="width: 22px"
-                                src="<c:url value="/image?fname=seller/${sellerList.images }"></c:url>">
+                                src="<c:url value="/uploads/seller/${sellerList.images }"></c:url>">
                             <i class="fa fa-angle-right"></i>${sellerList.sellerName}</a></li>
                     </c:forEach>
 
@@ -591,7 +596,7 @@
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                    <img src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
@@ -619,22 +624,22 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-3">
                                         <div class="product-main-image">
-                                            <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                            <img src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                                  alt="Cool green dress with red bell 89" class="img-responsive">
                                         </div>
                                         <div class="product-other-images">
                                             <a href="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"
                                                class="active"><img alt="Berry Lace Dress"
-                                                                   src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
+                                                                   src="<c:url value="/uploads/products/${proList.image2 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
                                                 <img alt="Berry Lace Dress"
-                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                     src="<c:url value="/uploads/products/${proList.image3 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
+                                                    src="<c:url value="/uploads/products/${proList.image4 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
+                                                    src="<c:url value="/uploads/products/${proList.image5 }"></c:url>"></a>
                                             <br>
 
 
@@ -739,7 +744,7 @@
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
                                     <img
-                                            src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                            src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                             class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="<c:url value="/image?fname=products/${proList.images }"></c:url>"
@@ -766,23 +771,23 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-3">
                                         <div class="product-main-image">
-                                            <img src="<c:url value="/image?fname=products/${proList.images }"></c:url>"
+                                            <img src="<c:url value="/uploads/products/${proList.images }"></c:url>"
                                                  alt="Cool green dress with red bell 00" class="img-responsive">
                                         </div>
 
                                         <div class="product-other-images">
                                             <a href="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"
                                                class="active"><img alt="Berry Lace Dress"
-                                                                   src="<c:url value="/image?fname=products/${proList.image2 }"></c:url>"></a>
+                                                                   src="<c:url value="/uploads/products/${proList.image2 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image3 }"></c:url>">
                                                 <img alt="Berry Lace Dress"
-                                                     src="<c:url value="/image?fname=products/${proList.image3 }"></c:url>"></a>
+                                                     src="<c:url value="/uploads/products/${proList.image3 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image4 }"></c:url>"></a>
+                                                    src="<c:url value="/uploads/products/${proList.image4 }"></c:url>"></a>
                                             <a href="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"><img
                                                     alt="Berry Lace Dress"
-                                                    src="<c:url value="/image?fname=products/${proList.image5 }"></c:url>"></a>
+                                                    src="<c:url value="/uploads/products/${proList.image5 }"></c:url>"></a>
                                             <br>
                                         </div>
                                     </div>

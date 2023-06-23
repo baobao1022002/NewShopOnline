@@ -25,7 +25,7 @@
 			<!--left col-->
 			<input name="id" value="${sessionScope.account.userId}" hidden="">
 			<div class="text-center">
-				<c:url value="${sessionScope.account.images}"
+				<c:url value="/uploads/users/${sessionScope.account.images}"
 					   var="imgUrl"></c:url>
 				<img src="${imgUrl }" width="60px" height="60px"
 					 class="avatar img-circle img-thumbnail" alt="avatar">

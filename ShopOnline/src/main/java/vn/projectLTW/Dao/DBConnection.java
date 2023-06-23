@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 
 public class DBConnection {
-	private final static String serverName="localhost";//., 192.168.190.129
+	private final static String serverName="localhost";//., 192.168.190.129  localhost
 	private final static String dbName="shoponline" ;
 	private final static String  portNumber="3306";//8391  ,1433
 	private final static String  instance="";//SQL2019,MSQLSERVER

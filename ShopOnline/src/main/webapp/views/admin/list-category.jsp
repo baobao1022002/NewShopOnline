@@ -52,7 +52,7 @@
 							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
 						</c:if>
 						<c:if test="${category.images!=null }">
-							<c:url value="/image?fname=category/${category.images}" var="imgURL"></c:url>
+							<c:url value="/uploads/category/${category.images}" var="imgURL"></c:url>
 						</c:if>
 
 						<img alt="images" src="${imgURL}" width="80px" height="80px"
@@ -116,7 +116,7 @@
 						<c:forEach var="i" items="${categoryList}" varStatus="stt">
 							<tr>
 								<th scope="row">${i.categoryId}</th>
-								<td><c:url value="/image?fname=category/${i.images}"
+								<td><c:url value="/uploads/category/${i.images}"
 										var="imgURL"></c:url> <img width="80px" height="80px"
 									src="${imgURL}" class="rounded-circle"></td>
 								<td>${i.categoryName}</td>

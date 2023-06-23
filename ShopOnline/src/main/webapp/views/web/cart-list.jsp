@@ -38,7 +38,7 @@
                                     <tr>
                                         <td class="goods-page-image">
                                             <a href="<c:url value="/product/detail?productId=${map.value.product.productId}"></c:url>"><img
-                                                    src="<c:url value="/image?fname=products/${map.value.product.images}"></c:url>"
+                                                    src="<c:url value="/uploads/products/${map.value.product.images}"></c:url>"
                                                     alt="${map.value.product.productName}"></a>
                                         </td>
                                         <td class="goods-page-description">

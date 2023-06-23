@@ -52,7 +52,7 @@
 							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
 						</c:if>
 						<c:if test="${seller.images!=null }">
-							<c:url value="/image?fname=seller/${seller.images}" var="imgURL"></c:url>
+							<c:url value="/uploads/seller/${seller.images}" var="imgURL"></c:url>
 						</c:if>
 
 						<img alt="images" src="${imgURL}" width="80px" height="80px"

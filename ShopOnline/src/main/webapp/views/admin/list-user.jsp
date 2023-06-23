@@ -81,7 +81,7 @@
 							<c:url value="/template/images/avatar.png" var="imgURL"></c:url>
 						</c:if>
 						<c:if test="${user.images!=null }">
-							<c:url value="/image?fname=users/${user.images}" var="imgURL"></c:url>
+							<c:url value="/uploads/users/${user.images}" var="imgURL"></c:url>
 						</c:if>
 						
 						<img alt="images" src="${imgURL}" width="80px" height="80px" id="images" class="rounded-circle">
@@ -154,7 +154,7 @@
 							<tr>
 								<th scope="row">${i.userId}</th>
 								<td>
-									<c:url value="/image?fname=users/${i.images}" var="imgURL"></c:url>
+									<c:url value="/uploads/users/${i.images}" var="imgURL"></c:url>
 									<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">
 								</td>
 								<td>${i.userName}</td>
