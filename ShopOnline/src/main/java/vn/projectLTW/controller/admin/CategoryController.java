@@ -90,11 +90,7 @@ public class CategoryController extends HttpServlet {
 			req.setAttribute("category", category);
 
 		}
-		findAll(req, resp); // hiện danh sách User trong model
-
-		// chuyển về Views
-		RequestDispatcher dispacher = req.getRequestDispatcher("/views/admin/list-category.jsp");
-		dispacher.forward(req, resp);
+		 
 	}
 
 	private void findAll(HttpServletRequest req, HttpServletResponse resp) {
@@ -102,13 +98,6 @@ public class CategoryController extends HttpServlet {
 			List<Category> categoryList = categoryService.findAll();// gọi hàm findAll trong service trả về đối tượng
 																	// List<Users>
 			req.setAttribute("categoryList", categoryList);// đẩy ds lên Views
-
-			int countToTalOrder=cartService.countToTalOrder();
-			req.setAttribute("countToTalOrder", countToTalOrder);
-
-			double totalRevenue=cartService.totalRevenue();
-			req.setAttribute("totalRevenue",totalRevenue);
-
 
 		} catch (Exception e) {
 			e.printStackTrace();

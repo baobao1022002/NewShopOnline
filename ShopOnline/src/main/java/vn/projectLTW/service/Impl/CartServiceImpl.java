@@ -70,8 +70,8 @@ public class CartServiceImpl implements ICartService{
 	}
 
 	@Override
-	public List<Cart> orderByMonth(int month) {
-		return cartDao.orderByMonth(month);
+	public List<Cart> orderByMonth(int month,int year) {
+		return cartDao.orderByMonth(month,year);
 	}
 
 	@Override
@@ -85,8 +85,8 @@ public class CartServiceImpl implements ICartService{
 	}
 
 	@Override
-	public double revenueByMonth(int month) {
-		return cartDao.revenueByMonth(month);
+	public double revenueByMonth(int month,int year) {
+		return cartDao.revenueByMonth(month,year);
 	}
 
 }

@@ -172,118 +172,114 @@
 				</div>
 				<!-- END PAGE HEADER-->
 				<!-- BEGIN PAGE CONTENT-->
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-bottom-10">
-						<div class="dashboard-stat blue-madison">
-							<div class="visual">
-								<i class="fa fa-briefcase fa-icon-medium"></i>
-							</div>
-							<div class="details">
-								<div class="number">
-<%--									 $168,492.54--%>
-										<li>
-											<c:set var="total" value="${totalRevenue}"/>
-
-											<strong class="price">${total}</strong>
-										</li>
-<%--									<p class="font-weight-bold" name="payment" id="payment" >${total+ship}</p>--%>
-<%--									<input type="hidden" name="payment" value="${total+ship}">--%>
-								</div>
-								<div class="desc">
-									 Lifetime Sales
-								</div>
-							</div>
-							<a class="more" href="#">
-							View more <i class="m-icon-swapright m-icon-white"></i>
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<div class="dashboard-stat red-intense">
-							<div class="visual">
-								<i class="fa fa-shopping-cart"></i>
-							</div>
-							<div class="details">
-								<div class="number">
-<%--									1,127,390--%>
-									<li>
-										<c:set var="total" value="${revenueByMonth}"/>
-
-										<strong class="price">${total}</strong>
-									</li>
-								</div>
-								<div class="desc">
-									 Total Orders
-								</div>
-							</div>
-							<a class="more" href="#">
-							View more <i class="m-icon-swapright m-icon-white"></i>
-							</a>
-						</div>
-					</div>
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-bottom-10">
+		<div class="dashboard-stat blue-madison">
+			<div class="visual">
+				<i class="fa fa-briefcase fa-icon-medium"></i>
+			</div>
+			<div class="details">
+				<div class="number">
+					<li>
+						<c:set var="total" value="${totalRevenue}"/>
+						<strong class="price">${total}$</strong>
+					</li>
 
 				</div>
+				<div class="desc">
+					Total Revenue
+				</div>
+			</div>
+			<a class="more" href="#">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<div class="dashboard-stat red-intense">
+			<div class="visual">
+				<i class="fa fa-shopping-cart"></i>
+			</div>
+			<div class="details">
+				<div class="number">
+					<%--									1,127,390--%>
+					<li>
+						<c:set var="total" value="${countToTalOrder}"/>
 
-					<div class="search-box">
-						<div class="row">
-						<div class="input-group">
-							<input type="text" name="txtSearch" id="month"
-								   name="month" placeholder="Input month" class="form-control">
-							<span class="input-group-btn">
-								<button class="btn btn-primary" type="submit">Search</button>
+						<strong class="price">${total}</strong>
+					</li>
+				</div>
+				<div class="desc">
+					Total Orders
+				</div>
+			</div>
+			<a class="more" href="#">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+			</a>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+
+</div>
+
+<div class="row">
+	<div class="col-sm-1">
+		<label>Month</label>
+	</div>
+	<div class="col-sm-2">
+		<input type="text" name="month" id="month" placeholder="Input month" class="form-control">
+	</div>
+	<div class="col-sm-1" style="{margin-left:30px}">
+		<label style="{color:red}">Year</label>
+	</div>
+	<div class="col-sm-2">
+		<input type="text" name="year" id="year" placeholder="Input year" class="form-control">
+	</div>
+	<span class="input-group-btn">
+								<button href="${pageContext.request.contextPath}/seachOrder" class="btn btn-primary" type="submit">Search</button>
 							</span>
-						</div>
-
-					<div class="row">
-						<div class="col-sm-4">
-							<c:url value="/uploads/products/${list.product.images}" var="imgURL"></c:url>
-							<a href="${pageContext.request.contextPath}/product/detail?productId=${list.product.productId}"></a>
-							<img class="img-thumbnail" style="width: 100px" src="${imgURL}" alt="">
-						</div>
-						<div class="col-sm-8 product-description">
-							<div class="overflow-h margin-bottom-5">
-								<c:forEach items="${allCartList}" var="list">
-									<ul class="list-inline overflow-h">
-										<li>
-											<h4 class="titled-price">
-<%--												<a href="${pageContext.request.contextPath}/product/detail?productid=${list.product.productId}">${list.product.productName}</a>--%>
-													<a href="${pageContext.request.contextPath}/cart/detail?cartId=${list.cartId}">${list.cartId}</a>
-
-											</h4>
-										</li>
-										<li><span class="gender text-uppercase"></span></li>
-<%--										<li class="pull-right">--%>
-<%--											<button type="button" class="btn btn-warning">wait for confirmation</button>--%>
-
-<%--											<button type="button" class="btn btn-warning">waiting for the goods</button>--%>
-
-<%--											<button type="button" class="btn btn-warning">delivery</button>--%>
 
 
-<%--											<button type="button" class="btn btn-success">delivered</button>--%>
+</div>
 
+							<div class="row">
+								<div class="col-sm-12">
+									<table class="table table-striped table-bordered table-hover" id="sample_2">
+										<thead>
+										<tr>
+											<th scope="col">Cart ID</th>
+											<th scope="col">Payment</th>
+											<th scope="col">Buyer Name</th>
+											<th scope="col">Buy Date</th>
+											<th scope="col">Phone</th>
+											<th scope="col">Email</th>
+											<th scope="col">Adress</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="i" items="${allCartList}" >
+											<tr>
+												<th scope="row">${i.cartId}</th>
+<%--												<td>--%>
+<%--													<c:url value="/uploads/users/${i.images}" var="imgURL"></c:url>--%>
+<%--													<img width="80px" height="80px" src="${imgURL}" class="rounded-circle">--%>
+<%--												</td>--%>
+												<td>${i.payment}</td>
+												<td>${i.buyerName}</td>
+												<td>${i.buyDate}</td>
+												<td>${i.buyerPhone}</td>
+												<td>${i.buyerEmail}</td>
+												<td>${i.buyerAddress}</td>
 
-<%--											<button type="button" class="btn btn-success">cancelled</button>--%>
-<%--											--%>
-<%--										</li>--%>
-									</ul>
-									<div class="margin-bottom-10">
-										<span class="compare-in">Payment:  ${list.payment}</span>
-									</div>
-									<ul class="list-inline add-to-wishlist margin-bottom-20">
-										<li class="compare-in">userId: ${list.userId}</li>
-
-									</ul>
-									<br>
-<%--									<span class="pull-right title-price">subtotal:--%>
-<%--												<span class="badge badge-success badge-pill">${list.quantity * list.product.price}</span>--%>
-<%--											</span>--%>
-								</c:forEach>
-
+											</tr>
+										</c:forEach>
+										</tbody>
+									</table>
+								</div>
 
 							</div>
-						</div>
-					</div>
 <%--					<div class="col-md-12">--%>
 <%--						<!-- Begin: life time stats -->--%>
 <%--						<div class="portlet light">--%>
