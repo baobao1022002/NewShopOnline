@@ -180,10 +180,10 @@
 			</div>
 			<div class="details">
 				<div class="number">
-					<li>
+
 						<c:set var="total" value="${totalRevenue}"/>
-						<strong class="price">${total}$</strong>
-					</li>
+						<strong class="price">${total}</strong>
+
 
 				</div>
 				<div class="desc">
@@ -203,11 +203,11 @@
 			<div class="details">
 				<div class="number">
 					<%--									1,127,390--%>
-					<li>
+
 						<c:set var="total" value="${countToTalOrder}"/>
 
 						<strong class="price">${total}</strong>
-					</li>
+
 				</div>
 				<div class="desc">
 					Total Orders
@@ -227,13 +227,13 @@
 <div class="row">
 
 	<div class="col-sm-1">
-		<label>Month</label>
+		<h5 style="color:red;font-weight: bold">Month</h5>
 	</div>
 	<div class="col-sm-2">
 		<input type="text" name="month" id="month" placeholder="Input month" class="form-control">
 	</div>
 	<div class="col-sm-1" style="{margin-left:30px}">
-		<label style="{color:red}">Year</label>
+		<h5 style="color: red;font-weight: bold">Year</h5>
 	</div>
 	<div class="col-sm-2">
 		<input type="text" name="year" id="year" placeholder="Input year" class="form-control">
@@ -245,6 +245,81 @@
 
 </div>
 </form>
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-bottom-10" >
+		<div class="dashboard-stat blue-madison" style="background-color: darkcyan">
+			<div class="visual">
+				<i class="fa fa-briefcase fa-icon-medium"></i>
+			</div>
+			<div class="details">
+				<div class="number">
+
+						<c:set var="total" value="${revenueByMonth}"/>
+						<strong class="price">${total}</strong>
+
+
+				</div>
+				<div class="desc">
+					Revenue month ${param.month} year ${param.year}
+				</div>
+			</div>
+			<a class="more" href="#" style="background-color: darkcyan">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<div class="dashboard-stat red-intense" style="background-color: brown">
+			<div class="visual">
+				<i class="fa fa-shopping-cart"></i>
+			</div>
+			<div class="details">
+				<div class="number">
+					<%--									1,127,390--%>
+
+						<c:set var="total" value="${countOrderByMonth}"/>
+
+						<strong class="price">${total}</strong>
+
+				</div>
+				<div class="desc" >
+					Total orders month  ${param.month} year ${param.year}
+				</div>
+			</div>
+			<a class="more" href="#" style="background-color: brown">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+			</a>
+		</div>
+	</div>
+
+<%--	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">--%>
+<%--		<div class="dashboard-stat red-intense" style="background-color: brown">--%>
+<%--			<div class="visual">--%>
+<%--				<i class="fa fa-shopping-cart"></i>--%>
+<%--			</div>--%>
+<%--			<div class="details">--%>
+<%--				<div class="number">--%>
+<%--					&lt;%&ndash;									1,127,390&ndash;%&gt;--%>
+
+<%--					<c:set var="total" value="${bestSeller}"/>--%>
+
+<%--					<strong class="price">${total}</strong>--%>
+
+<%--				</div>--%>
+<%--				<div class="desc" >--%>
+
+<%--					Total orders month  ${param.month} year ${param.year}. ${totalQuantity}--%>
+<%--				</div>--%>
+<%--			</div>--%>
+<%--			<a class="more" href="#" style="background-color: brown">--%>
+<%--				View more <i class="m-icon-swapright m-icon-white"></i>--%>
+<%--			</a>--%>
+<%--		</div>--%>
+<%--	</div>--%>
+
+</div>
+
+<h5 style="color: red;font-weight: bold">List orders </h5>
 							<div class="row">
 								<div class="col-sm-12">
 									<table class="table table-striped table-bordered table-hover" id="sample_2">

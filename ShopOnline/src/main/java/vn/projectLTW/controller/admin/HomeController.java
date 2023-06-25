@@ -114,6 +114,14 @@ public class HomeController extends HttpServlet{
 
 			double  revenueByMonth=cartService.revenueByMonth(month,year);
 			req.setAttribute("revenueByMonth",revenueByMonth);
+
+			int countOrderByMonth=cartService.countOrderByMonth(month,year);
+			req.setAttribute("countOrderByMonth",countOrderByMonth);
+
+//			String bestSeller= cartService.bestSeller(month,year);
+//			req.setAttribute("bestSeller",bestSeller);
+
+
 			req.getRequestDispatcher("/views/admin/home.jsp").forward(req, resp);
 
 

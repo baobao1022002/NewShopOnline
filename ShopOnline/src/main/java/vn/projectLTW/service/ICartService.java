@@ -19,4 +19,8 @@ public interface ICartService {
 	int countToTalOrder();
 	double totalRevenue();
 	double revenueByMonth(int month,int year);
+
+    int countOrderByMonth(int month, int year);
+
+//    String bestSeller(int month, int year);
 }
