@@ -225,7 +225,7 @@ public class CartDaoImpl implements ICartDao{
 	public List<Cart> orderByMonth(int month,int year) {
 		List<Cart> cartList=new ArrayList<Cart>();
 		String sql="SELECT cart.cartId,cart.buyDate,cart.status,cart.buyerName,cart.buyerPhone,cart.buyerEmail,cart.buyerAddress,cart.buyerProvince,cart.buyerDistrict,cart.payment\n" +
-				"FROM cart inner join users on cartId.userId=users.userId where month(buyDate)=? and year(buyDate)=?";
+				"FROM cart  where month(buyDate)=? and year(buyDate)=?";
 		try {
 			conn=new DBConnection().getConnection();
 			ps=conn.prepareStatement(sql);
@@ -233,17 +233,17 @@ public class CartDaoImpl implements ICartDao{
 			ps.setInt(2, year);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Users user=userService.findOne(rs.getInt("userId"));
 				Cart cart=new Cart();
 				cart.setCartId(rs.getString("cartId"));
 				cart.setBuyDate(rs.getDate("buyDate"));
-				cart.setStatus(rs.getInt("status"));
-				cart.setBuyer(user);
+//				cart.setStatus(rs.getInt("status"));
+				cart.setBuyerName(rs.getString("buyerName"));
 				cart.setBuyerPhone(rs.getString("buyerPhone"));
 				cart.setBuyerEmail(rs.getString("buyerEmail"));
 				cart.setBuyerAddress(rs.getString("buyerAddress"));
 				cart.setBuyerProvince(rs.getString("buyerProvince"));
 				cart.setBuyerDistrict(rs.getString("buyerDistrict"));
+				cart.setPayment(rs.getString("payment"));
 
 				cartList.add(cart);
 			}
