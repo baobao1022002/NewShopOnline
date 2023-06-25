@@ -63,9 +63,9 @@ public class    CheckoutController extends HttpServlet {
         cart.setBuyerName(buyerName);
         cart.setBuyerEmail(buyerEmail);
         cart.setBuyerPhone(buyerPhone);
-        cart.setAddress(address);
-        cart.setProvince(province);
-        cart.setDistrict(district);
+        cart.setBuyerAddress(address);
+        cart.setBuyerProvince(province);
+        cart.setBuyerDistrict(district);
         cart.setPayment(payment);
 
         cartService.insert( cart);

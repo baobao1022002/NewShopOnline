@@ -15,8 +15,8 @@ public interface ICartService {
 	int countByUser(int id);
 	int countByStatus(int id, int status);
 	List<Cart> allOrder();
-	List<Cart> orderByMonth(int month);
+	List<Cart> orderByMonth(int month,int year);
 	int countToTalOrder();
 	double totalRevenue();
-	double revenueByMonth(int month);
+	double revenueByMonth(int month,int year);
 }

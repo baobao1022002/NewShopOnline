@@ -10,11 +10,11 @@ public class Cart {
 	private String buyerName;
 	private String buyerEmail;
 	private String buyerPhone;
-	private String address;
-	private String province;
-	private String district;
+	private String buyerAddress;
+	private String buyerProvince;
+	private String buyerDistrict;
 	private String payment;
-	public Cart(String cartId, Users buyer, Date buyDate, int status,String buyerName, String buyerEmail, String buyerPhone, String address, String province, String district, String payment) {
+	public Cart(String cartId, Users buyer, Date buyDate, int status,String buyerName, String buyerEmail, String buyerPhone, String buyerAddress, String buyerProvince, String buyerDistrict, String payment) {
 		super();
 		this.cartId = cartId;
 		this.buyer = buyer;
@@ -23,9 +23,9 @@ public class Cart {
 		this.buyerName = buyerName;
 		this.buyerEmail = buyerEmail;
 		this.buyerPhone = buyerPhone;
-		this.address = address;
-		this.province = province;
-		this.district = district;
+		this.buyerAddress = buyerAddress;
+		this.buyerProvince =buyerProvince ;
+		this.buyerDistrict = buyerDistrict;
 		this.payment = payment;
 	}
 	public Cart() {
@@ -88,28 +88,29 @@ public class Cart {
 		this.buyerPhone = buyerPhone;
 	}
 
-	public String getAddress() {
-		return address;
+
+	public String getBuyerAddress() {
+		return buyerAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setBuyerAddress(String buyerAddress) {
+		this.buyerAddress = buyerAddress;
 	}
 
-	public String getProvince() {
-		return province;
+	public String getBuyerProvince() {
+		return buyerProvince;
 	}
 
-	public void setProvince(String province) {
-		this.province = province;
+	public void setBuyerProvince(String buyerProvince) {
+		this.buyerProvince = buyerProvince;
 	}
 
-	public String getDistrict() {
-		return district;
+	public String getBuyerDistrict() {
+		return buyerDistrict;
 	}
 
-	public void setDistrict(String district) {
-		this.district = district;
+	public void setBuyerDistrict(String buyerDistrict) {
+		this.buyerDistrict = buyerDistrict;
 	}
 
 	public String getPayment() {
