@@ -30,7 +30,7 @@ public class HomeController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURL().toString();
-		if (url.contains("seachOrder")) {
+		if (url.contains("/admin/home/seachOrder")) {
 			getSearchOrder(req, resp);
 		}else {
 			homePage(req, resp);
@@ -39,15 +39,20 @@ public class HomeController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String url = req.getRequestURL().toString();
 
 
-		req.setCharacterEncoding("UTF-8");
-		resp.setCharacterEncoding("UTF-8");
-		findAll(req, resp); // hiện danh sách User trong model
+//			req.setCharacterEncoding("UTF-8");
+//			resp.setCharacterEncoding("UTF-8");
+//			findAll(req, resp); // hiện danh sách User trong model
+//
+//			// chuyển về Views
+//			RequestDispatcher dispacher = req.getRequestDispatcher("/views/admin/home.jsp");
+//			dispacher.forward(req, resp);
+		if (url.contains("/admin/home/seachOrder")) {
+			postSearchOrder(req, resp);
 
-		// chuyển về Views
-		RequestDispatcher dispacher = req.getRequestDispatcher("/views/admin/home.jsp");
-		dispacher.forward(req, resp);
+		}
 	}
 
 	protected void homePage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -70,8 +75,8 @@ public class HomeController extends HttpServlet{
 		try {
 
 
-			List<Cart> allCartList=cartService.allOrder();
-			req.setAttribute("allCartList",allCartList);
+			List<Cart> cartList=cartService.allOrder();
+			req.setAttribute("cartList",cartList);
 
 			int countToTalOrder=cartService.countToTalOrder();
 			req.setAttribute("countToTalOrder", countToTalOrder);
@@ -93,12 +98,19 @@ public class HomeController extends HttpServlet{
 	}
 	private void postSearchOrder(HttpServletRequest req, HttpServletResponse resp) {
 		try {
+			resp.setContentType("text/html;charset=UTF-8");
 			req.setCharacterEncoding("UTF-8");
-			resp.setCharacterEncoding("UTF-8");
 			int month = Integer.parseInt(req.getParameter("month"));
 			int year = Integer.parseInt(req.getParameter("year"));
-			List<Cart> cartListByMonth =  cartService.orderByMonth(month,year);
-			req.setAttribute("cartListByMonth", cartListByMonth);// đẩy ds lên Views
+			List<Cart> cartList =  cartService.orderByMonth(month,year);
+			req.setAttribute("cartList", cartList);// đẩy ds lên Views
+
+			int countToTalOrder=cartService.countToTalOrder();
+			req.setAttribute("countToTalOrder", countToTalOrder);
+
+			String totalRevenue=decimalFormat.format(cartService.totalRevenue()) ;
+
+			req.setAttribute("totalRevenue",totalRevenue);
 
 			double  revenueByMonth=cartService.revenueByMonth(month,year);
 			req.setAttribute("revenueByMonth",revenueByMonth);
