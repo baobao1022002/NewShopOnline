@@ -64,4 +64,29 @@ public class CartServiceImpl implements ICartService{
 		return cartDao.countByStatus(id, status);
 	}
 
+	@Override
+	public List<Cart> allOrder() {
+		return cartDao.allOrder();
+	}
+
+	@Override
+	public List<Cart> orderByMonth(int month) {
+		return cartDao.orderByMonth(month);
+	}
+
+	@Override
+	public int countToTalOrder() {
+		return cartDao.countToTalOrder();
+	}
+
+	@Override
+	public double totalRevenue() {
+		return cartDao.totalRevenue();
+	}
+
+	@Override
+	public double revenueByMonth(int month) {
+		return cartDao.revenueByMonth(month);
+	}
+
 }

@@ -116,7 +116,7 @@
 						<c:forEach var="i" items="${sellerList}" varStatus="stt">
 							<tr>
 								<th scope="row">${i.sellerId}</th>
-								<td><c:url value="/image?fname=seller/${i.images}"
+								<td><c:url value="/uploads/seller/${i.images}"
 										var="imgURL"></c:url> <img width="80px" height="80px"
 									src="${imgURL}" class="rounded-circle"></td>
 								<td>${i.sellerName}</td>

@@ -101,7 +101,7 @@
                     <ul class="scroller" style="height: 250px;">
                         <c:forEach items="${sessionScope.cart}" var="map">
                             <li>
-                                <a href="<c:url value="/product/detail?productId=${map.value.product.productId}"></c:url>"><img src="<c:url value="/image?fname=products/${map.value.product.images}"></c:url>" alt="${map.value.product.productName}" width="37" height="34"></a>
+                                <a href="<c:url value="/product/detail?productId=${map.value.product.productId}"></c:url>"><img src="<c:url value="/uploads/products/${map.value.product.images}"></c:url>" alt="${map.value.product.productName}" width="37" height="34"></a>
                                 <span class="cart-content-count">x ${map.value.quantity}</span>
                                 <strong><a href="shop-item.html">${map.value.quantity}</a></strong>
                                 <em>${map.value.product.price * map.value.quantity}VND</em>

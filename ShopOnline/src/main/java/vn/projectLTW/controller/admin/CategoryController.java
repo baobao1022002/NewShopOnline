@@ -4,8 +4,10 @@ import org.apache.commons.beanutils.BeanUtils;
 import vn.projectLTW.controller.web.HomeController;
 import vn.projectLTW.model.Category;
 import vn.projectLTW.model.Users;
+import vn.projectLTW.service.ICartService;
 import vn.projectLTW.service.ICategoryService;
 import vn.projectLTW.service.ILogService;
+import vn.projectLTW.service.Impl.CartServiceImpl;
 import vn.projectLTW.service.Impl.CategoryServiceImpl;
 import vn.projectLTW.service.Impl.LogServiceImpl;
 import vn.projectLTW.util.Constant;
@@ -33,6 +35,7 @@ import java.util.logging.Logger;
 		"/admin/category/edit", "/admin/category/delete", "/admin/category/reset" })
 public class CategoryController extends HttpServlet {
 	ICategoryService categoryService = new CategoryServiceImpl();
+	ICartService cartService=new CartServiceImpl();
 	ILogService logService=new LogServiceImpl();
 	Log log = new Log(Log.INFO,"","","",1);
 	static final Logger LOGGER= Logger.getLogger(HomeController.class.getName());
@@ -99,6 +102,13 @@ public class CategoryController extends HttpServlet {
 			List<Category> categoryList = categoryService.findAll();// gọi hàm findAll trong service trả về đối tượng
 																	// List<Users>
 			req.setAttribute("categoryList", categoryList);// đẩy ds lên Views
+
+			int countToTalOrder=cartService.countToTalOrder();
+			req.setAttribute("countToTalOrder", countToTalOrder);
+
+			double totalRevenue=cartService.totalRevenue();
+			req.setAttribute("totalRevenue",totalRevenue);
+
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,6 +13,12 @@ public interface ICartDao {
 	List<Cart> findAll();
 	List<Cart> findAllByUser(int id);
 	int countByUser(int id);
-	int countByStatus(int id, int status); 
+	int countByStatus(int id, int status);
+
+	List<Cart> allOrder();
+	List<Cart> orderByMonth(int month);
+	int countToTalOrder();
+	double totalRevenue();
+	double revenueByMonth(int month);
 	
 }

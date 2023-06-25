@@ -22,7 +22,7 @@ import java.util.Map;
 
 
 @WebServlet (urlPatterns = {"/checkout-cart","/checkout"})
-public class CheckoutController extends HttpServlet {
+public class    CheckoutController extends HttpServlet {
         IUserService userService=new UserServiceImpl();
         ICartService cartService=new CartServiceImpl();
         ICartItemService cartItemService=new CartItemServiceImpl();
@@ -80,8 +80,6 @@ public class CheckoutController extends HttpServlet {
             for(CartItem cartItem:map.values()){
                 cartItem.setCart(cart);
                 cartItem.setCartItemId(RandomUUID.getRandomID());
-                //SendMail sm=new SendMail();
-                //sm.sendMail(cart.getBuyer().getEmail(),"Shopping.iotstar","Nội dung!");
                 cartItemService.insert(cartItem);
             }
         }
