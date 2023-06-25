@@ -88,5 +88,12 @@ public class CartServiceImpl implements ICartService{
 	public double revenueByMonth(int month,int year) {
 		return cartDao.revenueByMonth(month,year);
 	}
-
+  	@Override
+	public int countOrderByMonth(int month, int year) {
+		return  cartDao.countOrderByMonth(month,year);
+	}
+//	@Override
+//	public String bestSeller(int month,int year) {
+//		return  cartDao.bestSeller(month,year);
+//	}
 }

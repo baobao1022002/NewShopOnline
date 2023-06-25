@@ -302,5 +302,46 @@ public class CartDaoImpl implements ICartDao{
 		}
 		return 0;
 	}
+	@Override
+	public int countOrderByMonth(int month, int year) {
+		String sql="SELECT count(cartId) FROM cart WHERE month(buyDate)=? and year(buyDate)=? ;";
+		try {
+			conn=new DBConnection().getConnection();
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, month);
+			ps.setInt(2, year);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+//	@Override
+//	public String bestSeller(int month,int year) {
+//		String sql="SELECT product.productName, SUM(cart_item.quantity) AS totalQuantity\n" +
+//				"FROM cart_item\n" +
+//				"JOIN cart ON cart_item.cartId = cart.cartId\n" +
+//				"JOIN product ON cart_item.productId = product.productId\n" +
+//				"WHERE month(cart.buyDate) = ? AND year(cart.buyDate) = ?\n" +
+//				"GROUP BY product.productName\n" +
+//				"ORDER BY totalQuantity DESC\n" +
+//				"LIMIT 1;";
+//		try {
+//			conn=new DBConnection().getConnection();
+//			ps=conn.prepareStatement(sql);
+//			ps.setInt(1, month);
+//			ps.setInt(2, year);
+//			rs=ps.executeQuery();
+//			while(rs.next()) {
+//				return rs.getString(1);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null ;
+//	}
 
 }
