@@ -191,4 +191,114 @@ public class CartDaoImpl implements ICartDao{
 		return 0;
 	}
 
+	@Override
+	public List<Cart> allOrder() {
+		List<Cart> cartList=new ArrayList<Cart>();
+		String sql="SELECT cart.cartId,cart.buyDate,cart.status,cart.buyerName,cart.buyerPhone,cart.buyerEmail,cart.buyerAddress,cart.buyerProvince,cart.buyerDistrict,cart.payment\n" +
+				"FROM cart inner join users on cartId.userId=users.userId";
+		try {
+			conn=new DBConnection().getConnection();
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				Users user=userService.findOne(rs.getInt("userId"));
+				Cart cart=new Cart();
+				cart.setCartId(rs.getString("cartId"));
+				cart.setBuyDate(rs.getDate("buyDate"));
+				cart.setStatus(rs.getInt("status"));
+				cart.setBuyer(user);
+				cart.setBuyerPhone(rs.getString("buyerPhone"));
+				cart.setBuyerEmail(rs.getString("buyerEmail"));
+				cart.setAddress(rs.getString("buyerAddress"));
+				cart.setProvince(rs.getString("buyerProvince"));
+				cart.setDistrict(rs.getString("buyerDistrict"));
+
+				cartList.add(cart);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cartList;
+	}
+
+	@Override
+	public List<Cart> orderByMonth(int month) {
+		List<Cart> cartList=new ArrayList<Cart>();
+		String sql="SELECT cart.cartId,cart.buyDate,cart.status,cart.buyerName,cart.buyerPhone,cart.buyerEmail,cart.buyerAddress,cart.buyerProvince,cart.buyerDistrict,cart.payment\n" +
+				"FROM cart inner join users on cartId.userId=users.userId where month(buyDate)=?";
+		try {
+			conn=new DBConnection().getConnection();
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, month);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				Users user=userService.findOne(rs.getInt("userId"));
+				Cart cart=new Cart();
+				cart.setCartId(rs.getString("cartId"));
+				cart.setBuyDate(rs.getDate("buyDate"));
+				cart.setStatus(rs.getInt("status"));
+				cart.setBuyer(user);
+				cart.setBuyerPhone(rs.getString("buyerPhone"));
+				cart.setBuyerEmail(rs.getString("buyerEmail"));
+				cart.setAddress(rs.getString("buyerAddress"));
+				cart.setProvince(rs.getString("buyerProvince"));
+				cart.setDistrict(rs.getString("buyerDistrict"));
+
+				cartList.add(cart);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cartList;
+	}
+
+	@Override
+	public int countToTalOrder() {
+		String sql="SELECT count(cartId) FROM cart;";
+		try {
+			conn=new DBConnection().getConnection();
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public double totalRevenue() {
+		String sql="SELECT sum(payment) FROM cart";
+		try {
+			conn=new DBConnection().getConnection();
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				return rs.getDouble(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public double revenueByMonth(int month) {
+		String sql="SELECT sum(payment) FROM cart where month(buyDate)=?";
+		try {
+			conn=new DBConnection().getConnection();
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, month);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				return rs.getDouble(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

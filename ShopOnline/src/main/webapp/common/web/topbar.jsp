@@ -32,14 +32,13 @@
 					<div class="col-sm-6">
 							<ul class="list-inline left-topbar pull-right">
 							<li><a>
-							<img alt="" class="img-circle" width="22px" src="<c:url value="/image?fname=${sessionScope.account.avatar}"/>"/>
+							<img alt="" class="img-circle" width="22px" src="<c:url value="/uploads/users/${sessionScope.account.images}"/>"/>
 							${sessionScope.account.fullName}</a>
 								<ul class="language-right">
 									<li><a href="${pageContext.request.contextPath }/member-myaccount">Hồ sơ tài khoản</a>
 									<a href="${pageContext.request.contextPath }/logout">Đăng Xuất</a>
 									<c:if test="${sessionScope.account.roleid ==1}">
 									<a href="${pageContext.request.contextPath }/admin-home">Trang quản trị</a>
-									
 									</c:if>
 									</li>
 								</ul>

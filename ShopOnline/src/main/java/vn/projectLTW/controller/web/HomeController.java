@@ -213,7 +213,7 @@ public class HomeController extends HttpServlet {
         }
     }
 
-    protected void postForgotPassword(HttpServletRequest req, HttpServletResponse resp)
+    protected void      postForgotPassword(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SuppressWarnings("serial")
-@WebServlet(urlPatterns = {"/member/orderbuy","/member/orderbuy/cancel","/member/orderbuy/recancel"})
+@WebServlet(urlPatterns = {"/member/orderbuy","/member/orderbuy/cancel","/member/orderbuy/recancel","/member/orderbuy/confirmWaitDelivery","/member/orderbuy/confirmProductOut","/member/orderbuy/confirmDelivered"})
 public class OrderBuyerController extends HttpServlet {
     IUserService userService=new UserServiceImpl();
     ICategoryService cateService=new CategoryServiceImpl();
@@ -66,10 +66,10 @@ public class OrderBuyerController extends HttpServlet {
         System.out.println("all: "+cartService.countByUser(uid));
         req.setAttribute("choxacnhan",cartService.countByStatus(uid,0));
         req.setAttribute("cholayhang",cartService.countByStatus(uid,1));
-        req.setAttribute("choxacnhanhuy",cartService.countByStatus(uid,5));
         req.setAttribute("danggiao",cartService.countByStatus(uid,2));
         req.setAttribute("dagiao",cartService.countByStatus(uid,3));
         req.setAttribute("huy",cartService.countByStatus(uid,4));
+        req.setAttribute("choxacnhanhuy",cartService.countByStatus(uid,5));
 
         String id=req.getParameter("id");
         String st=req.getParameter("st");//st
@@ -79,15 +79,22 @@ public class OrderBuyerController extends HttpServlet {
             cartService.updateStatus(id,Integer.parseInt(st));
             req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
 
-//            RequestDispatcher dispatcher=req.getRequestDispatcher("member/orderbuy");
-//            dispatcher.forward(req,resp);
         }else if(url.contains("recancel")){
             cartService.updateStatus(id,Integer.parseInt(st));
             req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
 
-//            RequestDispatcher dispatcher=req.getRequestDispatcher("member/orderbuy");
-//            dispatcher.forward(req,resp);
-        }else{
+        }else if(url.contains("confirmWaitDelivery")){
+            cartService.updateStatus(id,Integer.parseInt(st));
+            req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
+
+        }else if(url.contains("confirmProductOut")){
+            cartService.updateStatus(id,Integer.parseInt(st));
+            req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
+        }else if(url.contains("confirmDelivered")){
+            cartService.updateStatus(id,Integer.parseInt(st));
+            req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
+        }
+        else{
             req.getRequestDispatcher("/views/web/orderbuy-list.jsp").forward(req, resp);
         }
 

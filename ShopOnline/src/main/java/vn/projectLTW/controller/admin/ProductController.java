@@ -56,7 +56,6 @@ public class ProductController extends HttpServlet {
 			product = new Product();
 			req.setAttribute("product", product);// đẩy dữ liệu lên Views
 
-
 		} else if (url.contains("edit")) {
 			edit(req, resp);
 

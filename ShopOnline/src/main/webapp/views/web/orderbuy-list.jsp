@@ -49,29 +49,40 @@
 			<ul class="nav nav-tabs flex-column font-weight-bold">
 				<li class="nav-item"><a class="nav-link active btn-primary"
 										href="#all" data-toggle="tab"><%=showLanguage.get("all")%></a></li>
+
+				<c:if test="${sessionScope.account.roleId ==2}">
 				<li class="nav-item"><a class="nav-link" href="#choxacnhan"
 										data-toggle="tab"><%=showLanguage.get("wait for confirmation")%>
 					<c:if test="${choxacnhan!=0}">
 						<span class="badge badge-danger badge-pill">${choxacnhan}</span>
 					</c:if>
 				</a></li>
+				</c:if>
+
+				<c:if test="${sessionScope.account.roleId ==2}">
 				<li class="nav-item"><a class="nav-link" href="#cholayhang"
 										data-toggle="tab"><%=showLanguage.get("waiting for the goods")%>
 					<c:if test="${cholayhang!=0}">
 						<span class="badge badge-danger badge-pill">${cholayhang}</span>
 					</c:if>
 				</a></li>
+				</c:if>
 
-
+				<c:if test="${sessionScope.account.roleId ==2}">
 				<li class="nav-item"><a class="nav-link" href="#danggiao"
 										data-toggle="tab"><%=showLanguage.get("delivery")%>
 					<c:if test="${danggiao!=0}">
 						<span class="badge badge-danger badge-pill">${danggiao}</span>
 					</c:if>
-					<span
-							class="badge badge-danger badge-pill">14</span></a></li>
+
+				</a></li>
+				</c:if>
+
+
 				<li class="nav-item"><a class="nav-link" href="#dagiao"
 										data-toggle="tab"><%=showLanguage.get("delivered")%></a></li>
+
+
 				<li class="nav-item"><a class="nav-link" href="#dahuy"
 										data-toggle="tab"><%=showLanguage.get("cancelled")%></a></li>
 			</ul>
@@ -123,7 +134,7 @@
 													<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 												</c:if>
 												<c:if test="${list.cart.status==1}">
-													<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
+													<button type="button" class="btn btn-warning"><%=showLanguage.get("waiting for the goods")%>
 													</button>
 												</c:if>
 												<c:if test="${list.cart.status==2}">
@@ -136,7 +147,7 @@
 													<button type="button" class="btn btn-success"><%=showLanguage.get("cancelled")%></button>
 												</c:if>
 												<c:if test="${list.cart.status==5}">
-													<button type="button" class="btn-u btn-u-sea-shop">Chờ người bán xác
+													<button type="button" class="btn btn-warning">Chờ người bán xác
 														nhận hủy
 													</button>
 												</c:if>
@@ -147,6 +158,7 @@
 										</div>
 										<ul class="list-inline add-to-wishlist margin-bottom-20">
 											<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
+
 										</ul>
 										<br>
 										<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
@@ -161,11 +173,12 @@
 									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 								</a>
 							</c:if>
-							<c:if test="${list.cart.status==1}">
-							<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
-							   class="center">
-								<button type="button" class="btn btn-danger"><%=showLanguage.get("cancelled")%></button>
-								</c:if>
+<%--							<c:if test="${list.cart.status==2}">--%>
+<%--								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"--%>
+<%--							   class="center">--%>
+<%--								<button type="button" class="btn btn-danger"><%=showLanguage.get("cancelled")%></button>--%>
+<%--							</c:if>--%>
+
 						</div>
 					</c:forEach>
 
@@ -224,7 +237,7 @@
 														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
@@ -244,6 +257,14 @@
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
+												<li>
+
+													<a href="<c:url value="/member/orderbuy/confirmWaitDelivery?id=${list.cart.cartId}&st=1"/>"
+													   class="center">
+														<button style="margin-left: 432px;" type="button" class="btn btn-danger">Xác nhận</button>
+													</a>
+												</li>
+
 											</ul>
 											<br>
 											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
@@ -255,14 +276,15 @@
 								<c:if test="${list.cart.status==0}">
 									<a href="<c:url value="/member/orderbuy/cancel?id=${list.cart.cartId}&st=4"/>"
 									   class="center">
-										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
+										<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
 									</a>
 								</c:if>
-								<c:if test="${list.cart.status==1}">
-								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
-								   class="center">
-									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
-									</c:if>
+<%--								<c:if test="${list.cart.status==1}">--%>
+<%--									<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"--%>
+<%--								   class="center">--%>
+<%--									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>--%>
+<%--									</c:if>--%>
+
 							</div>
 						</c:if>
 					</c:forEach>
@@ -305,7 +327,7 @@
 														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
@@ -325,6 +347,13 @@
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
+												<li>
+													<a href="<c:url value="/member/orderbuy/confirmProductOut?id=${list.cart.cartId}&st=2"/>"
+													   class="center">
+														<button style="margin-left: 432px;" type="button" class="btn btn-danger">Xác nhận đã lấy hàng</button>
+													</a>
+												</li>
+
 											</ul>
 											<br>
 											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
@@ -339,11 +368,11 @@
 										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
-								<c:if test="${list.cart.status==1}">
-								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
-								   class="center">
-									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
-									</c:if>
+<%--								<c:if test="${list.cart.status==1}">--%>
+<%--								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"--%>
+<%--								   class="center">--%>
+<%--									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>--%>
+<%--									</c:if>--%>
 							</div>
 						</c:if>
 					</c:forEach>
@@ -386,7 +415,7 @@
 														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
@@ -406,6 +435,12 @@
 											</div>
 											<ul class="list-inline add-to-wishlist margin-bottom-20">
 												<li class="compare-in"><%=showLanguage.get("quantity")%>: ${list.quantity}</li>
+												<li>
+													<a href="<c:url value="/member/orderbuy/confirmDelivered?id=${list.cart.cartId}&st=3"/>"
+													   class="center">
+														<button style="margin-left: 432px;" type="button" class="btn btn-danger">Xác nhận đã giao hàng</button>
+													</a>
+												</li>
 											</ul>
 											<br>
 											<span class="pull-right title-price"><%=showLanguage.get("subtotal")%>:
@@ -420,11 +455,11 @@
 										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
-								<c:if test="${list.cart.status==1}">
-								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
-								   class="center">
-									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
-									</c:if>
+<%--								<c:if test="${list.cart.status==1}">--%>
+<%--								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"--%>
+<%--								   class="center">--%>
+<%--									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>--%>
+<%--									</c:if>--%>
 							</div>
 						</c:if>
 					</c:forEach>
@@ -467,7 +502,7 @@
 														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
@@ -556,7 +591,7 @@
 														<button type="button" class="btn btn-warning"><%=showLanguage.get("wait for confirmation")%></button>
 													</c:if>
 													<c:if test="${list.cart.status==1}">
-														<button type="button" class="btn-u btn-u-sea-shop"><%=showLanguage.get("waiting for the goods")%>
+														<button type="button" class="btn btn-warning"><%=showLanguage.get("waiting for the goods")%>
 														</button>
 													</c:if>
 													<c:if test="${list.cart.status==2}">
@@ -590,11 +625,11 @@
 										<button type="button" class="btn btn-danger"><%=showLanguage.get("request cancellation")%></button>
 									</a>
 								</c:if>
-								<c:if test="${list.cart.status==1}">
-								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"
-								   class="center">
-									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>
-									</c:if>
+<%--								<c:if test="${list.cart.status==1}">--%>
+<%--								<a href="<c:url value="/member/orderbuy/recancel?id=${list.cart.cartId}&st=5"/>"--%>
+<%--								   class="center">--%>
+<%--									<button type="button" class="btn btn-danger"><%=showLanguage.get("cancel order")%></button>--%>
+<%--									</c:if>--%>
 							</div>
 						</c:if>
 					</c:forEach>

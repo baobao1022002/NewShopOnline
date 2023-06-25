@@ -10,7 +10,8 @@
 									enctype="multipart/form-data">
 					<br />
 					<div class="form-group">
-						<label for="CategoryName">Category Name:</label> <input type="text"
+						<label for="CategoryName">Category Name:</label>
+						<input type="text"
 							name="name" value="" id="name"
 							class="form-control"/>
 					</div>
